@@ -320,9 +320,9 @@ module.exports = {
         let Vendorid =  req.body.Vendorid;
         let Createdby =  req.body.Createdby;
         let Updateby =  req.body.Updateby;
-        let Evaluationdate=req.body.Evaluationdate;
+        // let Evaluationdate=req.body.Evaluationdate;
 		
-		let Panel= req.body.Panel;
+	//	let Panel= req.body.Panel;
        
         let Pjobtitle= req.body.Pjobtitle;
         let Psecondskill= req.body.Psecondskill;
@@ -334,8 +334,7 @@ module.exports = {
             City + "','" + State + "','" + Country + "','" + Experience + 
             "','" + Highestquali + "','" + Currentjobtitle + "','" + Currentsalary + "','" + Expectedsalary + "','" + 
             Skillset + "','" + Skypeid + "','" + Noticeperiod + "','" + Currentlocation + "','" + Desiredlocation + "','" + 
-            Status + "','" + Resume + "','" + Vendorid + "','" + Createdby + "',now(),'" + Updateby + "',now(),'" + Evaluationdate +
-             "','" + Panel + "','" + Pjobtitle + "','" + Psecondskill + "')";
+            Status + "','" + Resume + "','" + Vendorid + "','" + Createdby + "',now(),'" + Updateby + "',now(),'" + Pjobtitle + "','" + Psecondskill + "')";
      
         db.query(query, (err, result) => {
             if (err) {
@@ -501,8 +500,8 @@ module.exports = {
         let peditresumename = req.body.peditresumename;
         let peditvendorid = req.body.peditvendorid;
         let peditupdatedby = req.body.peditupdatedby;
-        let Evaluationdate = req.body.Evaluationdate;   
-        let Panel = req.body.Panel;      
+        // let Evaluationdate = req.body.Evaluationdate;   
+        // let Panel = req.body.Panel;      
        // let Pjobtitle = req.body.Pjobtitle;
         let Psecondskill = req.body.Psecondskill;
 
@@ -511,8 +510,7 @@ module.exports = {
         let query = "CALL procUpdateprofile('" + peditprofileId + "','" + peditfirstname + "','" + peditlastname + "','" + peditemail +
             "','" + peditmobile + "','" + peditdob + "','" + peditcity + "','" + peditstate + "','" + peditcountry + "','" + peditexperience + "','" + pedithighestquali + "','" +
              peditcurrentjobtitle + "','" + peditcurrentsalary + "','" + peditexpectedsalary + "','" + peditskillset + "','" + peditskypeid + "','" + peditnoticeperiod +
-            "','" + peditcurrentlocation + "','" + peditdesiredlocation + "','" + peditstatus + "','" + peditresumename + "','" + peditvendorid + "','" + peditupdatedby + "',now(),'" +
-            Evaluationdate + "','" + Panel + "','" + Psecondskill + "')";
+            "','" + peditcurrentlocation + "','" + peditdesiredlocation + "','" + peditstatus + "','" + peditresumename + "','" + peditvendorid + "','" + peditupdatedby + "',now(),'" + Psecondskill + "')";
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);

@@ -478,6 +478,7 @@
 						'<option value="' + result[0][i].vendorid + '">' + result[0][i].vendorname + '</option>';
 				}
 				$("#profilevendorid").html(profilevendor);
+				$("#peditvendorid").html(profilevendor);
 				//$("#statuspedit").html(jobstatusdrop);
 			}
 		});
@@ -1190,7 +1191,7 @@
 						"<td >" + result[0][i].skillset + "</td>" +
 						"<td >" + result[0][i].experince + "</td>" +
 						"<td >" + result[0][i].status + "</td>" +
-						"<td >" + result[0][i].vendorid + "</td>" +
+						//"<td >" + result[0][i].vendorid+ "</td>" +
 						"<td >" + "<a>" + "<i class='far fa-edit' data-target='#profileEditModal' data-toggle='modal' data-backdrop='static' data-keyboard='false'  onclick=' statuschange(" + statusId + "),profilesdisplay(" + profileID + ")' style='font-size: 20px;color:black;position:relative;left:3%;'></i>" + "</a>" + "</td>" +
 
 						"</tr>";
@@ -1279,13 +1280,10 @@
 		var Currentlocation = $('[name="pcurrent_location"]').val();
 		var Desiredlocation = $('[name="pdesired_location"]').val();
 		var Resigned = $('[name="resigned"]').val();
-		var Evaldate = $('[name="eval_date"]').val();
-		var Internaltd = $('[name="internal_td"]').val();
-		var Panel = $('[name="p_panel"]').val();
 		var Screening = $('[name="p_screening"]').val();
 		var Status = $('[name="p_status"]').val();
 		var Resume = $('[name="presume_name"]').val();
-		var Vendorid = $('[name="p_vendorid"]').val();
+		var Vendorid = $("#profilevendorid option:selected").text();
 		var Createdby = 'Admin';
 		var Updateby = 'Admin';
 		var Evaluationdate = $('[name="eval_date"]').val();
@@ -1318,9 +1316,6 @@
 			"Currentlocation": Currentlocation,
 			"Desiredlocation": Desiredlocation,
 			"Resigned": Resigned,
-			"Evaldate": Evaldate,
-			"Internaltd": Internaltd,
-			"Panel": Panel,
 			"Screening": Screening,
 			"Status": Status,
 			"Resume": Resume,
@@ -1386,7 +1381,7 @@
 		var peditdesiredlocation = $('[name="peditdesired_location"]').val();
 		var peditstatus = $('[name="pedit_status"]').val();
 		var peditresumename = $('[name="peditresume_name"]').val();
-		var peditvendorid = $('[name="pedit_vendorid"]').val();
+		var peditvendorid = $("#peditvendorid option:selected").text();
 		var peditevaldate = $('[name="pedit_evaldate"]').val();
 		var peditpanel = $('[name="pedit_panel"]').val();
 
@@ -1538,9 +1533,6 @@
 		var peditcurrentsalary = $('[name="peditcurrent_salary"]').val();
 		var peditexpectedsalary = $('[name="peditexpected_salary"]').val();
 		var peditresigned = $('[name="editresigned"]').val();
-		var peditevaldate = $('[name="pedit_evaldate"]').val();
-		var peditinternaltd = $('[name="pedit_internaltd"]').val();
-		var peditpanel = $('[name="pedit_panel"]').val();
 		var peditscreening = $('[name="pedit_screening"]').val();
 		var peditskillset = $('[name="peditskill_set"]').val();
 		var peditskypeid = $('[name="peditskype_id"]').val();
@@ -1579,9 +1571,6 @@
 			"peditcurrentlocation": peditcurrentlocation,
 			"peditdesiredlocation": peditdesiredlocation,
 			"peditresigned": peditresigned,
-			"peditevaldate": peditevaldate,
-			"peditinternaltd": peditinternaltd,
-			"peditpanel": peditpanel,
 			"peditscreening": peditscreening,
 			"peditstatus": peditstatus,
 			"peditresumename": peditresumename,
@@ -2521,7 +2510,7 @@
 															<th scope="col">Skill</th>
 															<th scope="col">Experience</th>
 															<th scope="col">Status</th>
-															<th scope="col">Vendor Id</th>
+															<!-- <th scope="col">Vendor Id</th> -->
 															<th data-orderable="false" scope="col">Action</th>
 														</tr>
 													</thead>
@@ -3520,7 +3509,7 @@
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
-							<div class="row">
+							<!-- <div class="row">
 								<div class="col-sm-1"></div>
 								<div class="col-sm-2">
 									<label style="width: 113px;"><span style="color:red">*</span>Evaluation
@@ -3537,7 +3526,7 @@
 									<input type="text" class="form-control" id="peditpanel" name="pedit_panel" required>
 								</div>
 								<div class="col-sm-1"> </div>
-							</div>
+							</div> -->
 							<div class="row">
 								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Others:</h4>
 							</div>
@@ -3556,8 +3545,8 @@
 									<label><span style="color:red">*</span>Vendor Name:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="peditvendorid" name="pedit_vendorid" class="form-control"
-										required disabled>
+									<select id="peditvendorid" name="pedit_vendorid" class="form-control"
+										required disabled></select>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
