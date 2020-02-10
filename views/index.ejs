@@ -5,6 +5,7 @@
 	<title>JobPortal</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- <link rel="stylesheet" type="text/css" href="all-ie-only.css" />  -->
 	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -252,6 +253,10 @@
 		font-size: 16px;
 		font-weight: 600;
 	}
+
+	/* :required {
+ 		background-color: black;
+	} */
 </style>
 
 <script type="text/javascript">
@@ -719,6 +724,7 @@
 			}
 		});
 	}
+
 	function profiletabcountrydropdown() {
 		var profilecountry = "";
 		var url = "http://localhost:2000/profilecountry";
@@ -736,6 +742,7 @@
 			}
 		});
 	}
+	
 	function profiletabstatedropdown() {
 
 		let profilecountry = $('[name="p_country"]').find(":selected").val();
@@ -756,6 +763,7 @@
 			}
 		});
 	}
+	
 	function highestqualdropdown() {
 		var highestqual = "";
 		var url = "http://localhost:2000/highestqual";
@@ -804,6 +812,7 @@
 			}
 		});
 	}
+	
 	function profilestatusdropdown() {
 		var profilestatus = "";
 		var url = "http://localhost:2000/profilestatus";
@@ -902,7 +911,7 @@
 	}
 
 	function jobdisplay(i) {
-		$("#updatehide").hide();
+		// $("#updatehide").hide();
 		var url = "http://localhost:2000/joblisting/" + i;
 
 		$.ajax({
@@ -927,10 +936,10 @@
 				$("#ubyedit").val(result[0][0].updateby);
 				$("#nposedit").val(result[0][0].noofpositions);
 				$("#roleedit").val(result[0][0].role);
-				$("#cbydateedit").val(result[0][0].createddate.slice(0, 19));
-				$("#ubydateedit").val(result[0][0].updatedtime.slice(0, 19));
-				$("#datereqedit").val(result[0][0].dateofreq.slice(0, 19));
-				$("#expdateedit").val(result[0][0].expecteddate.slice(0, 19));
+				$("#cbydateedit").val(result[0][0].createddate.slice(0, 10));
+				$("#ubydateedit").val(result[0][0].updatedtime.slice(0, 10));
+				$("#datereqedit").val(result[0][0].dateofreq.slice(0, 10));
+				$("#expdateedit").val(result[0][0].expecteddate.slice(0, 10));
 				$("#custedit").val(result[0][0].customers).attr('selected', 'selected');
 				$("#JD_comment").val(result[0][0].jdcomments);
 				$("#BU_comment").val(result[0][0].bucomments);
@@ -938,11 +947,10 @@
 		});
 	}
 
-
-
 	function enablejoblist() {
+		
 		$("#updatehide").show();
-		$("#edithide").hide();
+		// $("#edithide").hide();
 
 		$("#jlidedit").attr('disabled', false);
 		$("#expedit").attr('disabled', false);
@@ -1057,44 +1065,10 @@
 		// }
 	}
 
-
-	function cancelenable() {
-
-		$("#edithide").show();
-
-		$("#jlidedit").attr('disabled', true);
-		$("#expedit").attr('disabled', true);
-		$("#lfedit").attr('disabled', true);
-		$("#jdedit").attr('disabled', true);
-		$("#buedit").attr('disabled', true);
-		$("#sregionedit").attr('disabled', true);
-		$("#srepedit").attr('disabled', true);
-		$("#statuspedit").attr('disabled', true);
-		$("#psedit").attr('disabled', true);
-		$("#ssedit").attr('disabled', true);
-		$("#cbyedit").attr('disabled', true);
-		$("#ubyedit").attr('disabled', true);
-		$("#nposedit").attr('disabled', true);
-		$("#roleedit").attr('disabled', true);
-		$("#cbydateedit").attr('disabled', true);
-		$("#ubydateedit").attr('disabled', true);
-		$("#datereqedit").attr('disabled', true);
-		$("#expdateedit").attr('disabled', true);
-		$("#custedit").attr('disabled', true);
-		$("#JD_comment").attr('disabled', true);
-		$("#BU_comment").attr('disabled', true);
-		$("#roleleveledit").attr('disabled', true);
-		$("#jdurationedit").attr('disabled', true);
-		$("#reqclosedateedit").attr('disabled', true);
-		$("#jstatusedit").attr('disabled', true);
-
-
-	}
-
 	function updatejd() {
 
-		$("#edithide").show();
-		$("#updatehide").hide();
+		// $("#edithide").show();
+		$("#updatehide").show();
 
 		var jobdescriptionId = $('[name="jdiddisplay_hidden"]').text();
 		var reqid = $('[name="reqid_display"]').text();
@@ -1205,7 +1179,7 @@
 	}
 
 	function profilesdisplay(i) {
-		$("#updateeditprofile").hide();
+		// $("#updateeditprofile").hide();
 		var url = "http://localhost:2000/profilelisting/" + i;
 
 		$.ajax({
@@ -1339,15 +1313,22 @@
 			dataType: "json",
 			success: function (result) {
 
+				$('#profilesmodal').modal('hide');
 				$('#successmodal').modal('show');
-				profileslistingdetails();
+				clearFormProfile();
+				
 
 			},
 			error: function () {
 			}
 		});
+		
 	}
+	
+	profileslistingdetails();
+
 	}
+	
 	function updateprofile() {
 
 		var peditprofileId = $('[name="editprofile_hiddenId"]').text();
@@ -1432,7 +1413,7 @@
 	}
 	function enableprofileedit() {
 
-		$("#profileeditbtn").hide();
+		// $("#profileeditbtn").hide();
 		$("#updateeditprofile").show();
 		$("#peditsalutation").attr('disabled', false);
 		$("#peditfirstname").attr('disabled', false);
@@ -1464,84 +1445,6 @@
 		$("#peditfilename").attr('disabled', false);
 		$("#seditskillset").attr('disabled', false);
 	}
-
-	function disableprofileedit() {
-
-		$("#profileeditbtn").show();
-		$("#updateeditprofile").hide();
-		//            $("#peditjobrecid").attr('disabled', true);
-		$("#peditsalutation").attr('disabled', true);
-		$("#peditfirstname").attr('disabled', true);
-		$("#peditlastname").attr('disabled', true);
-		$("#peditemail").attr('disabled', true);
-		$("#peditmobile").attr('disabled', true);
-		$("#peditdob").attr('disabled', true);
-		$("#peditaddress1").attr('disabled', true);
-		$("#peditaddress2").attr('disabled', true);
-		$("#peditcity").attr('disabled', true);
-		$("#peditstate").attr('disabled', true);
-		$("#peditcountry").attr('disabled', true);
-		$("#peditexperience").attr('disabled', true);
-		$("#pedithighestquali").attr('disabled', true);
-		$("#peditcurrentjobtitle").attr('disabled', true);
-		$("#peditcurrentsalary").attr('disabled', true);
-		$("#peditexpectedsalary").attr('disabled', true);
-		$("#peditskillset").attr('disabled', true);
-		$("#peditskypeid").attr('disabled', true);
-		$("#peditnoticeperiod").attr('disabled', true);
-		$("#peditcurrentlocation").attr('disabled', true);
-		$("#peditdesiredlocation").attr('disabled', true);
-		$("#peditresigned").attr('disabled', true);
-		$("#peditevaldate").attr('disabled', true);
-		$("#peditinternaltd").attr('disabled', true);
-		$("#peditpanel").attr('disabled', true);
-		$("#peditscreening").attr('disabled', true);
-		$("#peditstatus").attr('disabled', true);
-		$("#peditvendorid").attr('disabled', true);
-		$("#peditfilename").attr('disabled', true);
-		$("#seditskillset").attr('disabled', true);
-
-	}
-
-
-	function disableprofileedit() {
-
-		$("#profileeditbtn").show();
-		$("#updateeditprofile").hide();
-		//	$("#peditjobrecid").attr('disabled', true);
-		$("#peditsalutation").attr('disabled', true);
-		$("#peditfirstname").attr('disabled', true);
-		$("#peditlastname").attr('disabled', true);
-		$("#peditemail").attr('disabled', true);
-		$("#peditmobile").attr('disabled', true);
-		$("#peditdob").attr('disabled', true);
-		$("#peditaddress1").attr('disabled', true);
-		$("#peditaddress2").attr('disabled', true);
-		$("#peditcity").attr('disabled', true);
-		$("#peditstate").attr('disabled', true);
-		$("#peditcountry").attr('disabled', true);
-		$("#peditpostalcode").attr('disabled', true);
-		$("#peditexperience").attr('disabled', true);
-		$("#pedithighestquali").attr('disabled', true);
-		$("#peditcurrentjobtitle").attr('disabled', true);
-		$("#peditcurrentsalary").attr('disabled', true);
-		$("#peditexpectedsalary").attr('disabled', true);
-		$("#peditskillset").attr('disabled', true);
-		$("#peditskypeid").attr('disabled', true);
-		$("#peditnoticeperiod").attr('disabled', true);
-		$("#peditcurrentlocation").attr('disabled', true);
-		$("#peditdesiredlocation").attr('disabled', true);
-		$("#peditresigned").attr('disabled', true);
-		$("#peditevaldate").attr('disabled', true);
-		$("#peditinternaltd").attr('disabled', true);
-		$("#peditpanel").attr('disabled', true);
-		$("#peditscreening").attr('disabled', true);
-		$("#peditstatus").attr('disabled', true); 1
-		$("#peditvendorid").attr('disabled', true);
-		$("#peditfilename").attr('disabled', true);
-
-	}
-
 
 	function addvendor() {
 
@@ -1582,7 +1485,7 @@
 
 		var url = "http://localhost:2000/addvendor";
 
-		//	if (Vendorid != "" && Vendorname != "" && Vendorpriloc != "" && Vendorspec != "" && Vendoremail != "" && Recruiterid != "" && Recruitername != "" && Recruitercontno != "" && Vendorrating != "") {
+		if (Vendorid != "" && Vendorname != "" && Vendorpriloc != "" && Vendorspec != "" && Vendoremail != "" && Recruiterid != "" && Recruitername != "" && Recruitercontno != "" && Vendorrating != "") {
 
 
 		$.ajax({
@@ -1594,15 +1497,19 @@
 			dataType: "json",
 			success: function (result) {
 
+				$('#vendormodal').modal('hide');
 				$('#successmodal').modal('show');
-				vendorlistingdetails();
+				clearFormVendor();
 
 			},
 			error: function () {
 			}
 		});
-		//	}
-
+		
+		}
+		
+		vendorlistingdetails();
+		
 	}
 
 
@@ -1640,7 +1547,7 @@
 
 	function vendordisplay(i) {
 
-		$("#updatevendor").hide();
+		// $("#updatevendor").hide();
 		var url = "http://localhost:2000/vendorlisting/" + i;
 
 		$.ajax({
@@ -1667,7 +1574,7 @@
 
 	function enablevendorlist() {
 
-		$("#editvendor").hide();
+		// $("#editvendor").hide();
 		$("#updatevendor").show();
 		$("#editvendorid").attr('disabled', false);
 		$("#editvendorname").attr('disabled', false);
@@ -1682,26 +1589,9 @@
 
 	}
 
-	function cancelenablevendor() {
-
-		$("#editvendor").show();
-		$("#updatevendor").hide();
-		$("#editvendorid").attr('disabled', true);
-		$("#editvendorname").attr('disabled', true);
-		$("#editvendorpriloc").attr('disabled', true);
-		$("#editvendorspec").attr('disabled', true);
-		$("#editvendoremail").attr('disabled', true);
-		$("#editrecruiterid").attr('disabled', true);
-		$("#editrecruitername").attr('disabled', true);
-		$("#editrecruitercontno").attr('disabled', true);
-		$("#editvendorcomments").attr('disabled', true);
-		$("#editvendorrating").attr('disabled', true);
-
-	}
-
 	function updatevendorbyid() {
 
-		$("#editvendor").show();
+		// $("#editvendor").show();
 		var vendorid = $('[name="vendorid_hidden"]').text();
 		var Vendorcode = $('[name="editvendor_id"]').val();
 		var Vendorname = $('[name="editvendor_name"]').val();
@@ -1774,6 +1664,7 @@
 	function clearFormProfile() {
 
 		$("#jobrecid").val('');
+		$("#profilejobtitle").val('');
 		$("#salutation").val('');
 		$("#firstname").val('');
 		$("#lastname").val('');
@@ -2077,11 +1968,11 @@
 														</div>
 														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
 
-															<select id="rolelevel" class="form-control"
-																name="role_level" required>
-																<option value="">Tech 1</option>
-																<option value="">Tech 2</option>
-																<option value="">Tech 3</option>
+															<select id="rolelevel" class="form-control" name="role_level" required>
+																<!-- <option value="">Select</option> -->
+																<option value="1">Tech 1</option>
+																<option value="2">Tech 2</option>
+																<option value="3">Tech 3</option>
 															</select>
 														</div>
 
@@ -2156,8 +2047,8 @@
 															<label><span style="color:red;">*</span>Location
 																Flexiblity:</label></div>
 														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<select id="locflex" class="form-control" name="loc_flex"
-																required>
+															<select id="locflex" class="form-control" name="loc_flex" required>
+																<!-- <option value="">Select</option> -->
 																<option value="Y">Yes</option>
 																<option value="N">No</option>
 															</select>
@@ -2172,9 +2063,8 @@
 
 														</div>
 														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<select id="jstatus" class="form-control" name="jstatus"
-																required>
-
+															<select id="jstatus" class="form-control" name="jstatus" required>
+																<option value=""></option>
 															</select>
 
 														</div>
@@ -2517,8 +2407,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
 									<label><span style="color:red;">*</span>Job Title</label></div>
 								<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-									<input type="text" id="jobtitleedit" name="jobtitleedit" class="form-control"
-										disabled>
+									<input type="text" id="jobtitleedit" name="jobtitleedit" class="form-control">
 								</div>
 
 								<div class="col-sm-1"> </div>
@@ -2528,7 +2417,7 @@
 								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
 									<label><span style="color:red;">*</span>Role Level:</label></div>
 								<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-									<select id="roleleveledit" class="form-control" name="role_leveledit" disabled>
+									<select id="roleleveledit" class="form-control" name="role_leveledit">
 										<option value="">Tech 1</option>
 										<option value="">Tech 2</option>
 										<option value="">Tech 3</option>
@@ -2538,7 +2427,7 @@
 									<label style="width: 113px;">Job Location:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="jlidedit" name="jlid_edit" class="form-control" disabled>
+									<input type="text" id="jlidedit" name="jlid_edit" class="form-control">
 								</div>
 								<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 							</div>
@@ -2549,13 +2438,13 @@
 									<label><span style="color:red">*</span>Primary Skill:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="psedit" name="ps_edit" class="form-control" disabled>
+									<input type="text" id="psedit" name="ps_edit" class="form-control">
 								</div>
 								<div class="col-sm-2">
 									<label style="width: 113px;">Secondary Skill:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="ssedit" name="ss_edit" class="form-control" disabled>
+									<input type="text" id="ssedit" name="ss_edit" class="form-control">
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -2567,14 +2456,14 @@
 								</div>
 								<div class="col-sm-3">
 
-									<input type="text" id="nposedit" name="npos_edit" class="form-control" disabled>
+									<input type="text" id="nposedit" name="npos_edit" class="form-control">
 								</div>
 
 								<div class="col-sm-2">
 									<label style="width: 113px;">Role/Domain:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="roleedit" name="role_edit" class="form-control" disabled>
+									<input type="text" id="roleedit" name="role_edit" class="form-control">
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -2585,15 +2474,15 @@
 									<label><span style="color:red;">*</span>Duration:
 										:</label></div>
 								<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-									<input type="text" id="jdurationedit" name="jdurationedit" class="form-control"
-										disabled>
+									<input type="text" id="jdurationedit" name="jdurationedit" class="form-control">
 								</div>
 								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
 									<label><span style="color:red;">*</span>Status:</label></div>
 								<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-									<select id="jstatusedit" class="form-control" name="jstatusedit" disabled>
-										<option value="">Open</option>
-										<option value="">Close</option>
+									<select id="jstatusedit" class="form-control" name="jstatusedit">
+										<!-- <option value=""></option> -->
+										<option value="1">Open</option>
+										<option value="2">Close</option>
 									</select>
 								</div>
 								<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
@@ -2606,15 +2495,13 @@
 									<label><span style="color:red">*</span>Date of request:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="datereqedit" name="datereq_edit" class="form-control"
-										disabled>
+									<input type="text" id="datereqedit" name="datereq_edit" class="form-control">
 								</div>
 								<div class="col-sm-2">
 									<label style="width: 113px;">Close Date:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="expdateedit" name="expdate_edit" class="form-control"
-										disabled>
+									<input type="text" id="expdateedit" name="expdate_edit" class="form-control">
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -2625,13 +2512,13 @@
 									<label><span style="color:red">*</span>Location Flexibility:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="lfedit" name="lf_edit" class="form-control" disabled>
+									<input type="text" id="lfedit" name="lf_edit" class="form-control">
 								</div>
 								<div class="col-sm-2">
 									<label><span style="color:red">*</span>Experience:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="expedit" name="exp_edit" class="form-control" disabled>
+									<input type="text" id="expedit" name="exp_edit" class="form-control">
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -2642,16 +2529,14 @@
 									<label>Business Unit:</label>
 								</div>
 								<div class="col-sm-3">
-									<select class="form-control" id="buedit" name="bu_edit" class="form-control"
-										disabled>
+									<select class="form-control" id="buedit" name="bu_edit" class="form-control">
 									</select>
 								</div>
 								<div class="col-sm-2">
 									<label>Sales Regions:</label>
 								</div>
 								<div class="col-sm-3">
-									<select class="form-control" id="sregionedit" name="sregion_edit"
-										class="form-control" disabled>
+									<select class="form-control" id="sregionedit" name="sregion_edit" class="form-control">
 									</select>
 								</div>
 								<div class="col-sm-1"></div>
@@ -2663,9 +2548,7 @@
 									<label>Sales Representative:</label>
 								</div>
 								<div class="col-sm-3">
-
-									<select class="form-control" id="srepedit" name="srep_edit" class="form-control"
-										disabled>
+									<select class="form-control" id="srepedit" name="srep_edit" class="form-control">
 									</select>
 								</div>
 
@@ -2673,7 +2556,7 @@
 									<label style="width: 113px;">Customers:</label>
 								</div>
 								<div class="col-sm-3">
-									<select class="form-control" id="custedit" name="cust_edit" disabled></select>
+									<select class="form-control" id="custedit" name="cust_edit"></select>
 								</div>
 								<div class="col-sm-1"></div>
 							</div>
@@ -2684,13 +2567,13 @@
 									<label><span style="color:red">*</span>Created by:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="cbyedit" name="cby_edit" class="form-control" disabled>
+									<input type="text" id="cbyedit" name="cby_edit" class="form-control">
 								</div>
 								<div class="col-sm-2">
 									<label style="width: 113px;">Updated by:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="ubyedit" name="uby_edit" class="form-control" disabled>
+									<input type="text" id="ubyedit" name="uby_edit" class="form-control">
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -2701,15 +2584,13 @@
 									<label><span style="color:red">*</span>Created date:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="cbydateedit" name="cbydate_edit" class="form-control"
-										disabled>
+									<input type="text" id="cbydateedit" name="cbydate_edit" class="form-control">
 								</div>
 								<div class="col-sm-2">
 									<label style="width: 113px;">Updated date:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="ubydateedit" name="ubydate_edit" class="form-control"
-										disabled>
+									<input type="text" id="ubydateedit" name="ubydate_edit" class="form-control">
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -2721,8 +2602,7 @@
 									<label>Job description:</label></div>
 								<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
 									<p id="jdiddisplayhidden" name="jdiddisplay_hidden" style="display:none;"></p>
-									<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="jdedit"
-										name="jd_edit" disabled></textarea>
+									<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="jdedit" name="jd_edit"></textarea>
 								</div>
 							</div>
 
@@ -2733,7 +2613,7 @@
 									<label>JD Comments:</label></div>
 								<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
 									<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="JD_comment"
-										name="jdcomments" disabled></textarea>
+										name="jdcomments"></textarea>
 								</div>
 							</div>
 							<div class="row">
@@ -2743,16 +2623,16 @@
 									<label>BU Comments:</label></div>
 								<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
 									<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="BU_comment"
-										name="bucomments" disabled></textarea>
+										name="bucomments"></textarea>
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-sm btn-info" id="edithide"
-							onclick="enablejoblist()">Edit</button>
+						<!-- <button type="button" class="btn btn-sm btn-info" id="edithide"
+							onclick="enablejoblist()">Edit</button> -->
 						<button type="submit" class="btn btn-sm btn-info" id="updatehide" data-dismiss="modal"
-							onclick="updatejd();cancelenable()">Update</button>
+							onclick="updatejd()">Update</button>
 						<button type="button" class="btn btn-sm btn-info" data-dismiss="modal" onclick="cancelenable()">
 							Cancel</button>
 					</div>
@@ -2823,14 +2703,14 @@
 								</div>
 								<div class="col-sm-3">
 
-									<input type="text" id="mobile" name="p_mobile" class="form-control" required>
+									<input type="tel" id="mobile" name="p_mobile" class="form-control" pattern="[0-9]{10}" required>
 								</div>
 								<div class="col-sm-2">
 									<label><span style="color:red">*</span>Email:</label>
 								</div>
 								<div class="col-sm-3">
 
-									<input type="text" id="email" name="p_email" class="form-control" required>
+									<input type="email" id="email" name="p_email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
 								</div>
 
 								<div class="col-sm-1"> </div>
@@ -2838,11 +2718,11 @@
 							<div class="row">
 								<div class="col-sm-1"></div>
 								<div class="col-sm-2">
-									<label style="width: 113px;">Date of Birth:</label>
+									<label style="width: 113px;"><span style="color:red">*</span>Date of Birth:</label>
 								</div>
 								<div class="col-sm-3">
 
-									<input type="date" id="dob" name="p_dob" class="form-control">
+									<input type="date" id="dob" name="p_dob" class="form-control" required>
 								</div>
 
 								<div class="col-sm-1"> </div>
@@ -2856,18 +2736,18 @@
 							<div class="row">
 								<div class="col-sm-1"></div>
 								<div class="col-sm-2">
-									<label>Country:</label>
+									<label><span style="color:red">*</span>Country:</label>
 								</div>
 								<div class="col-sm-3">
 									<select class="form-control" id="country" name="p_country"
-										onclick="profiletabstatedropdown()" class="form-control">
+										onclick="profiletabstatedropdown()" class="form-control" required>
 									</select>
 								</div>
 								<div class="col-sm-2">
-									<label>State:</label>
+									<label><span style="color:red">*</span>State:</label>
 								</div>
 								<div class="col-sm-3">
-									<select class="form-control" id="state" name="p_state" class="form-control">
+									<select class="form-control" id="state" name="p_state" class="form-control" required>
 									</select>
 								</div>
 								<div class="col-sm-1"></div>
@@ -2875,10 +2755,10 @@
 							<div class="row">
 								<div class="col-sm-1"></div>
 								<div class="col-sm-2">
-									<label>City:</label>
+									<label><span style="color:red">*</span>City:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="city" name="p_city" class="form-control">
+									<input type="text" id="city" name="p_city" class="form-control" required>
 
 								</div>
 
@@ -2945,14 +2825,14 @@
 								</div>
 								<div class="col-sm-3">
 
-									<input type="text" id="sskillset" name="sskill_set" class="form-control" required>
+									<input type="text" id="sskillset" name="sskill_set" class="form-control">
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
 							<div class="row">
 								<div class="col-sm-1"></div>
 								<div class="col-sm-2">
-									<label style="width: 113px;">Skype ID:</label>
+									<label style="width: 113px;"><span style="color:red">*</span>Skype ID:</label>
 								</div>
 								<div class="col-sm-3">
 									<input type="text" id="skypeid" name="pskype_id" class="form-control" required>
@@ -3082,8 +2962,8 @@
 
 					</div>
 					<div class="modal-footer">
-						<button type="Submit" class="btn btn-sm btn-info" data-dismiss="modal"
-							onclick="addprofile(),clearFormProfile();">Save</button>
+						<button type="Submit" class="btn btn-sm btn-info"
+							onclick="addprofile()">Save</button>
 						<button type="button" class="btn btn-sm btn-info" data-dismiss="modal"
 							onclick="clearFormProfile();">Cancel</button>
 					</div>
@@ -3166,7 +3046,7 @@
 								<div class="col-sm-3">
 
 									<input type="text" id="peditfirstname" name="peditfirst_name" class="form-control"
-										required disabled>
+										required>
 								</div>
 								<div class="col-sm-2">
 									<label style="width: 113px;"><span style="color:red">*</span>Last Name:</label>
@@ -3174,7 +3054,7 @@
 								<div class="col-sm-3">
 
 									<input type="text" id="peditlastname" name="peditlast_name" class="form-control"
-										required disabled>
+										required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3185,8 +3065,7 @@
 								</div>
 								<div class="col-sm-3">
 
-									<input type="text" id="peditmobile" name="pedit_mobile" class="form-control"
-										required disabled>
+									<input type="tel" id="peditmobile" name="pedit_mobile" class="form-control" pattern="[0-9]{10}"	required>
 								</div>
 
 								<div class="col-sm-2">
@@ -3194,8 +3073,7 @@
 								</div>
 								<div class="col-sm-3">
 
-									<input type="text" id="peditemail" name="pedit_email" class="form-control" required
-										disabled>
+									<input type="email" id="peditemail" name="pedit_email" class="form-control"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3207,7 +3085,7 @@
 								</div>
 								<div class="col-sm-3">
 
-									<input type="text" id="peditdob" name="pedit_dob" class="form-control" disabled>
+									<input type="text" id="peditdob" name="pedit_dob" class="form-control">
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3224,15 +3102,14 @@
 								</div>
 								<div class="col-sm-3">
 									<select class="form-control" id="peditcountry" name="pedit_country"
-										onclick="editprofilestatedropdown()" class="form-control" required disabled>
+										onclick="editprofilestatedropdown()" class="form-control" required>
 									</select>
 								</div>
 								<div class="col-sm-2">
 									<label>State:</label>
 								</div>
 								<div class="col-sm-3">
-									<select class="form-control" id="peditstate" name="pedit_state" class="form-control"
-										disabled>
+									<select class="form-control" id="peditstate" name="pedit_state" class="form-control">
 									</select>
 								</div>
 
@@ -3244,7 +3121,7 @@
 									<label>City:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="peditcity" name="pedit_city" class="form-control" disabled>
+									<input type="text" id="peditcity" name="pedit_city" class="form-control">
 
 								</div>
 
@@ -3264,7 +3141,7 @@
 								</div>
 								<div class="col-sm-3">
 									<select class="form-control" id="pedithighestquali" name="pedit_highestquali"
-										required disabled></select>
+										required></select>
 
 								</div>
 
@@ -3274,7 +3151,7 @@
 								</div>
 								<div class="col-sm-3">
 									<input type="text" id="peditcurrentjobtitle" name="peditcurrent_jobtitle"
-										class="form-control" required disabled>
+										class="form-control" required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3286,7 +3163,7 @@
 								<div class="col-sm-3">
 
 									<input type="text" id="peditcurrentsalary" name="peditcurrent_salary"
-										class="form-control" required disabled>
+										class="form-control" required>
 								</div>
 
 								<div class="col-sm-2">
@@ -3294,7 +3171,7 @@
 								</div>
 								<div class="col-sm-3">
 									<input type="text" id="peditexpectedsalary" name="peditexpected_salary"
-										class="form-control" required disabled>
+										class="form-control" required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3307,7 +3184,7 @@
 								<div class="col-sm-3">
 
 									<input type="text" id="peditskillset" name="peditskill_set" class="form-control"
-										required disabled>
+										required>
 								</div>
 								<div class="col-sm-2">
 									<label><span style="color:red">*</span>Secondary Skill:</label>
@@ -3315,7 +3192,7 @@
 								<div class="col-sm-3">
 
 									<input type="text" id="seditskillset" name="seditskill_set" class="form-control"
-										required disabled>
+										required>
 								</div>
 
 								<div class="col-sm-1"> </div>
@@ -3327,14 +3204,14 @@
 								</div>
 								<div class="col-sm-3">
 									<input type="text" id="peditnoticeperiod" name="peditnotice_period"
-										class="form-control" required disabled>
+										class="form-control" required>
 								</div>
 								<div class="col-sm-2">
 									<label style="width: 113px;"><span style="color:red">*</span>Skype ID:</label>
 								</div>
 								<div class="col-sm-3">
 									<input type="text" id="peditskypeid" name="peditskype_id" class="form-control"
-										required disabled>
+										required>
 								</div>
 
 								<div class="col-sm-1"> </div>
@@ -3347,14 +3224,14 @@
 								</div>
 								<div class="col-sm-3">
 									<select class="form-control" id="peditcurrentlocation" name="peditcurrent_location"
-										required disabled></select>
+										required></select>
 								</div>
 								<div class="col-sm-2">
 									<label><span style="color:red">*</span>Desired Location:</label>
 								</div>
 								<div class="col-sm-3">
 									<select class="form-control" id="peditdesiredlocation" name="peditdesired_location"
-										required disabled></select>
+										required></select>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3365,7 +3242,7 @@
 								</div>
 								<div class="col-sm-3">
 									<input type="text" id="peditexperience" name="pedit_experience" class="form-control"
-										required disabled>
+										required>
 								</div>
 								<div class="col-sm-2">
 									<label><span style="color:red">*</span>Resigned:</label>
@@ -3407,7 +3284,7 @@
 								</div>
 								<div class="col-sm-3">
 									<select class="form-control" id="peditstatus" name="pedit_status"
-										class="form-control" required disabled>
+										class="form-control" required>
 									</select>
 								</div>
 								<div class="col-sm-2">
@@ -3415,7 +3292,7 @@
 								</div>
 								<div class="col-sm-3">
 									<select id="peditvendorid" name="pedit_vendorid" class="form-control"
-										required disabled></select>
+										required></select>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3430,21 +3307,21 @@
 								</div>
 								<div class="col-sm-3">
 									<input type="file" id="resume" onchange="uploadOnChange()" name="myFile" multiple
-										style="color: black;font-size: 13px;" disabled>
+										style="color: black;font-size: 13px;">
 								</div>
 								<div class="col-sm-5">
 									<input type="text" class="form-control" id="peditfilename" name="peditresume_name"
-										style="width: 100%;" required disabled>
+										style="width: 100%;" required>
 								</div>
 								<div class="col-sm-1"> </div>
 
 							</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-sm btn-info" id="profileeditbtn"
-							onclick="enableprofileedit()">Edit</button>
+						<!-- <button type="button" class="btn btn-sm btn-info" id="profileeditbtn"
+							onclick="enableprofileedit()">Edit</button> -->
 						<button type="submit" id="updateeditprofile" class="btn btn-sm btn-info" data-dismiss="modal"
-							onclick="updateprofile(),disableprofileedit()">Update</button>
+							onclick="updateprofile()">Update</button>
 						<button type="button" class="btn btn-sm btn-info" onclick="disableprofileedit()"
 							data-dismiss="modal">Cancel</button>
 					</div>
@@ -3457,7 +3334,7 @@
 
 		<!-- Vendor Modal -->
 
-		<div class="modal fade" id="vendormodal" role="dialog" style="margin-top: 10%;">
+		<div class="modal fade" id="vendormodal" role="dialog" style="margin-top: 14%;">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header" style="background-color: #73c7e7">
@@ -3465,7 +3342,7 @@
 						<button type="button" class="close" data-dismiss="modal"
 							onclick="clearFormVendor()">&times;</button>
 					</div>
-					<div class="modal-body" style="overflow:auto;height:390px;">
+					<div class="modal-body" style="height:329px;">
 						<form action="post" onsubmit="return false">
 
 							<div class="row">
@@ -3511,8 +3388,7 @@
 									<label style="width: 113px;"><span style="color:red">*</span>Vendor Email:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="vendoremail" name="vendor_email" class="form-control"
-										required>
+									<input type="email" id="vendoremail" name="vendor_email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
 								</div>
 								<div class="col-sm-2">
 									<label><span style="color:red">*</span>Recruiter Id:</label>
@@ -3537,8 +3413,7 @@
 									<label><span style="color:red">*</span>Recruiter Contact Number:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="recruitercontno" name="recruiter_contno" class="form-control"
-										required>
+									<input type="tel" id="recruitercontno" name="recruiter_contno" class="form-control" pattern="[0-9]{10}" required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3564,7 +3439,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="Submit" class="btn btn-sm btn-info"
-									onclick="addvendor(),clearFormVendor();" data-dismiss="modal">Save</button>
+									onclick="addvendor()">Save</button>
 								<button type="button" class="btn btn-sm btn-info" onclick="clearFormVendor();"
 									data-dismiss="modal">Cancel</button>
 							</div>
@@ -3597,7 +3472,7 @@
 								<div class="col-sm-3">
 									<P id="vendoridhidden" name="vendorid_hidden" style="color:black; display:none"></P>
 									<input type="text" id="editvendorid" name="editvendor_id" class="form-control"
-										required disabled>
+										required>
 								</div>
 								<div class="col-sm-2">
 									<label style="width: 113px;"><span style="color:red">*</span>Vendor Name:</label>
@@ -3605,7 +3480,7 @@
 								<div class="col-sm-3">
 
 									<input type="text" id="editvendorname" name="editvendor_name" class="form-control"
-										required disabled>
+										required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3616,7 +3491,7 @@
 								</div>
 								<div class="col-sm-3">
 									<select class="form-control" id="editvendorpriloc" name="editvendor_priloc"
-										class="form-control" required disabled>
+										class="form-control" required>
 									</select>
 								</div>
 								<div class="col-sm-2">
@@ -3624,7 +3499,7 @@
 								</div>
 								<div class="col-sm-3">
 									<input type="text" id="editvendorspec" name="editvendor_spec" class="form-control"
-										required disabled>
+										required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3635,15 +3510,14 @@
 									<label style="width: 113px;"><span style="color:red">*</span>Vendor Email:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="editvendoremail" name="editvendor_email" class="form-control"
-										required disabled>
+									<input type="email" id="editvendoremail" name="editvendor_email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
 								</div>
 								<div class="col-sm-2">
 									<label><span style="color:red">*</span>Recruiter Id:</label>
 								</div>
 								<div class="col-sm-3">
 									<input type="text" id="editrecruiterid" name="editrecruiter_id" class="form-control"
-										required disabled>
+										required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3655,14 +3529,13 @@
 								</div>
 								<div class="col-sm-3">
 									<input type="text" id="editrecruitername" name="editrecruiter_name"
-										class="form-control" required disabled>
+										class="form-control" required>
 								</div>
 								<div class="col-sm-2">
 									<label><span style="color:red">*</span>Recruiter Contact Number:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="text" id="editrecruitercontno" name="editrecruiter_contno"
-										class="form-control" required disabled>
+									<input type="tel" id="editrecruitercontno" name="editrecruiter_contno" class="form-control" pattern="[0-9]{10}" required>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3684,14 +3557,14 @@
 								</div>
 								<div class="col-sm-9">
 									<textarea id="editvendorcomments" name="editvendor_comments"
-										style="width: 89%;border-radius: 5px;font-size:13px;" disabled></textarea>
+										style="width: 89%;border-radius: 5px;font-size:13px;" ></textarea>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-sm btn-info" id="editvendor"
-									onclick="enablevendorlist()" data-toggle="modal">Edit</button>
+								<!-- <button type="button" class="btn btn-sm btn-info" id="editvendor"
+									onclick="enablevendorlist()" data-toggle="modal">Edit</button> -->
 								<button type="Submit" class="btn btn-sm btn-info" id="updatevendor"
-									onclick="updatevendorbyid(),cancelenablevendor()"
+									onclick="updatevendorbyid()"
 									data-dismiss="modal">update</button>
 								<button type="button" class="btn btn-sm btn-info" onclick="cancelenablevendor()"
 									data-dismiss="modal">Cancel</button>
