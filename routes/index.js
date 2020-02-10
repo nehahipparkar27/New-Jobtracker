@@ -291,7 +291,7 @@ module.exports = {
 
 
     addprofile: (req, res) => {
-     
+        console.log("in add profile");
         //  let Profileid = req.body.Profileid;
         let Jobrecid = req.body.Jobrecid;
         let jobreqcode = req.body.jobreqcode;
@@ -300,11 +300,9 @@ module.exports = {
         let Email = req.body.Email;
         let Mobile = req.body.Mobile;
         let Dob = req.body.Dob;
-      
         let City = req.body.City;
         let State = req.body.State;
         let Country = req.body.Country;
-      
         let Experience = req.body.Experience;
         let Highestquali = req.body.Highestquali;
         let Currentjobtitle = req.body.Currentjobtitle;
@@ -320,13 +318,10 @@ module.exports = {
         let Vendorid =  req.body.Vendorid;
         let Createdby =  req.body.Createdby;
         let Updateby =  req.body.Updateby;
-        // let Evaluationdate=req.body.Evaluationdate;
-		
-	//	let Panel= req.body.Panel;
-       
         let Pjobtitle= req.body.Pjobtitle;
         let Psecondskill= req.body.Psecondskill;
-
+        let Resigned= req.body.Resigned;
+        let Vendorname= req.body.Vendorname;
 
 
         let query = "call procinsertprofile('" + Jobrecid + "', '"+jobreqcode+"','" + Firstname + "','" + Lastname + "','" + 
@@ -334,14 +329,16 @@ module.exports = {
             City + "','" + State + "','" + Country + "','" + Experience + 
             "','" + Highestquali + "','" + Currentjobtitle + "','" + Currentsalary + "','" + Expectedsalary + "','" + 
             Skillset + "','" + Skypeid + "','" + Noticeperiod + "','" + Currentlocation + "','" + Desiredlocation + "','" + 
-            Status + "','" + Resume + "','" + Vendorid + "','" + Createdby + "',now(),'" + Updateby + "',now(),'" + Pjobtitle + "','" + Psecondskill + "')";
-     
+            Status + "','" + Resume + "','" + Vendorid + "','" + Createdby + "',now(),'" + Updateby + "',now(),'" + 
+            Pjobtitle + "','" + Psecondskill + "','" + Resigned + "','" + Vendorname + "')";
+            console.log(query);
         db.query(query, (err, result) => {
             if (err) {
-               
+               console.log(err);
                 return res.status(500).send(err);
             }
             res.status(200).json(result);
+            console.log(result);
         });
     },
 
@@ -500,22 +497,23 @@ module.exports = {
         let peditresumename = req.body.peditresumename;
         let peditvendorid = req.body.peditvendorid;
         let peditupdatedby = req.body.peditupdatedby;
-        // let Evaluationdate = req.body.Evaluationdate;   
-        // let Panel = req.body.Panel;      
-       // let Pjobtitle = req.body.Pjobtitle;
         let Psecondskill = req.body.Psecondskill;
-
-
+        let peditresignation = req.body.peditresignation;
+        let peditvendorname = req.body.peditvendorname;
 
         let query = "CALL procUpdateprofile('" + peditprofileId + "','" + peditfirstname + "','" + peditlastname + "','" + peditemail +
             "','" + peditmobile + "','" + peditdob + "','" + peditcity + "','" + peditstate + "','" + peditcountry + "','" + peditexperience + "','" + pedithighestquali + "','" +
              peditcurrentjobtitle + "','" + peditcurrentsalary + "','" + peditexpectedsalary + "','" + peditskillset + "','" + peditskypeid + "','" + peditnoticeperiod +
-            "','" + peditcurrentlocation + "','" + peditdesiredlocation + "','" + peditstatus + "','" + peditresumename + "','" + peditvendorid + "','" + peditupdatedby + "',now(),'" + Psecondskill + "')";
-        db.query(query, (err, result) => {
+            "','" + peditcurrentlocation + "','" + peditdesiredlocation + "','" + peditstatus + "','" + peditresumename + "','" + peditvendorid + "','" +
+             peditupdatedby + "',now(),'" + Psecondskill + "','" + peditresignation + "','" + peditvendorname + "')";
+
+             db.query(query, (err, result) => {
             if (err) {
+              
                 return res.status(500).send(err);
             }
             res.status(200).json(result);
+          
         });
     },
   

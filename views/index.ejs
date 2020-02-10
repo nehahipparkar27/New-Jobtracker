@@ -28,7 +28,7 @@
 <style>
 	@media (min-width: 1200px) {
 		.container {
-			max-width: 1076px;
+			max-width: 1000px;
 
 		}
 	}
@@ -213,7 +213,7 @@
 	#jobtable_filter,
 	#profiletable_filter,
 	#vendortable_filter {
-		margin-left: 310px !important;
+		margin-left:265px !important;
 	}
 
 	.dataTables_length {
@@ -221,14 +221,11 @@
 	}
 
 	div.dataTables_filter input {
-		height: 16px;
-		width: 137px;
-		color: Gray;
-		margin: -22px;
-		margin-left: 54px;
-		margin-top: -18px;
-	}
-
+    width: 137px;
+    margin: -22px;
+    margin-left: 50px;
+    margin-top: -18px;
+}
 	.body {
 		background: #f5f3e7;
 	}
@@ -1178,7 +1175,7 @@
 			url: url,
 			type: "GET",
 			success: function (result) {
-			
+				
 				for (var i = 0; i < result[0].length; i++) {
 				
 					var profileID = "\"" + result[0][i].profileid + "\"";
@@ -1191,7 +1188,7 @@
 						"<td >" + result[0][i].skillset + "</td>" +
 						"<td >" + result[0][i].experince + "</td>" +
 						"<td >" + result[0][i].status + "</td>" +
-						//"<td >" + result[0][i].vendorid+ "</td>" +
+						"<td >" + result[0][i].pvendorname+ "</td>" +
 						"<td >" + "<a>" + "<i class='far fa-edit' data-target='#profileEditModal' data-toggle='modal' data-backdrop='static' data-keyboard='false'  onclick=' statuschange(" + statusId + "),profilesdisplay(" + profileID + ")' style='font-size: 20px;color:black;position:relative;left:3%;'></i>" + "</a>" + "</td>" +
 
 						"</tr>";
@@ -1215,7 +1212,14 @@
 			url: url,
 			type: "GET",
 			success: function (result) {
-
+	 // console.log(result);
+	  if(result[0][0].Resignation=='Y'){
+		$("#editresignedy").prop('checked', true);
+		
+	  }
+	  else if(result[0][0].Resignation=='N'){
+		$("#editresignedn").prop('checked', true);
+	  }
 				$("#editprofilehiddenId").text(result[0][0].profileid);
 				$("#pprofileid").text(result[0][0].profileid);
 				$("#peditjobrecid").text(result[0][0].jobreqcode);
@@ -1224,19 +1228,15 @@
 				$("#peditemail").val(result[0][0].email);
 				$("#peditmobile").val(result[0][0].mobile);
 				$("#peditdob").val(result[0][0].dob.slice(0, 10));
-				$("#peditaddress1").val(result[0][0].address1);
-				$("#peditaddress2").val(result[0][0].address2);
 				$("#peditcity").val(result[0][0].city);
 				$("#peditstate").val(result[0][0].stateid).attr('selected', 'selected');
 				$("#peditcountry").val(result[0][0].countryid).attr('selected', 'selected');
-				$("#peditpostalcode").val(result[0][0].postalcode);
 				$("#peditexperience").val(result[0][0].experince);
 				$("#pedithighestquali").val(result[0][0].highestqualificationid).attr('selected', 'selected');
 				$("#peditcurrentjobtitle").val(result[0][0].currentjobtitle);
 				$("#peditcurrentsalary").val(result[0][0].currentsalary);
 				$("#peditexpectedsalary").val(result[0][0].expectedsalary);
 				$("#peditskillset").val(result[0][0].skillset);
-				$("#seditskillset").val(result[0][0].psecondaryskill);
 				$("#peditskypeid").val(result[0][0].skypeid);
 				$("#peditnoticeperiod").val(result[0][0].noticeperiod);
 				$("#peditcurrentlocation").val(result[0][0].currentlocationid).attr('selected', 'selected');
@@ -1244,12 +1244,9 @@
 				$("#peditstatus").val(result[0][0].statusid).attr('selected', 'selected');
 				$("#peditvendorid").val(result[0][0].vendorid);
 				$("#peditfilename").val(result[0][0].resumename);
-				$("#peditevaldate").val(result[0][0].evaluationdate.slice(0, 10));
-				$("#peditinternaltd").val(result[0][0].internal_technicaldecision).attr('selected', 'selected');
-				$("#peditpanel").val(result[0][0].panel);
-				$("#peditscreening").val(result[0][0].screeningselect).attr('selected', 'selected');
 				$("#peditjobtitle").text(result[0][0].pjobtitle)
-
+				$("#seditskillset").val(result[0][0].psecondaryskill);
+				$("#peditjobtitle").text(result[0][0].pjobtitle);
 			}
 
 		});
@@ -1257,7 +1254,7 @@
 	}
 
 	function addprofile() {
-
+	
 		//var Profileid = $('[name="profileid"]').val();
 		var Jobrecid = $('[name="pjob_recid"]').val();
 		var jobreqcode = $("#jobrecid option:selected").text();
@@ -1279,19 +1276,15 @@
 		var Noticeperiod = $('[name="pnotice_period"]').val();
 		var Currentlocation = $('[name="pcurrent_location"]').val();
 		var Desiredlocation = $('[name="pdesired_location"]').val();
-		var Resigned = $('[name="resigned"]').val();
-		var Screening = $('[name="p_screening"]').val();
 		var Status = $('[name="p_status"]').val();
 		var Resume = $('[name="presume_name"]').val();
-		var Vendorid = $("#profilevendorid option:selected").text();
+		var Vendorid = $("#profilevendorid option:selected").val();
 		var Createdby = 'Admin';
 		var Updateby = 'Admin';
-		var Evaluationdate = $('[name="eval_date"]').val();
-		var Panel = $('[name="p_panel"]').val();
 		var Pjobtitle = $('[name="pjob_title"]').val();
 		var Psecondskill = $('[name="sskill_set"]').val();
-
-
+		var Resigned = $('input[name=resigned]:checked').val();
+		var Vendorname =  $("#profilevendorid option:selected").text();
 		var data = {
 
 			//"Profileid": Profileid,
@@ -1315,29 +1308,28 @@
 			"Noticeperiod": Noticeperiod,
 			"Currentlocation": Currentlocation,
 			"Desiredlocation": Desiredlocation,
-			"Resigned": Resigned,
-			"Screening": Screening,
 			"Status": Status,
 			"Resume": Resume,
 			"Vendorid": Vendorid,
 			"Createdby": Createdby,
 			"Updateby": Updateby,
-			"Evaluationdate": Evaluationdate,
-			"Panel": Panel,
+			// "Evaluationdate": Evaluationdate,
+			// "Panel": Panel,
 			"Pjobtitle": Pjobtitle,
-			"Psecondskill": Psecondskill
-
+			"Psecondskill": Psecondskill,
+			"Resigned": Resigned,
+			"Vendorname": Vendorname,
 		}
 
 		data = JSON.stringify(data);
 
 		var url = "http://localhost:2000/addprofiles";
 
-		// if (Jobrecid!="" &&jobreqcode!="" && Firstname!="" && Lastname!="" &&Email!="" && Mobile!="" && Dob!="" && Address1!=""
-		// &&Address2!="" && City!="" && State!="" && Country!="" &&Postalcode!="" && Experience!="" && Highestquali!="" && Currentjobtitle!=""
-		// &&Currentsalary!="" && Expectedsalary!="" && Skillset!="" && Skypeid!="" &&Noticeperiod!="" && Currentlocation!="" && Desiredlocation!="" && Status!=""
-		// && Resume!="" && Vendorid!="" && Evaluationdate!="" && Internal_technicaldecision!="" && Panel!="" && Screeningselect!="")
-
+		 if (Jobrecid!="" &&jobreqcode!="" && Firstname!="" && Lastname!="" &&Email!="" && Mobile!=""
+		 && Experience!="" && Highestquali!="" && Currentjobtitle!="" &&Currentsalary!="" 
+		 && Expectedsalary!="" && Skillset!="" &&Noticeperiod!="" && Currentlocation!="" && Desiredlocation!="" 
+		 && Status!="" && Experience!="" && Resigned!="" && Vendorid!="" && Pjobtitle!="" && Vendorname!="")
+{
 		$.ajax({
 			url: url,
 			type: "post",
@@ -1355,11 +1347,10 @@
 			}
 		});
 	}
-
+	}
 	function updateprofile() {
 
 		var peditprofileId = $('[name="editprofile_hiddenId"]').text();
-		//var peditjobdescriptionId = $('[name="peditjob_recid"]').val();
 		var peditfirstname = $('[name="peditfirst_name"]').val();
 		var peditlastname = $('[name="peditlast_name"]').val();
 		var peditemail = $('[name="pedit_email"]').val();
@@ -1381,15 +1372,15 @@
 		var peditdesiredlocation = $('[name="peditdesired_location"]').val();
 		var peditstatus = $('[name="pedit_status"]').val();
 		var peditresumename = $('[name="peditresume_name"]').val();
-		var peditvendorid = $("#peditvendorid option:selected").text();
-		var peditevaldate = $('[name="pedit_evaldate"]').val();
-		var peditpanel = $('[name="pedit_panel"]').val();
+		var peditvendorid = $('[name="pedit_vendorid"]').val();
+		var editresigned = $('input[name=editresigned]:checked').val();
+	   var peditvendorname = $("#peditvendorid option:selected").text();
+			
+		
 
 		var data = {
 
 			"peditprofileId": peditprofileId,
-			//"peditjobdescriptionId": peditjobdescriptionId,
-			"peditsalutationId": peditsalutationId,
 			"peditfirstname": peditfirstname,
 			"peditlastname": peditlastname,
 			"peditemail": peditemail,
@@ -1409,19 +1400,18 @@
 			"peditcurrentlocation": peditcurrentlocation,
 			"peditdesiredlocation": peditdesiredlocation,
 			"peditresigned": peditresigned,
-			"peditevaldate": peditevaldate,
-			"peditpanel": peditpanel,
 			"peditstatus": peditstatus,
 			"peditresumename": peditresumename,
 			"peditvendorid": peditvendorid,
-			"peditupdatedby": 'Admin'
-
+			"peditupdatedby": 'Admin',
+			"peditresignation": editresigned,
+			"peditvendorname": peditvendorname,
 		}
 
 		data = JSON.stringify(data);
-		conosle.log(data);
+	
 		url = "http://localhost:2000/updateprofile/" + peditprofileId,
-			conosle.log(url);
+			
 
 		$.ajax({
 			url: url,
@@ -1444,7 +1434,6 @@
 
 		$("#profileeditbtn").hide();
 		$("#updateeditprofile").show();
-		//$("#peditjobrecid").attr('disabled', false);
 		$("#peditsalutation").attr('disabled', false);
 		$("#peditfirstname").attr('disabled', false);
 		$("#peditlastname").attr('disabled', false);
@@ -1511,95 +1500,6 @@
 		$("#peditvendorid").attr('disabled', true);
 		$("#peditfilename").attr('disabled', true);
 		$("#seditskillset").attr('disabled', true);
-
-	}
-
-
-	function updateprofile() {
-
-		var peditprofileId = $('[name="editprofile_hiddenId"]').text();
-		//	var peditjobdescriptionId = $('[name="peditjob_recid"]').val();
-		var peditfirstname = $('[name="peditfirst_name"]').val();
-		var peditlastname = $('[name="peditlast_name"]').val();
-		var peditemail = $('[name="pedit_email"]').val();
-		var peditmobile = $('[name="pedit_mobile"]').val();
-		var peditdob = $('[name="pedit_dob"]').val();
-		var peditcity = $('[name="pedit_city"]').val();
-		var peditstate = $('[name="pedit_state"]').val();
-		var peditcountry = $('[name="pedit_country"]').val();
-		var peditexperience = $('[name="pedit_experience"]').val();
-		var pedithighestquali = $('[name="pedit_highestquali"]').val();
-		var peditcurrentjobtitle = $('[name="peditcurrent_jobtitle"]').val();
-		var peditcurrentsalary = $('[name="peditcurrent_salary"]').val();
-		var peditexpectedsalary = $('[name="peditexpected_salary"]').val();
-		var peditresigned = $('[name="editresigned"]').val();
-		var peditscreening = $('[name="pedit_screening"]').val();
-		var peditskillset = $('[name="peditskill_set"]').val();
-		var peditskypeid = $('[name="peditskype_id"]').val();
-		var peditnoticeperiod = $('[name="peditnotice_period"]').val();
-		var peditcurrentlocation = $('[name="peditcurrent_location"]').val();
-		var peditdesiredlocation = $('[name="peditdesired_location"]').val();
-		var peditstatus = $('[name="pedit_status"]').val();
-		var peditresumename = $('[name="peditresume_name"]').val();
-		var peditvendorid = $('[name="pedit_vendorid"]').val();
-		var Evaluationdate = $('[name="pedit_evaldate"]').val();
-		var Panel = $('[name="pedit_panel"]').val();
-		//var Pjobtitle = $('[name="peditjob_title"]').text();
-		var Psecondskill = $('[name="seditskill_set"]').val();
-
-
-		var data = {
-
-			"peditprofileId": peditprofileId,
-			//"peditjobdescriptionId": peditjobdescriptionId,
-			"peditfirstname": peditfirstname,
-			"peditlastname": peditlastname,
-			"peditemail": peditemail,
-			"peditmobile": peditmobile,
-			"peditdob": peditdob,
-			"peditcity": peditcity,
-			"peditstate": peditstate,
-			"peditcountry": peditcountry,
-			"peditexperience": peditexperience,
-			"pedithighestquali": pedithighestquali,
-			"peditcurrentjobtitle": peditcurrentjobtitle,
-			"peditcurrentsalary": peditcurrentsalary,
-			"peditexpectedsalary": peditexpectedsalary,
-			"peditskillset": peditskillset,
-			"peditskypeid": peditskypeid,
-			"peditnoticeperiod": peditnoticeperiod,
-			"peditcurrentlocation": peditcurrentlocation,
-			"peditdesiredlocation": peditdesiredlocation,
-			"peditresigned": peditresigned,
-			"peditscreening": peditscreening,
-			"peditstatus": peditstatus,
-			"peditresumename": peditresumename,
-			"peditvendorid": peditvendorid,
-			"peditupdatedby": 'Admin',
-			"Evaluationdate": Evaluationdate,
-			"Panel": Panel,
-			//"Pjobtitle": Pjobtitle,
-			"Psecondskill": Psecondskill
-		}
-
-		data = JSON.stringify(data);
-		url = "http://localhost:2000/updateprofile/" + peditprofileId,
-
-			$.ajax({
-				url: url,
-				type: "post",
-				async: false,
-				data: data,
-				contentType: "application/json",
-				dataType: "json",
-				success: function (result) {
-
-				},
-				error: function () {
-				}
-			});
-
-		profileslistingdetails();
 
 	}
 
@@ -1985,10 +1885,10 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+			<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" >
 
 
-				<div class="col-sm-7">
+				<div class="col-sm-6">
 					<a class="navbar-brand" href="/">
 						<h1 style="font-weight:600;font-size:50px;color:#6bf682;">JOB TRACKER</h1>
 					</a>
@@ -2051,7 +1951,7 @@
 										<div class="card"
 											style="background-color: #73c7e72e;border: 2px solid rgba(0, 0, 0, 0.21)">
 
-											<h5 class="card-header" style="background-color: #73c7e7">DETAILS</h5>
+											<h5 class="card-header" style="background-color: #73c7e7;width: 101.5%;right: 6px;position: relative;">DETAILS</h5>
 											<div class="card-body">
 
 												<div class="row">
@@ -2117,7 +2017,7 @@
 											<br>
 											<div class="card"
 												style="background-color: #73c7e72e;border: 2px solid rgba(0, 0, 0, 0.21)">
-												<h5 class="card-header" style="background-color: #73c7e7">JOB
+												<h5 class="card-header" style="background-color: #73c7e7;width: 101.5%;right: 6px;position: relative;">JOB
 													DESCRIPTION</h5>
 												<div class="card-body">
 
@@ -2362,48 +2262,28 @@
 											style="box-shadow:none;border:none;">
 											<div class="col-sm-1"></div>
 											<div id="main-content" class="contact">
-												<div
-													style="background-color: #73c7e72e;border: 1px solid #e3e3e3;height: 52px;">
-													<div class="row"
-														style="color: black;font-size: 13px;top: 12px;position: relative;">
-
-														<div class="col-sm-2" style="left:14px;margin:2px;">
-															<b>Account</b>
+												<div style="background-color: #73c7e72e;border: 1px solid #e3e3e3;height: 52px;">
+													<div class="row" style="color: black;font-size: 13px;top: 12px;position: relative;">
+													
+														<div class="col-sm-2" style="left:21px;margin:3px;"><b>Account</b></div>
+														
+														<div class="col-sm-2" style="right:58px;">
+															<select class="form-control" id="jobaccount" onchange='filterText()'></select>
 														</div>
-
-														<div class="col-sm-2">
-															<select class="form-control" id="jobaccount"
-																style="width:100%;height:30px;margin-left: -102px; "
-																onchange='filterText()'></select>
-														</div>
-														<div class="col-sm-1" style="right:9%;margin:2px;">
-															<!-- <b>Location</b> -->
-														</div>
-														<div class="col-sm-2" style="right:11%;">
-															<!-- <select class="form-control" id="jlocation"
-																style="width:100%;height:30px;"></select> -->
-														</div>
-														<div class="col-sm-1">
-
-														</div>
-														<div class="col-sm-1"></div>
-
-													</div>
-
-													<div class="col-sm-2" style="left: 95%; top: -58%;">
-														<a href="#"
-															onClick="$('#jobtable').tableExport({type:'excel',escape:'false'});">
-															<img src="/assets/img/export-to-excel-image.png"
-																style="height: 28px;width:24px;">
+														<div class="col-sm-2" ></div>
+														<div class="col-sm-2"></div>
+													<div class="col-sm-2"  style="left:25%">
+														<a href="#" onClick="$('#jobtable').tableExport({type:'excel',escape:'false'});">
+															<img src="/assets/img/export-to-excel-image.png" style="height: 28px;width:24px;">
 														</a>
 													</div>
+												</div>
 												</div>
 
 												<div id="main-content" class="contact">
 													<div id="tbMarksContainer">
 														<div class="entity-list" id="entity-list">
-															<div class="table table-responsive"
-																style="overflow: auto;height:400px;width:104%;">
+															<div class="table table-responsive" style="overflow: auto;height:415px;width:100%;">
 
 																<table id="jobtable"
 																	class="display dataTable table-bordered"
@@ -2462,32 +2342,27 @@
 										<div class="row"
 											style="color: black;font-size: 13px;top: 12px;position: relative;">
 
-											<div class="col-sm-2" style="left:14px;margin:2px;">
+											<div class="col-sm-2" style="left:14px;margin:3px;">
 												<b>Requirement Id</b>
 											</div>
 
-											<div class="col-sm-2">
-												<select class="form-control" name="reqid_drop" id="reqiddrop"
-													onclick="jobtitilebyreqid()"
-													style="width:100%;height:30px;margin-left: -62px;"></select>
+											<div class="col-sm-2"  style="right:30px">
+												<select class="form-control" name="reqid_drop" id="reqiddrop" onclick="jobtitilebyreqid()"></select>
 											</div>
-											<div class="col-sm-1" style="right:6%;margin:2px;">
+											<div class="col-sm-2" style="margin:2px;">
 												<b>Job Title</b>
 											</div>
 											<div class="col-sm-2" style="right:8%;">
-												<select class="form-control" id="profilejlocation"
-													style="width:100%;"></select>
+												<select class="form-control" id="profilejlocation" style="width:100%;"></select>
 											</div>
 
-											<div class="col-sm-2" style="left: 35%;">
-												<a href="#"
-													onClick="$('#profiletable').tableExport({type:'excel',escape:'false'});">
-													<img src="/assets/img/export-to-excel-image.png"
-														style="height: 28px;width:24px;">
+											<div class="col-sm-2" style="left:25%;float:left;">
+												<a href="#" onClick="$('#profiletable').tableExport({type:'excel',escape:'false'});">
+												<img src="/assets/img/export-to-excel-image.png" style="height: 28px;width:24px;">
 												</a>
 											</div>
 
-											<div class="col-sm-1"></div>
+											
 										</div>
 									</div>
 									<br>
@@ -2498,8 +2373,7 @@
 
 											<div class="table table-responsive" style="overflow: auto;height:400px">
 
-												<table class="display dataTable table-bordered"
-													style="width:105%;color: black;" id="profiletable">
+												<table class="display dataTable table-bordered" style="width:105%;color: black;" id="profiletable">
 													<thead style="font-weight: bold;background-color: rgb(51, 122, 183);
 														position: relative;top: 0px;color: rgb(255, 255, 255); white-space: nowrap;">
 
@@ -2510,7 +2384,7 @@
 															<th scope="col">Skill</th>
 															<th scope="col">Experience</th>
 															<th scope="col">Status</th>
-															<!-- <th scope="col">Vendor Id</th> -->
+															 <th scope="col">Vendor Id</th> 
 															<th data-orderable="false" scope="col">Action</th>
 														</tr>
 													</thead>
@@ -2552,24 +2426,19 @@
 
 											<div
 												style="background-color:  #73c7e726;border: 1px solid #e3e3e3;height: 52px;">
-												<div class="row"
-													style="color: black;font-size: 13px;top: 12px;position: relative;">
+												<div class="row" style="color: black;font-size: 13px;top: 12px;position: relative;">
 
-													<div class="col-sm-2" style="left:14px;margin:2px;">
+													<div class="col-sm-2" style="left:14px;margin:3px;">
 														<b>Vendor Name</b>
 													</div>
-													<div class="col-sm-2">
-														<select class="form-control" id="vratingdrop"
-															onchange="vendorfilterText()"
-															style="width:100%;height:30px;margin-left: -69px;"></select>
+													<div class="col-sm-2" style="right:3%">
+														<select class="form-control" id="vratingdrop" onchange="vendorfilterText()"></select>
 													</div>
-													<div class="col-sm-1"></div>
-													<div class="col-sm-2" style="right:13%;"></div>
-													<div class="col-sm-2" style="left: 35%;">
-														<a href="#"
-															onClick="$('#vendortable').tableExport({type:'excel',escape:'false'});">
-															<img src="/assets/img/export-to-excel-image.png"
-																style="height: 28px;width:24px;">
+													<div class="col-sm-2"></div>
+													<div class="col-sm-2"></div>
+													<div class="col-sm-2" style="left:25%;">
+														<a href="#" onClick="$('#vendortable').tableExport({type:'excel',escape:'false'});">
+															<img src="/assets/img/export-to-excel-image.png" style="height: 28px;width:24px;">
 														</a>
 													</div>
 
@@ -3133,8 +3002,8 @@
 									<label><span style="color:red">*</span>Resigned:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="radio" value="yes" id="resignedy" name="resigned"><label>Yes</label>
-									<input type="radio" value="no" id="resignedn" name="resigned"><label>No</label>
+									<input type="radio" value="Y" id="resignedy" name="resigned"><label>Yes</label>
+									<input type="radio" value="N" id="resignedn" name="resigned"><label>No</label>
 								</div>
 								<div class="col-sm-1"> </div>
 							</div>
@@ -3502,9 +3371,9 @@
 									<label><span style="color:red">*</span>Resigned:</label>
 								</div>
 								<div class="col-sm-3">
-									<input type="radio" value="yes" id="editresignedy"
+									<input type="radio" value="Y" id="editresignedy"
 										name="editresigned"><label>Yes</label>
-									<input type="radio" value="no" id="editresignedn"
+									<input type="radio" value="N" id="editresignedn"
 										name="editresigned"><label>No</label>
 								</div>
 								<div class="col-sm-1"> </div>
