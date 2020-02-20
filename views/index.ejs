@@ -2,3786 +2,1057 @@
 <html lang="en">
 
 <head>
-	<title>JobPortal</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- <link rel="stylesheet" type="text/css" href="all-ie-only.css" />  -->
-	<script src="//html5shiv.google.com/svn/trunk/html5.js"></script>
-	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<link rel="stylesheet" href="css/aos.css">
-	<link rel="stylesheet" href="css/ionicons.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="js/datatables.min.js"></script>
-	<script src="js/tableExport.js"></script>
-	<script src="js/jquery.base64.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
-		integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-
-		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Job Tracker</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="img/icon.ico" type="image/x-icon" />
 
 
+	<!--   Core JS Files   -->
+	<script src="js/core/jquery.3.2.1.min.js"></script>
+	<script src="js/core/popper.min.js"></script>
+	<script src="js/core/bootstrap.min.js"></script>
+	<!-- JS -->
+	<script src="js/ready.min.js"></script>
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/app.min.css">
+	<!-- jQuery UI -->
+	<script src="js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+	<!-- jQuery Scrollbar -->
+	<script src="js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+	<!-- Chart JS -->
+	<script src="js/plugin/chart.js/chart.min.js"></script>
+	<!-- jQuery Sparkline -->
+	<!-- Chart Circle -->
+	<!-- Datatables -->
+	<script src="js/plugin/datatables/datatables.min.js"></script>
+	<!-- Bootstrap Notify -->
+	<!-- Bootstrap Toggle -->
+	<script src="js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+	<!-- Fonts and icons -->
+	<script src="js/plugin/webfont/webfont.min.js"></script>
+
+	<!-- Job Js -->
+	<script src="js/job.js"></script>
+
+	<script>
+		WebFont.load({
+			// google: {"families":["Open+Sans:300,400,600,700"]},
+			custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['css/fonts.css'] },
+			active: function () {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
 </head>
+
 <style>
-	@media (min-width: 1200px) {
-		.container {
-			max-width: 1000px;
-
-		}
-	}
-	.select2-container--default .select2-selection--single {
-	width: 162px;
-	border: 1px solid #ced4da;
-    border-radius: 5px;
-}
-.select2-container--default .select2-selection--single .select2-selection__arrow b {
-    border-color: #888 transparent transparent transparent;
-    color:black;
-    left: 69px;
-   
-}
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    color: black;
-   
-}
-.select2-container--open .select2-dropdown--below {
-	width: 159px !important;
-}
-
-
-	#lttsInterviewBtn,
-	#customerInterviewBtn {
-
-		font-size: 11px;
-		background: #4473a3;
-		border: 1px solid #4473a3 !important;
-		color: #fff !important;
-		border-radius: 5px;
-		height: 39px;
+	select.form-control,
+	.form-control {
+		width: 100%;
+		height: 35px !important;
+		margin-bottom: 9px;
 	}
 
-	#progressbar {
-
-		/*CSS counters to number the steps*/
-		counter-reset: step;
-	}
-
-	#progressbar li {
-		list-style-type: none;
-		color: black;
-		font-size: 12px;
-		width: 20%;
-		float: left;
-		position: relative;
-
-	}
-
-	#progressbar li:before {
-		content: "";
-		counter-increment: step;
-		width: 30px;
-		height: 30px;
-		border: 2px solid #bebebe;
-		line-height: 20px;
-		display: block;
-		font-size: 10px;
-		color: #bebebe;
-		background: white;
-		border-radius: 50%;
-		margin: 0 87px 10px auto;
+	hr.style-eight {
+		overflow: visible;
+		/* For IE */
+		padding: 0;
+		border: none;
+		border-top: medium double #333;
+		color: #333;
 		text-align: center;
-
 	}
 
-	/*progressbar connectors*/
-	#progressbar li:after {
-		content: '';
-		width: 81%;
-		height: 3px;
-		background: #979797;
-		position: absolute;
-		left: -62%;
-		top: 15px;
-		z-index: 0;
-		/*put it behind the numbers*/
-
-
-	}
-
-	#progressbar li:first-child:after {
-		/*connector not needed before the first step*/
-		content: none;
-	}
-
-	/* #progressbar li:nth-child(2):before {
-
-	background-color: red; 
-} */
-	/*marking active/completed steps green*/
-	/*The number of the step and the connector before it = green*/
-	#progressbar li.active:before,
-	#progressbar li.active:after {
-		background: green;
-		color: white;
-		border: 2px solid green;
-	}
-
-	#progressbar li.submitted:before {
-		background-color: #157efb;
-		border: 2px solid #157efb;
-
-	}
-
-	#progressbar li.is-reject:before {
-		background-color: red;
-		border: 2px solid red;
-
-	}
-
-
-	.dropdown-menu li:hover {
-		background-color: #ddd;
-	}
-
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
-
-	body {
-		font-size: 13px;
-	}
-
-	.container-fluid {
-		width: 100%;
-		padding-right: 48px;
-		padding-left: 15px;
-		margin-right: auto;
-		margin-left: auto;
-	}
-
-	.table td,
-	.table th {
-		font-size: 13px;
-		border-top-width: 0;
-		border-bottom: 1px solid;
-		border-color: #ebedf2 !important;
-		padding: .75rem !important;
-	}
-
-	table.dataTable {
-		clear: both;
-		margin-top: 15px !important;
-		margin-bottom: 15px !important;
-		max-width: none !important;
-		border-collapse: separate !important;
-	}
-
-	table.dataTable thead .sorting::after,
-	table.dataTable thead .sorting_asc::after {
-		display: none;
-	}
-
-	table.dataTable thead .sorting_desc::after {
-		display: none;
-	}
-
-	table.dataTable thead .sorting {
-		background-image: url(https://datatables.net/media/images/sort_both.png);
-		background-repeat: no-repeat;
-		background-position: center right;
-	}
-
-	table.dataTable thead .sorting_asc {
-		background-image: url(https://datatables.net/media/images/sort_asc.png);
-		background-repeat: no-repeat;
-		background-position: center right;
-	}
-
-	table.dataTable thead .sorting_desc {
-		background-image: url(https://datatables.net/media/images/sort_desc.png);
-		background-repeat: no-repeat;
-		background-position: center right;
-	}
-
-	div.dataTables_wrapper div.dataTables_paginate ul.pagination {
-		margin: 2px 0;
-		white-space: nowrap;
-		justify-content: flex-end;
-	}
-
-	.pagination {
-		display: flex;
-		padding-left: 0;
-		list-style: none;
-		border-radius: .25rem;
-	}
-
-	.pagination>li>a,
-	.pagination>li>span {
-		border-radius: 100px !important;
-		margin: 0 2px;
-		color: #777;
-		border-color: #ddd;
-	}
-
-	#jobtable_filter,
-	#profiletable_filter,
-	#vendortable_filter {
-		margin-left:265px !important;
-	}
-
-	.dataTables_length {
-		display: none;
-	}
-
-	div.dataTables_filter input {
-    width: 137px;
-    margin: -22px;
-    margin-left: 50px;
-    margin-top: -18px;
-}
-	.body {
-		background: #f5f3e7;
-	}
-
-	.wrapper {
-		padding: 50px 100px;
-	}
-
-	.svg-container {
+	hr.style-eight:after {
+		content: "§";
 		display: inline-block;
 		position: relative;
-		width: 100%;
-		padding-bottom: 35%;
-		vertical-align: middle;
-		overflow: hidden;
+		top: -0.7em;
+		font-size: 1.5em;
+		padding: 0 0.25em;
 		background: white;
 	}
 
-	.svg-content {
-		display: inline-block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		font-size: 16px;
-		font-weight: 600;
-	}
 
-	/* :required {
- 		background-color: black;
-	} */
+    .table th {
+        font-size: 13px;
+        border-top-width: 0;
+        border-bottom: 1px solid;
+        border-color: #ebedf2 !important;
+        padding: .75rem !important;
+    }
+	.dataTables_scrollBody thead tr[role="row"]{
+    visibility: collapse !important;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: rgb(111, 122, 154);
+    border-color: rgb(111, 122, 154);
+}
+
+	
 </style>
 
-<script type="text/javascript">
-
-	function statuschange(pstatusid) {
-
-		if (pstatusid == "Ltts Screening Reject") {
-
-			$("#lttsInterviewBtn").css("display", "none");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("active").addClass("is-reject");
-			$("#lttsInterview").removeClass("active submitted");
-			$("#customerScreening").removeClass("active submitted");
-			$("#customerInterview").removeClass("active submitted");
-			$("#onboarded").removeClass("active submitted");
-		}
-
-		else if (pstatusid == "Submitted For Ltts Screening") {
-
-			$("#lttsInterviewBtn").css("display", "none");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject active").addClass("submitted");
-			$("#lttsInterview").removeClass("active is-reject submitted");
-			$("#customerScreening").removeClass("active is-reject submitted");
-			$("#customerInterview").removeClass("active is-reject submitted");
-			$("#onboarded").removeClass("active is-reject submitted");
-		}
-		else if (pstatusid == "Shortlist For Ltts Interview") {
-
-			$("#lttsInterviewBtn").css("display", "block");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject submitted").addClass("active");
-			$("#lttsInterview").removeClass("active is-reject").addClass("submitted");
-			$("#customerScreening").removeClass("active is-reject submitted");
-			$("#customerInterview").removeClass("active is-reject submitted");
-			$("#onboarded").removeClass("active is-reject submitted");
-		}
-
-		else if (pstatusid == "Ltts Interview Reject") {
-
-			$("#lttsInterviewBtn").css("display", "none");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject submitted").addClass("active");
-			$("#lttsInterview").removeClass("active submitted").addClass("is-reject");
-			$("#customerScreening").removeClass("active is-reject submitted");
-			$("#customerInterview").removeClass("active is-reject submitted");
-			$("#onboarded").removeClass("active is-reject submitted");
-		}
-
-		else if (pstatusid == "Ltts Interview Select") {
-
-			$("#lttsInterviewBtn").css("display", "none");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject submitted").addClass("active");
-			$("#lttsInterview").removeClass("is-reject submitted").addClass("active");
-			$("#customerScreening").removeClass("active is-reject submitted");
-			$("#customerInterview").removeClass("active is-reject submitted");
-			$("#onboarded").removeClass("active is-reject submitted");
-		}
-
-		else if (pstatusid == "Submitted For Customer Screening") {
-
-			$("#lttsInterviewBtn").css("display", "none");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject submitted").addClass("active");
-			$("#lttsInterview").removeClass("is-reject submitted").addClass("active");
-			$("#customerScreening").removeClass("is-reject active").addClass("submitted");
-			$("#customerInterview").removeClass("active is-reject submitted");
-			$("#onboarded").removeClass("active is-reject submitted");
-		}
-
-		else if (pstatusid == "Customer Screening Reject") {
-
-			$("#lttsInterviewBtn").css("display", "none");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject submitted").addClass("active");
-			$("#lttsInterview").removeClass("is-reject submitted").addClass("active");
-			$("#customerScreening").removeClass("submitted active").addClass("is-reject");
-			$("#customerInterview").removeClass("active is-reject submitted");
-			$("#onboarded").removeClass("active is-reject submitted");
-		}
-
-		else if (pstatusid == "Shortlist For Customer Interview") {
-
-			$("#customerInterviewBtn").css("display", "block");
-			$("#lttsInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject submitted").addClass("active");
-			$("#lttsInterview").removeClass("is-reject submitted").addClass("active");
-			$("#customerScreening").removeClass("is-reject submitted").addClass("active");
-			$("#customerInterview").removeClass("is-reject active").addClass("submitted");
-			$("#onboarded").removeClass("active is-reject submitted");
-		}
-
-		else if (pstatusid == "Customer Interview Reject") {
-
-			$("#lttsInterviewBtn").css("display", "none");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject submitted").addClass("active");
-			$("#lttsInterview").removeClass("is-reject submitted").addClass("active");
-			$("#customerScreening").removeClass("is-reject submitted").addClass("active");
-			$("#customerInterview").removeClass("submitted active").addClass("is-reject");
-			$("#onboarded").removeClass("active is-reject submitted");
-		}
-
-		else if (pstatusid == "Customer Interview Select") {
-
-			$("#lttsInterviewBtn").css("display", "none");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject submitted").addClass("active");
-			$("#lttsInterview").removeClass("is-reject submitted").addClass("active");
-			$("#customerScreening").removeClass("is-reject submitted").addClass("active");
-			$("#customerInterview").removeClass("is-reject submitted").addClass("active");
-			$("#onboarded").removeClass("active is-reject submitted");
-		}
-
-		else if (pstatusid == "On-Boarded") {
-
-			$("#lttsInterviewBtn").css("display", "none");
-			$("#customerInterviewBtn").css("display", "none");
-
-			$("#lttsScreening").removeClass("is-reject submitted").addClass("active");
-			$("#lttsInterview").removeClass("is-reject submitted").addClass("active");
-			$("#customerScreening").removeClass("is-reject submitted").addClass("active");
-			$("#customerInterview").removeClass("is-reject submitted").addClass("active");
-			$("#onboarded").removeClass("is-reject submitted").addClass("active");
-		}
-	}
-
-</script>
-
 <script>
 
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-
-
-
-	var svg = document.getElementsByTagName("svg");
-	var rect = document.getElementsByTagName("rect");
-	var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-	text.setAttribute('x', '10');
-	text.setAttribute('y', '20');
-	text.setAttribute('fill', '#000');
-	text.textContent = 'Hello, I am a blah blah blah blah blah';
-	// Dropdown filter
-	function filterText() {
-		var rex = new RegExp($('#jobaccount').children("option:selected").text());
-		$('.content').hide();
-		$('.content').filter(function () {
-			return rex.test($(this).text());
-
-		}).show();
-	}
-
-	function profilefilterText() {
-		var profiledrp = new RegExp($('#reqiddrop').children("option:selected").text());
-		var profilejdtitledrp = new RegExp($('#profilejlocation').children("option:selected").text());
-		$('.content').hide();
-		$('.content').filter(function () {
-			return profiledrp.test($(this).text());
-			return profilejdtitledrp.test($(this).text());
-
-		}).show();
-	}
-
-
-
-</script>
-
-
-<script>
 
 	$(document).ready(function () {
+
 		budropdown();
-		jobstatus();
 		jobstatusdropdown();
-		jobreqiddropdown()
-		expdropdown();
 		salesdropdown();
 		salesrepdropdown();
 		customerdropdown();
-		salutationdropdown();
-		highestqualdropdown();
-		currentlocationdropdown();
-		profilestatusdropdown();
-		profiletabcountrydropdown();
-		getvendornamedropdown();
-		profilevendordropdown();
+		//         jobstatus();
+		//         jobreqiddropdown()
+		//         expdropdown();
+		//         salutationdropdown();
+		//         highestqualdropdown();
+		//         currentlocationdropdown();
+		//         profilestatusdropdown();
+		//         profiletabcountrydropdown();
+		//         getvendornamedropdown();
+		//         profilevendordropdown(); 
+
+	})
 
-		// show modal on button click
-		$("#customerInterviewBtn").click(function () {
-
-			$("#custinterviewModal").modal('show');
-
-		});
-
-		// show modal on button click
-		$("#lttsInterviewBtn").click(function () {
-
-			$("#lttsinterviewModal").modal('show');
-
-		});
-
-	});
-
-
-	function profilevendordropdown() {
-
-		profilevendor = '';
-		var url = "http://localhost:2000/profilevendor";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				for (var i = 0; i < result[0].length; i++) {
-					profilevendor = profilevendor +
-						'<option value="' + result[0][i].vendorid + '">' + result[0][i].vendorname + '</option>';
-				}
-				$("#profilevendorid").html(profilevendor);
-				$("#peditvendorid").html(profilevendor);
-				//$("#statuspedit").html(jobstatusdrop);
-			}
-		});
-	}
-
-
-	function uploadOnChange() {
-
-		var path = $("#choosefile").val();
-		var profiletabpath = $("#profileresume").val();
-		filetext = path.split('\\').pop().split('/').pop();
-		profilefiletext = profiletabpath.split('\\').pop().split('/').pop();
-
-		$("#filename").val(filetext);
-		$("#pfilename").val(profilefiletext);
-
-	}
-
-	function jobstatus() {
-		jobstatusdrop = '';
-		var url = "http://localhost:2000/jobstatus";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//            jobstatusdrop = jobstatusdrop+"<option style='display:none;'></option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					jobstatusdrop = jobstatusdrop +
-						'<option value="' + result[0][i].statusid + '">' + result[0][i].status + '</option>';
-				}
-				$("#jobstatus").html(jobstatusdrop);
-				$("#statuspedit").html(jobstatusdrop);
-			}
-		});
-	}
-	function jobreqiddropdown() {
-
-		jobreqID = '';
-		var url = "http://localhost:2000/jobreqid";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//jobstatusdrop = jobstatusdrop+"<option>--Select--</option>";
-				for (var i = 0; i < result[0].length; i++) {
-					jobreqID = jobreqID +
-						'<option value="' + result[0][i].jobdescriptionid + '">' + result[0][i].requirmentid + '</option>';
-				}
-				$("#jobrecid").html(jobreqID);
-				$("#reqiddrop").html(jobreqID);
-				//$("#statuspedit").html(jobstatusdrop);
-			}
-		});
-	}
-	function jobtitilebyreqid() {
-
-		var reqId = $('[name="reqid_drop"]').find(":selected").val();
-
-		var jobtitilebyreqid = "";
-		var url = "http://localhost:2000/jobtitlebyreqid/" + reqId;
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//profilestatebycountry = profilestatebycountry+"<option>--Select--</option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					jobtitilebyreqid = jobtitilebyreqid +
-						'<option value="' + result[0][i].jdtitle + '">' + result[0][i].jdtitle + '</option>';
-				}
-
-				$("#profilejlocation").html(jobtitilebyreqid);
-			}
-		});
-	}
-
-
-	function editjobtitilebyreqid() {
-		console.log("editjobbyid");
-		var reqId = $('[name="pjob_recid"]').find(":selected").val();
-
-		console.log(reqId);
-		var jobtitilebyreqid = "";
-		var url = "http://localhost:2000/jobtitlebyreqid/" + reqId;
-
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//profilestatebycountry = profilestatebycountry+"<option>--Select--</option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					jobtitilebyreqid = jobtitilebyreqid +
-						'<option value="' + result[0][i].jdtitle + '">' + result[0][i].jdtitle + '</option>';
-				}
-				$("#profilejobtitle").html(jobtitilebyreqid);
-			}
-		});
-	}
-
-
-	function jobstatusdropdown() {
-		jobstatus = '';
-		var url = "http://localhost:2000/jobstatusnew";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-				for (var i = 0; i < result[0].length; i++) {
-					jobstatus = jobstatus +
-						'<option value="' + result[0][i].jobstatusid + '">' + result[0][i].jobstatus + '</option>';
-				}
-				$("#jstatus").html(jobstatus);
-				//$("#statuspedit").html(jobstatusdrop);
-			}
-		});
-	}
-
-
-	function expdropdown() {
-		expdropdowndrop = '';
-		var url = "http://localhost:2000/experince";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-				for (var i = 0; i < result[0].length; i++) {
-					expdropdowndrop = expdropdowndrop +
-						'<option value="' + result[0][i].experinceid + '">' + result[0][i].experince + '</option>';
-				}
-				$("#experience").html(expdropdowndrop);
-			}
-		});
-	}
-
-	function budropdown() {
-		var budropdown = "";
-
-
-		var url = "http://localhost:2000/bu";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//            budropdown = budropdown+"<option style='display:none;'></option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					budropdown = budropdown +
-						'<option value="' + result[0][i].bussinessunitid + '">' + result[0][i].bussinessunit + '</option>';
-				}
-				$("#bunit").html(budropdown);
-				$("#buedit").html(budropdown);
-
-			}
-		});
-	}
-
-	function salesdropdown() {
-		var salesdropdown = "";
-		var url = "http://localhost:2000/sales";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-				//            salesdropdown = salesdropdown+"<option>--Select--</option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					salesdropdown = salesdropdown +
-						'<option value="' + result[0][i].salesregionsid + '">' + result[0][i].salesregions + '</option>';
-				}
-				$("#salesregion").html(salesdropdown);
-				$("#sregionedit").html(salesdropdown);
-			}
-		});
-	}
-
-	function salesrepdropdown() {
-		var salesrepdropdown = "";
-		var url = "http://localhost:2000/salesrep";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-				//salesrepdropdown = salesrepdropdown+"<option>--Select--</option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					salesrepdropdown = salesrepdropdown +
-						'<option value="' + result[0][i].salesrepid + '">' + result[0][i].salesrep + '</option>';
-				}
-				$("#salesrepresent").html(salesrepdropdown);
-				$("#srepedit").html(salesrepdropdown);
-			}
-		});
-	}
-
-	function customerdropdown() {
-		var customerdropdown = "";
-		var url = "http://localhost:2000/customer";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//            customerdropdown = customerdropdown+"<option>--Select--</option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					customerdropdown = customerdropdown +
-						'<option value="' + result[0][i].customersid + '">' + result[0][i].customers + '</option>';
-				}
-				$("#cus").html(customerdropdown);
-				$("#custedit").html(customerdropdown);
-				$("#jobaccount").html(customerdropdown);
-				$("#intcustomer").html(customerdropdown);
-
-
-			}
-		});
-	}
-	//profileTab lookup's
-	function salutationdropdown() {
-		var salutation = "";
-		var url = "http://localhost:2000/salutation";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//salutation = salutation+"<option>--Select--</option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					salutation = salutation +
-						'<option value="' + result[0][i].salutationid + '">' + result[0][i].salutation + '</option>';
-				}
-				$("#salutation").html(salutation);
-				$("#peditsalutation").html(salutation);
-			}
-		});
-	}
-
-	function profiletabcountrydropdown() {
-		var profilecountry = "";
-		var url = "http://localhost:2000/profilecountry";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-				//profilecountry = profilecountry+"<option>--Select--</option>";
-				for (var i = 0; i < result[0].length; i++) {
-					profilecountry = profilecountry +
-						'<option value="' + result[0][i].countryid + '">' + result[0][i].country + '</option>';
-				}
-				$("#country").html(profilecountry);
-				$("#peditcountry").html(profilecountry);
-			}
-		});
-	}
-	
-	function profiletabstatedropdown() {
-
-		let profilecountry = $('[name="p_country"]').find(":selected").val();
-	
-		var profilestatebycountry = "";
-		var url = "http://localhost:2000/statebycountry/" + profilecountry;
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-				//profilestatebycountry = profilestatebycountry+"<option>--Select--</option>";
-				for (var i = 0; i < result[0].length; i++) {
-					profilestatebycountry = profilestatebycountry +
-						'<option value="' + result[0][i].stateid + '">' + result[0][i].state + '</option>';
-				}
-				$("#state").html(profilestatebycountry);
-				//$("#srepedit").html(salesrepdropdown);
-			}
-		});
-	}
-	
-	function highestqualdropdown() {
-		var highestqual = "";
-		var url = "http://localhost:2000/highestqual";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//highestqual = highestqual + "<option>--Select--</option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					highestqual = highestqual +
-						'<option value="' + result[0][i].highestqualificationid + '">' + result[0][i].highestqualification + '</option>';
-				}
-				$("#highestquali").html(highestqual);
-				//$("#srepedit").html(salesrepdropdown);
-				$("#pedithighestquali").html(highestqual);
-			}
-		});
-	}
-	
-	function currentlocationdropdown() {
-		var currentlocation = "";
-		var url = "http://localhost:2000/curentlocation";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//            currentlocation = currentlocation+"<option>--Select--</option>";
-			//	currentlocation = currentlocation + "<option style='display:none;'></option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					currentlocation = currentlocation +
-						'<option value="' + result[0][i].locationid + '">' + result[0][i].location + '</option>';
-				}
-				$("#currentlocation").html(currentlocation);
-				$("#desiredlocation").html(currentlocation);
-				$("#vendorpriloc").html(currentlocation);
-				$("#editvendorpriloc").html(currentlocation);
-				$("#peditcurrentlocation").html(currentlocation);
-				$("#peditdesiredlocation").html(currentlocation);
-				$("#jlocation").html(currentlocation);
-				$("#intlocation").html(currentlocation);
-
-			}
-		});
-	}
-	
-	function profilestatusdropdown() {
-		var profilestatus = "";
-		var url = "http://localhost:2000/profilestatus";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//profilestatus = profilestatus + "<option>--Select--</option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					profilestatus = profilestatus +
-						'<option value="' + result[0][i].statusid + '">' + result[0][i].status + '</option>';
-				}
-				$("#status").html(profilestatus);
-				//$("#srepedit").html(salesrepdropdown);
-				$("#peditstatus").html(profilestatus);
-			}
-		});
-	}
-
-	function editprofilestatedropdown() {
-
-
-		var profilecountry = $('[name="pedit_country"]').find(":selected").val();
-
-		var profilestatebycountry = "";
-		var url = "http://localhost:2000/statebycountry/" + profilecountry;
-
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				//profilestatebycountry = profilestatebycountry+"<option>--Select--</option>";
-
-				for (var i = 0; i < result[0].length; i++) {
-					profilestatebycountry = profilestatebycountry +
-						'<option value="' + result[0][i].stateid + '">' + result[0][i].state + '</option>';
-				}
-
-				$("#peditstate").html(profilestatebycountry);
-			}
-		});
-	}
-
-	function getvendornamedropdown() {
-		vendorratingdrop = '';
-		var url = "http://localhost:2000/vendornamedropdown";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				for (var i = 0; i < result[0].length; i++) {
-					vendorratingdrop = vendorratingdrop +
-						'<option value="' + result[0][i].vendorid + '">' + result[0][i].vendorname + '</option>';
-				}
-				$("#vratingdrop").html(vendorratingdrop);
-				$("#vendorrating").html(vendorratingdrop);
-				$("#editvendorrating").html(vendorratingdrop);
-			}
-		});
-
-	}
-
-	function joblistingdetails() {
-		var tableData = "";
-
-		var url = "http://localhost:2000/joblistingdetails";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-			
-				for (var i = 0; i < result[0].length; i++) {
-					var jobdescriptionID = "\"" + result[0][i].jobdescriptionid + "\"";
-					tableData = tableData + "  <tr class='content'> " +
-						//"<td id='' hidden>" + result[0][i].contactid + "</td>" +
-						"<td >" + result[0][i].requirmentid + "</td>" +
-						"<td >" + result[0][i].noofpositions + "</td>" +
-						"<td >" + result[0][i].experience + "</td>" +
-						"<td >" + result[0][i].role + "</td>" +
-						// "<td >" + result[0][i].primaryskills + "</td>" +
-						"<td >" + result[0][i].jobstatus + "</td>" +
-						"<td >" + result[0][i].customers + "</td>" +
-						"<td >" + "<a>" + "<i class='far fa-edit' data-target='#jobModal' data-toggle='modal' data-backdrop='static' data-keyboard='false'  onclick='jobdisplay(" + jobdescriptionID + ")' style='font-size: 20px;color:black;position:relative;left:37%;'></i>" + "</a>" + "</td>" +
-						"</tr>";
-				}
-				$("#jobtable tbody").html(tableData);
-				// $("#joblistingbody").html(tableData);
-				$("#jobtable").DataTable();
-
-			}
-		});
-	}
-
-	function jobdisplay(i) {
-		// $("#updatehide").hide();
-		var url = "http://localhost:2000/joblisting/" + i;
-
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-
-				$("#jdiddisplayhidden").text(result[0][0].jobdescriptionid);
-
-				$("#reqiddisplay").text(result[0][0].requirmentid);
-				$("#jobtitleedit").val(result[0][0].jdtitle);
-				
-				$("#jdurationedit").val(result[0][0].duration);
-				$("#jlidedit").val(result[0][0].joblocation);
-				$("#expedit").val(result[0][0].experience);
-				$("#lfedit").val(result[0][0].locationflexibility);
-				$("#jdedit").val(result[0][0].jobdescription);
-				$("buedit").val(result[0][0].bussinessunit).attr('selected', 'selected');
-				$("#sregionedit").val(result[0][0].salesregions).attr('selected', 'selected');
-				$("#srepedit").val(result[0][0].salesrep).attr('selected', 'selected');
-				$("#statuspedit").val(result[0][0].status).attr('selected', 'selected');;
-				$("#psedit").val(result[0][0].primaryskills);
-				$("#ssedit").val(result[0][0].secondaryskills);
-				$("#cbyedit").val(result[0][0].createdby);
-				$("#ubyedit").val(result[0][0].updateby);
-				$("#nposedit").val(result[0][0].noofpositions);
-				$("#roleedit").val(result[0][0].role);
-				$("#cbydateedit").val(result[0][0].createddate.slice(0, 10));
-				$("#ubydateedit").val(result[0][0].updatedtime.slice(0, 10));
-				$("#datereqedit").val(result[0][0].dateofreq.slice(0, 10));
-				$("#expdateedit").val(result[0][0].closedate.slice(0, 10));
-				$("#custedit").val(result[0][0].customers).attr('selected', 'selected');
-				$("#JD_comment").val(result[0][0].jdcomments);
-				$("#BU_comment").val(result[0][0].bucomments);
-			}
-		});
-	}
-
-	function enablejoblist() {
-		
-		$("#updatehide").show();
-		// $("#edithide").hide();
-
-		$("#jlidedit").attr('disabled', false);
-		$("#expedit").attr('disabled', false);
-		$("#lfedit").attr('disabled', false);
-		$("#jdedit").attr('disabled', false);
-		$("#buedit").attr('disabled', false);
-		$("#sregionedit").attr('disabled', false);
-		$("#srepedit").attr('disabled', false);
-		$("#statuspedit").attr('disabled', false);
-		$("#psedit").attr('disabled', false);
-		$("#ssedit").attr('disabled', false);
-		$("#cbyedit").attr('disabled', false);
-		$("#ubyedit").attr('disabled', false);
-		$("#nposedit").attr('disabled', false);
-		$("#roleedit").attr('disabled', false);
-		$("#cbydateedit").attr('disabled', false);
-		$("#ubydateedit").attr('disabled', false);
-		$("#datereqedit").attr('disabled', false);
-		$("#expdateedit").attr('disabled', false);
-		$("#custedit").attr('disabled', false);
-		$("#JD_comment").attr('disabled', false);
-		$("#BU_comment").attr('disabled', false);
-		$("#roleleveledit").attr('disabled', false);
-		$("#jdurationedit").attr('disabled', false);
-		$("#reqclosedateedit").attr('disabled', false);
-		$("#jstatusedit").attr('disabled', false);
-		$("#jobtitleedit").attr('disabled', false);
-
-	}
-
-	function addjd() {
-
-		var Requirement = $('[name="Requirementid"]').val();
-		var Role = $('[name="role"]').val();
-		var rolelevel = $('[name="role_level"]').val();
-		var jobtitle = $('[name="jobtitle"]').val();
-		var Position = $('[name="positions"]').val();
-		var closedate = $('[name="ex_date"]').val();
-		var dateofreq = $('[name="req_date"]').val();
-		var jdduration = $('[name="jduration"]').val();
-		var Exp = $('[name="experience"]').val();
-		var PSkill = $('[name="primary_skill"]').val();
-		var SSkill = $('[name="secondry_skill"]').val();
-		var locationflex = $('[name="loc_flex"]').val();
-		var customerid = $('[name="customer"]').val();
-		var jdstatus = $('[name="jstatus"]').val();
-		var buid = $('[name="bu_unit"]').val();
-		var salesregionid = $('[name="sales_region"]').val();
-		var salesrepid = $('[name="sale_rep"]').val();
-		var joblocation = $('[name="job_location"]').val();
-		var jDescription = $('[name="job_description"]').val();
-		var buComments = $('[name="buComments"]').val();
-		var jdComments = $('[name="jd_comments"]').val();
-		var createdby = 'Admin';
-		// var createdate = $('[name="cust_edit"]').val();
-		var updateby = 'Admin';
-		//  var updatetime = $('[name="bucomments"]').val();
-
-
-
-		var data = {
-			"Requirement": Requirement,
-			"Role": Role,
-			"rolelevel": rolelevel,
-			"jobtitle": jobtitle,
-			"Position": Position,
-			"closedate": closedate,
-			"dateofreq": dateofreq,
-			"jdduration": jdduration,
-			"Exp": Exp,
-			"PSkill": PSkill,
-			"SSkill": SSkill,
-			"locationflex": locationflex,
-			"customerid": customerid,
-			"jdstatus": jdstatus,
-			"buid": buid,
-			"salesregionid": salesregionid,
-			"salesrepid": salesrepid,
-			"joblocation": joblocation,
-			"jDescription": jDescription,
-			"buComments": buComments,
-			"jdComments": jdComments,
-			"createdby": createdby,
-			"updateby": updateby
-
-		}
-
-		data = JSON.stringify(data);
-		var url = "http://localhost:2000/jdescription";
-
-		// if(Requirement!="" && Role!="" && Position!=""&& Expected!=""&& Exp!=""&& PSkill!=""&& SSkill!=""&& locationflex!=""&& customerid!=""
-		// && Status!=""&& buid!=""&& salesregionid!=""&& joblocation!=""&& jDescription!="")
-		//   {
-		$.ajax({
-			url: url,
-			type: "post",
-			async: false,
-			data: data,
-			contentType: "application/json",
-			dataType: "json",
-			success: function (result) {
-
-				$('#successmodal').modal('show');
-				clearFormJob();
-
-			},
-			error: function () {
-
-			}
-		});
-
-		// }
-	}
-
-	function updatejd() {
-
-		// $("#edithide").show();
-		$("#updatehide").show();
-
-		var jobdescriptionId = $('[name="jdiddisplay_hidden"]').text();
-		var reqid = $('[name="reqid_display"]').text();
-		var joblocation = $('[name="jlid_edit"]').val();
-		var experience = $('[name="exp_edit"]').val();
-		var expecteddate = $('[name="expdate_edit"]').val();
-		var locaflex = $('[name="lf_edit"]').val();
-		var jobdescription = $('[name="jd_edit"]').val();
-		var bussinessunit = $('[name="bu_edit"]').val();
-		var salesregion = $('[name="sregion_edit"]').val();
-		var salerep = $('[name="srep_edit"]').val();
-		var status = $('[name="statusp_edit"]').val();
-		var primaryskill = $('[name="ps_edit"]').val();
-		var secondaryskill = $('[name="ss_edit"]').val();
-		var updateby = $('[name="uby_edit"]').val();
-		var noofpos = $('[name="npos_edit"]').val();
-		var role = $('[name="role_edit"]').val();
-		var updatedate = $('[name="ubydate_edit"]').val();
-		var dateofreq = $('[name="datereq_edit"]').val();
-		var customer = $('[name="cust_edit"]').val();
-		var jdcomments = $('[name="jdcomments"]').val();
-		var bucomments = $('[name="bucomments"]').val();
-
-
-		var data = {
-
-			"jobdescriptionId": jobdescriptionId,
-			"reqid": reqid,
-			"joblocation": joblocation,
-			"experince": experience,
-			"expecteddate": expecteddate,
-			"locaflex": locaflex,
-			"jobdescription": jobdescription,
-			"bussinessunit": bussinessunit,
-			"salesregion": salesregion,
-			"salerep": salerep,
-			"status": status,
-			"primaryskill": primaryskill,
-			"secondaryskill": secondaryskill,
-			"updateby": updateby,
-			"noofpos": noofpos,
-			"role": role,
-			"updatedate": updatedate,
-			"dateofreq": dateofreq,
-			"customer": customer,
-			"jdcomments": jdcomments,
-			"bucomments": bucomments
-
-		}
-
-		data = JSON.stringify(data);
-
-		$.ajax({
-			url: "http://localhost:2000/updatejoblisting/" + jobdescriptionId,
-			type: "post",
-			async: false,
-			data: data,
-			contentType: "application/json",
-			dataType: "json",
-			success: function (result) {
-
-			},
-			error: function () {
-			}
-		});
-
-		joblistingdetails();
-
-	}
-
-	function profileslistingdetails() {
-
-		var tableData = "";
-
-		var url = "http://localhost:2000/profileslistingdetails";
-		
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-				
-				for (var i = 0; i < result[0].length; i++) {
-				
-					var profileID = "\"" + result[0][i].profileid + "\"";
-					var statusId = "\"" + result[0][i].status + "\"";
-
-					tableData = tableData + "  <tr> " +
-
-						"<td >" + result[0][i].jobreqcode + "</td>" +
-						"<td >" + result[0][i].pjobtitle + "</td>" +
-						"<td >" + result[0][i].firstname + "&nbsp" + result[0][i].lastname + "</td>" +
-						"<td >" + result[0][i].skillset + "</td>" +
-						"<td >" + result[0][i].experince + "</td>" +
-						"<td >" + result[0][i].status + "</td>" +
-						"<td >" + result[0][i].pvendorname+ "</td>" +
-						"<td >" + "<a>" + "<i class='far fa-edit' data-target='#profileEditModal' data-toggle='modal' data-backdrop='static' data-keyboard='false'  onclick=' statuschange(" + statusId + "),profilesdisplay(" + profileID + ")' style='font-size: 20px;color:black;position:relative;left:3%;'></i>" + "</a>" + "</td>" +
-
-						"</tr>";
-
-				}
-
-				// $("#profileslistingbody").html(tableData);
-				$("#profiletable tbody").html(tableData);
-
-				$("#profiletable").DataTable();
-
-			}
-		});
-	}
-
-	function profilesdisplay(i) {
-		// $("#updateeditprofile").hide();
-		var url = "http://localhost:2000/profilelisting/" + i;
-
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-	 // console.log(result);
-	  if(result[0][0].Resignation=='Y'){
-		$("#editresignedy").prop('checked', true);
-		
-	  }
-	  else if(result[0][0].Resignation=='N'){
-		$("#editresignedn").prop('checked', true);
-	  }
-				$("#editprofilehiddenId").text(result[0][0].profileid);
-				$("#pprofileid").text(result[0][0].profileid);
-				$("#peditjobrecid").text(result[0][0].jobreqcode);
-				$("#peditfirstname").val(result[0][0].firstname);
-				$("#peditlastname").val(result[0][0].lastname);
-				$("#peditemail").val(result[0][0].email);
-				$("#peditmobile").val(result[0][0].mobile);
-				$("#peditdob").val(result[0][0].dob.slice(0, 10));
-				$("#peditcity").val(result[0][0].city);
-				$("#peditstate").val(result[0][0].stateid).attr('selected', 'selected');
-				$("#peditcountry").val(result[0][0].countryid).attr('selected', 'selected');
-				$("#peditexperience").val(result[0][0].experince);
-				$("#pedithighestquali").val(result[0][0].highestqualificationid).attr('selected', 'selected');
-				$("#peditcurrentjobtitle").val(result[0][0].currentjobtitle);
-				$("#peditcurrentsalary").val(result[0][0].currentsalary);
-				$("#peditexpectedsalary").val(result[0][0].expectedsalary);
-				$("#peditskillset").val(result[0][0].skillset);
-				$("#peditskypeid").val(result[0][0].skypeid);
-				$("#peditnoticeperiod").val(result[0][0].noticeperiod);
-				$("#peditcurrentlocation").val(result[0][0].currentlocationid).attr('selected', 'selected');
-				$("#peditdesiredlocation").val(result[0][0].desiredlocationid).attr('selected', 'selected');
-				$("#peditstatus").val(result[0][0].statusid).attr('selected', 'selected');
-				$("#peditvendorid").val(result[0][0].vendorid);
-				$("#peditfilename").val(result[0][0].resumename);
-				$("#peditjobtitle").text(result[0][0].pjobtitle)
-				$("#seditskillset").val(result[0][0].psecondaryskill);
-				$("#peditjobtitle").text(result[0][0].pjobtitle);
-			}
-
-		});
-
-	}
-
-	function addprofile() {
-	
-		//var Profileid = $('[name="profileid"]').val();
-		var Jobrecid = $('[name="pjob_recid"]').val();
-		var jobreqcode = $("#jobrecid option:selected").text();
-		var Firstname = $('[name="pfirst_name"]').val();
-		var Lastname = $('[name="plast_name"]').val();
-		var Email = $('[name="p_email"]').val();
-		var Mobile = $('[name="p_mobile"]').val();
-		var Dob = $('[name="p_dob"]').val();
-		var City = $('[name="p_city"]').val();
-		var State = $('[name="p_state"]').val();
-		var Country = $('[name="p_country"]').val();
-		var Experience = $('[name="p_experience"]').val();
-		var Highestquali = $('[name="p_highestquali"]').val();
-		var Currentjobtitle = $('[name="pcurrent_jobtitle"]').val();
-		var Currentsalary = $('[name="pcurrent_salary"]').val();
-		var Expectedsalary = $('[name="pexpected_salary"]').val();
-		var Skillset = $('[name="pskill_set"]').val();
-		var Skypeid = $('[name="pskype_id"]').val();
-		var Noticeperiod = $('[name="pnotice_period"]').val();
-		var Currentlocation = $('[name="pcurrent_location"]').val();
-		var Desiredlocation = $('[name="pdesired_location"]').val();
-		var Status = $('[name="p_status"]').val();
-		var Resume = $('[name="presume_name"]').val();
-		var Vendorid = $("#profilevendorid option:selected").val();
-		var Createdby = 'Admin';
-		var Updateby = 'Admin';
-		var Pjobtitle = $('[name="pjob_title"]').val();
-		var Psecondskill = $('[name="sskill_set"]').val();
-		var Resigned = $('input[name=resigned]:checked').val();
-		var Vendorname =  $("#profilevendorid option:selected").text();
-		var data = {
-
-			//"Profileid": Profileid,
-			"Jobrecid": Jobrecid,
-			"jobreqcode": jobreqcode,
-			"Firstname": Firstname,
-			"Lastname": Lastname,
-			"Email": Email,
-			"Mobile": Mobile,
-			"Dob": Dob,
-			"City": City,
-			"State": State,
-			"Country": Country,
-			"Experience": Experience,
-			"Highestquali": Highestquali,
-			"Currentjobtitle": Currentjobtitle,
-			"Currentsalary": Currentsalary,
-			"Expectedsalary": Expectedsalary,
-			"Skillset": Skillset,
-			"Skypeid": Skypeid,
-			"Noticeperiod": Noticeperiod,
-			"Currentlocation": Currentlocation,
-			"Desiredlocation": Desiredlocation,
-			"Status": Status,
-			"Resume": Resume,
-			"Vendorid": Vendorid,
-			"Createdby": Createdby,
-			"Updateby": Updateby,
-			// "Evaluationdate": Evaluationdate,
-			// "Panel": Panel,
-			"Pjobtitle": Pjobtitle,
-			"Psecondskill": Psecondskill,
-			"Resigned": Resigned,
-			"Vendorname": Vendorname,
-		}
-
-		data = JSON.stringify(data);
-
-		var url = "http://localhost:2000/addprofiles";
-
-		 if (Jobrecid!="" &&jobreqcode!="" && Firstname!="" && Lastname!="" &&Email!="" && Mobile!=""
-		 && Experience!="" && Highestquali!="" && Currentjobtitle!="" &&Currentsalary!="" 
-		 && Expectedsalary!="" && Skillset!="" &&Noticeperiod!="" && Currentlocation!="" && Desiredlocation!="" 
-		 && Status!="" && Experience!="" && Resigned!="" && Vendorid!="" && Pjobtitle!="" && Vendorname!="")
-{
-		$.ajax({
-			url: url,
-			type: "post",
-			async: false,
-			data: data,
-			contentType: "application/json",
-			dataType: "json",
-			success: function (result) {
-
-				$('#profilesmodal').modal('hide');
-				$('#successmodal').modal('show');
-				clearFormProfile();
-				
-
-			},
-			error: function () {
-			}
-		});
-		
-	}
-	
-	profileslistingdetails();
-
-	}
-	
-	function updateprofile() {
-
-		var peditprofileId = $('[name="editprofile_hiddenId"]').text();
-		var peditfirstname = $('[name="peditfirst_name"]').val();
-		var peditlastname = $('[name="peditlast_name"]').val();
-		var peditemail = $('[name="pedit_email"]').val();
-		var peditmobile = $('[name="pedit_mobile"]').val();
-		var peditdob = $('[name="pedit_dob"]').val();
-		var peditcity = $('[name="pedit_city"]').val();
-		var peditstate = $('[name="pedit_state"]').val();
-		var peditcountry = $('[name="pedit_country"]').val();
-		var peditexperience = $('[name="pedit_experience"]').val();
-		var pedithighestquali = $('[name="pedit_highestquali"]').val();
-		var peditcurrentjobtitle = $('[name="peditcurrent_jobtitle"]').val();
-		var peditcurrentsalary = $('[name="peditcurrent_salary"]').val();
-		var peditexpectedsalary = $('[name="peditexpected_salary"]').val();
-		var peditresigned = $('[name="editresigned"]').val();
-		var peditskillset = $('[name="peditskill_set"]').val();
-		var peditskypeid = $('[name="peditskype_id"]').val();
-		var peditnoticeperiod = $('[name="peditnotice_period"]').val();
-		var peditcurrentlocation = $('[name="peditcurrent_location"]').val();
-		var peditdesiredlocation = $('[name="peditdesired_location"]').val();
-		var peditstatus = $('[name="pedit_status"]').val();
-		var peditresumename = $('[name="peditresume_name"]').val();
-		var peditvendorid = $('[name="pedit_vendorid"]').val();
-		var editresigned = $('input[name=editresigned]:checked').val();
-	   var peditvendorname = $("#peditvendorid option:selected").text();
-			
-		
-
-		var data = {
-
-			"peditprofileId": peditprofileId,
-			"peditfirstname": peditfirstname,
-			"peditlastname": peditlastname,
-			"peditemail": peditemail,
-			"peditmobile": peditmobile,
-			"peditdob": peditdob,
-			"peditcity": peditcity,
-			"peditstate": peditstate,
-			"peditcountry": peditcountry,
-			"peditexperience": peditexperience,
-			"pedithighestquali": pedithighestquali,
-			"peditcurrentjobtitle": peditcurrentjobtitle,
-			"peditcurrentsalary": peditcurrentsalary,
-			"peditexpectedsalary": peditexpectedsalary,
-			"peditskillset": peditskillset,
-			"peditskypeid": peditskypeid,
-			"peditnoticeperiod": peditnoticeperiod,
-			"peditcurrentlocation": peditcurrentlocation,
-			"peditdesiredlocation": peditdesiredlocation,
-			"peditresigned": peditresigned,
-			"peditstatus": peditstatus,
-			"peditresumename": peditresumename,
-			"peditvendorid": peditvendorid,
-			"peditupdatedby": 'Admin',
-			"peditresignation": editresigned,
-			"peditvendorname": peditvendorname,
-		}
-
-		data = JSON.stringify(data);
-	
-		url = "http://localhost:2000/updateprofile/" + peditprofileId,
-			
-
-		$.ajax({
-			url: url,
-			type: "post",
-			async: false,
-			data: data,
-			contentType: "application/json",
-			dataType: "json",
-			success: function (result) {
-
-			},
-			error: function () {
-			}
-		});
-
-		profileslistingdetails();
-
-	}
-	function enableprofileedit() {
-
-		// $("#profileeditbtn").hide();
-		$("#updateeditprofile").show();
-		$("#peditsalutation").attr('disabled', false);
-		$("#peditfirstname").attr('disabled', false);
-		$("#peditlastname").attr('disabled', false);
-		$("#peditemail").attr('disabled', false);
-		$("#peditmobile").attr('disabled', false);
-		$("#peditdob").attr('disabled', false);
-		$("#peditcity").attr('disabled', false);
-		$("#peditstate").attr('disabled', false);
-		$("#peditcountry").attr('disabled', false);
-		$("#peditpostalcode").attr('disabled', false);
-		$("#peditexperience").attr('disabled', false);
-		$("#pedithighestquali").attr('disabled', false);
-		$("#peditcurrentjobtitle").attr('disabled', false);
-		$("#peditcurrentsalary").attr('disabled', false);
-		$("#peditexpectedsalary").attr('disabled', false);
-		$("#peditskillset").attr('disabled', false);
-		$("#peditskypeid").attr('disabled', false);
-		$("#peditnoticeperiod").attr('disabled', false);
-		$("#peditcurrentlocation").attr('disabled', false);
-		$("#peditdesiredlocation").attr('disabled', false);
-		$("#peditresigned").attr('disabled', false);
-		$("#peditevaldate").attr('disabled', false);
-		$("#peditinternaltd").attr('disabled', false);
-		$("#peditpanel").attr('disabled', false);
-		$("#peditscreening").attr('disabled', false);
-		$("#peditstatus").attr('disabled', false);
-		$("#peditvendorid").attr('disabled', false);
-		$("#peditfilename").attr('disabled', false);
-		$("#seditskillset").attr('disabled', false);
-	}
-
-	function addvendor() {
-
-		var Vendorid = $('[name="vendor_id"]').val();
-		var Vendorname = $('[name="vendor_name"]').val();
-		var Vendorpriloc = $('[name="vendor_priloc"]').val();
-		var Vendorspec = $('[name="vendor_spec"]').val();
-		var Vendoremail = $('[name="vendor_email"]').val();
-		var Recruiterid = $('[name="recruiter_id"]').val();
-		var Recruitername = $('[name="recruiter_name"]').val();
-		var Recruitercontno = $('[name="recruiter_contno"]').val();
-		var VendorratingId = $('[name="vendor_rating"]').val();
-		var Vendorrating = $('[name="vendor_rating"]').find(":selected").text();
-		var Vendorcomments = $('[name="vendor_comments"]').val();
-		var Createdby = 'Admin';
-		var Updateby = 'Admin';
-
-		var data = {
-
-
-			"Vendorid": Vendorid,
-			"Vendorname": Vendorname,
-			"Vendorpriloc": Vendorpriloc,
-			"Vendorspec": Vendorspec,
-			"Vendoremail": Vendoremail,
-			"Recruiterid": Recruiterid,
-			"Recruitername": Recruitername,
-			"Recruitercontno": Recruitercontno,
-			"VendorratingId": VendorratingId,
-			"Vendorrating": Vendorrating,
-			"Vendorcomments": Vendorcomments,
-			"Createdby": Createdby,
-			"Updateby": Updateby
-
-		}
-
-		data = JSON.stringify(data);
-
-		var url = "http://localhost:2000/addvendor";
-
-		if (Vendorid != "" && Vendorname != "" && Vendorpriloc != "" && Vendorspec != "" && Vendoremail != "" && Recruiterid != "" && Recruitername != "" && Recruitercontno != "" && Vendorrating != "") {
-
-
-		$.ajax({
-			url: url,
-			type: "post",
-			async: false,
-			data: data,
-			contentType: "application/json",
-			dataType: "json",
-			success: function (result) {
-
-				$('#vendormodal').modal('hide');
-				$('#successmodal').modal('show');
-				clearFormVendor();
-
-			},
-			error: function () {
-			}
-		});
-		
-		}
-		
-		vendorlistingdetails();
-		
-	}
-
-
-	function vendorlistingdetails() {
-		var tableData = "";
-		var url = "http://localhost:2000/vendorlistingdetails";
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				for (var i = 0; i < result[0].length; i++) {
-
-					var Vendorid = "\"" + result[0][i].vendorid + "\"";
-
-					tableData = tableData + "  <tr class='content'> " +
-
-						"<td >" + result[0][i].recruiterid + "</td>" +
-						"<td >" + result[0][i].vendorcode + "</td>" +
-						"<td >" + result[0][i].vendorname + "</td>" +
-						"<td >" + result[0][i].recruitername + "</td>" +
-						// "<td >" + result[0][i].vendorrating + "</td>" +
-						"<td >" + result[0][i].vendoremail + "</td>" +
-
-						"<td >" + "<a>" + "<i class='far fa-edit' data-target='#vendoreditmodal' data-toggle='modal' data-backdrop='static' data-keyboard='false' onclick='vendordisplay(" + Vendorid + ")'  style='font-size: 20px;color:black;position:relative;left:37%;'></i>" + "</a>" + "</td>" +
-						"</tr>";
-
-				}
-				//	$("#vendorlistingbody").html(tableData);
-				$("#vendortable tbody").html(tableData);
-				$("#vendortable").DataTable();
-			}
-		});
-	}
-
-	function vendordisplay(i) {
-
-		// $("#updatevendor").hide();
-		var url = "http://localhost:2000/vendorlisting/" + i;
-
-		$.ajax({
-			url: url,
-			type: "GET",
-			success: function (result) {
-
-				$("#vendoridhidden").text(result[0][0].vendorid);
-				$("#editvendorid").val(result[0][0].vendorcode);
-				$("#editvendorname").val(result[0][0].vendorname);
-				$("#editvendorpriloc").val(result[0][0].locationid).attr('selected', 'selected');
-				$("#editvendorspec").val(result[0][0].vendorspecification);
-				$("#editvendoremail").val(result[0][0].vendoremail);
-				$("#editrecruiterid").val(result[0][0].recruiterid);
-				$("#editrecruitername").val(result[0][0].recruitername);
-				$("#editrecruitercontno").val(result[0][0].recruitercontactno);
-				$("#editvendorcomments").val(result[0][0].vendorcomments);
-				$("#editvendorrating").val(result[0][0].vendorrating);
-
-			}
-
-		});
-	}
-
-	function enablevendorlist() {
-
-		// $("#editvendor").hide();
-		$("#updatevendor").show();
-		$("#editvendorid").attr('disabled', false);
-		$("#editvendorname").attr('disabled', false);
-		$("#editvendorpriloc").attr('disabled', false);
-		$("#editvendorspec").attr('disabled', false);
-		$("#editvendoremail").attr('disabled', false);
-		$("#editrecruiterid").attr('disabled', false);
-		$("#editrecruitername").attr('disabled', false);
-		$("#editrecruitercontno").attr('disabled', false);
-		$("#editvendorcomments").attr('disabled', false);
-		$("#editvendorrating").attr('disabled', false);
-
-	}
-
-	function updatevendorbyid() {
-
-		// $("#editvendor").show();
-		var vendorid = $('[name="vendorid_hidden"]').text();
-		var Vendorcode = $('[name="editvendor_id"]').val();
-		var Vendorname = $('[name="editvendor_name"]').val();
-		var Vendorpriloc = $('[name="editvendor_priloc"]').val();
-		var Vendorspec = $('[name="editvendor_spec"]').val();
-		var Vendoremail = $('[name="editvendor_email"]').val();
-		var Recruiterid = $('[name="editrecruiter_id"]').val();
-		var Recruitername = $('[name="editrecruiter_name"]').val();
-		var Recruitercontno = $('[name="editrecruiter_contno"]').val();
-		var VendorratingId = $('[name="editvendor_rating"]').val();
-		var Vendorrating = $('[name="editvendor_rating"]').find(":selected").text();
-		var Vendorcomments = $('[name="editvendor_comments"]').val();
-		var Updateby = 'Admin';
-
-		var data = {
-			"vendorid": vendorid,
-			"Vendorcode": Vendorcode,
-			"Vendorname": Vendorname,
-			"Vendorpriloc": Vendorpriloc,
-			"Vendorspec": Vendorspec,
-			"Vendoremail": Vendoremail,
-			"Recruiterid": Recruiterid,
-			"Recruitername": Recruitername,
-			"Recruitercontno": Recruitercontno,
-			"VendorratingId": VendorratingId,
-			"Vendorrating": Vendorrating,
-			"Vendorcomments": Vendorcomments,
-			"Updateby": Updateby
-		}
-		data = JSON.stringify(data);
-		var url = "http://localhost:2000/updatevendor/" + vendorid;
-		$.ajax({
-			url: url,
-			type: "post",
-			async: false,
-			data: data,
-			contentType: "application/json",
-			dataType: "json",
-			success: function (result) {
-			},
-			error: function () {
-			}
-		});
-		vendorlistingdetails();
-	}
-
-	function clearFormJob() {
-
-		$("#bunit").val('');
-		$("#salesregion").val('');
-		$("#salesrepresent").val('');
-		$("#cus").val('');
-		$("#comment").val('');
-		$("#filename").val('');
-		$("#requirement").val('');
-		$("#role").val('');
-		$("#edate").val('');
-		$("#positions").val('');
-		$("#experience").val('');
-		$("#jobstatus").val('');
-		$("#piskills").val('');
-		$("#seskills").val('');
-		$("#jloc").val('');
-		$("#locflex").val('');
-		$("#jdesp").val('');
-		$("#comm").val('');
-
-	}
-
-	function clearFormProfile() {
-
-		$("#jobrecid").val('');
-		$("#profilejobtitle").val('');
-		$("#salutation").val('');
-		$("#firstname").val('');
-		$("#lastname").val('');
-		$("#dob").val('');
-		$("#mobile").val('');
-		$("#email").val('');
-		$("#address1").val('');
-		$("#address2").val('');
-		$("#country").val('');
-		$("#state").val('');
-		$("#city").val('');
-		$("#postalcode").val('');
-		$("#highestquali").val('');
-		$("#currentjobtitle").val('');
-		$("#currentsalary").val('');
-		$("#expectedsalary").val('');
-		$("#pskillset").val('');
-		$("#sskillset").val('');
-		$("#skypeid").val('');
-		$("#noticeperiod").val('');
-		$("#currentlocation").val('');
-		$("#desiredlocation").val('');
-		$("#profileexperience").val('');
-		$("#resignedy").val('');
-		$("#resignedn").val('');
-		$("#status").val('');
-		$("#profilevendorid").val('');
-		$("#profileresume").val('');
-
-	}
-
-	function clearFormVendor() {
-
-		$("#vendorid").val('');
-		$("#vendorname").val('');
-		$("#vendorpriloc").val('');
-		$("#vendorspec").val('');
-		$("#vendoremail").val('');
-		$("#recruiterid").val('');
-		$("#recruitername").val('');
-		$("#recruitercontno").val('');
-		$("#vendorrating").val('');
-		$("#vendorcomments").val('');
-
-	}
 
 </script>
 
-
-
 <body>
-
-	<div id='screenloading'>
-		<div class="container">
-			<div class="modal fade " role="dialog" id="successmodal">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header" style="background: #47c9a2;">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						</div>
-						<div class="modal-body text-center">
-							<img src="/assets/img/success.png" style="height: 105px;width:103px;">
-							<h4>SUCCESS</h4>
-							<p>Created Successfully.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="modal fade " role="dialog" id="deletemodal">
-				<div class="modal-dialog">
-					<div class="modal-content" style="margin-top: 29%;">
-						<div class="modal-header" style="background: #dc3545;">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						</div>
-						<div class="modal-body text-center">
-							<img src="/assets/img/delete.png" style="height: 105px;width:103px;">
-							<h4>Are you sure?</h4>
-							<p>Do you really want to delete these records? This process cannot be undone.</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-							<button type="button" data-toggle="modal" data-target="#confirmdelete" data-dismiss="modal"
-								class="btn btn-danger">Delete</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="modal fade " role="dialog" id="confirmdelete">
-				<div class="modal-dialog">
-					<div class="modal-content" style="margin-top: 29%;">
-						<div class="modal-header" style="background:#dc3545;">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						</div>
-						<div class="modal-body text-center">
-							<img src="/assets/img/delete.png" style="height: 105px;width:103px;">
-							<h4>DELETED</h4>
-							<p>Deleted Successfully.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
-	</div>
-	<div class="container">
-		<div class="row">
-			<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" >
-
-
-				<div class="col-sm-6">
-					<a class="navbar-brand" href="/">
-						<h1 style="font-weight:600;font-size:50px;color:#6bf682;">JOB TRACKER</h1>
-					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-						aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="oi oi-menu"></span> Menu
+	<div class="wrapper">
+		<div class="main-header" data-background-color="purple">
+			<!-- Logo Header -->
+			<div class="logo-header">
+				<a href="index.html" class="logo">
+					<img src="img/logo.jpg" alt="navbar brand" class="navbar-brand"
+						style="width: 196px;height: 57px;margin-left: -24px;">
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
+					data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="fa fa-bars"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="fa fa-ellipsis-v"></i></button>
+				<div class="navbar-minimize">
+					<button class="btn btn-minimize btn-rounded">
+						<i class="fa fa-bars"></i>
 					</button>
 				</div>
-				<div class="col-sm-6">
-					<div class="collapse navbar-collapse" id="ftco-nav">
+			</div>
+			<!-- End Logo Header -->
 
-						<ul class="nav">
+			<!-- Navbar Header -->
+			<nav class="navbar navbar-header navbar-expand-lg">
 
-							<li class="active"><a href="#" data-toggle="tab" data-target="#jobsTab"
-									style="font-size: 20px;color: #73c7e7;font-weight: 900;">Requirments</li>
-							<li><a href="#" data-toggle="tab" id="jobstabid" data-target="#operationsTab"
-									style="font-size: 20px;color: #73c7e7;font-weight: 900;padding: 0 32px;"
-									onclick="joblistingdetails()">Jobs</a></li>
-							<li><a href="#" data-target="#profilesTab" data-toggle="tab" id="profiletabid"
-									style="font-size: 20px;color: #73c7e7;font-weight: 900;padding: 0 0px;"
-									onclick="profileslistingdetails()">Profiles</a></li>
-							<li><a href="#" data-target="#vendorsTab" data-toggle="tab" id="vendortabid"
-									style="font-size: 20px;color: #73c7e7;font-weight: 900;padding: 0 32px;"
-									onclick="vendorlistingdetails()">Vendors</a></li>
-							<li class=""><a href="#" data-toggle="tab" href="/interviewTab"
-									style="font-size: 20px;color: #73c7e7;font-weight: 900;display:none;">Interviews</a>
-							</li>
-
-						</ul>
-
-
+				<div class="container-fluid" style="margin-left: 21%;">
+					<div class="collapse" id="search-nav">
+						<form class="navbar-left navbar-form nav-search mr-md-3">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<button type="submit" class="btn btn-search pr-1">
+										<i class="fa fa-search search-icon"></i>
+									</button>
+								</div>
+								<input type="text" placeholder="Search ..." class="form-control">
+							</div>
+						</form>
 					</div>
+					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+						<li class="nav-item toggle-nav-search hidden-caret">
+							<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button"
+								aria-expanded="false" aria-controls="search-nav">
+								<i class="fa fa-search"></i>
+							</a>
+						</li>
+					</ul>
 				</div>
 			</nav>
+			<!-- End Navbar -->
 		</div>
 
-	</div>
-
-	<div class="hero-wrap js-fullheight" style="background-image: url('/assets/img/bg_2.jpg');"
-		data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start"
-				style="height:420px;" data-scrollax-parent="true">
-				<div class="col-xl-12 ftco-animate mb-5 pb-5" data-scrollax=" properties: { translateY: '70%' }">
-					
-
-					<div class="tab-content" style="top:155px;position: relative;">
-						<div id="jobsTab" class="tab-pane fade" style=" background-color: white;">
-							<form class="search-job" method="post" onsubmit="return false">
-
-								<div id="jobdetails">
-
-									<h3 style="font-size:22px;font-weight: bold;margin-left: 22px;padding-top: 14px;">
-										NEW JOB:</h3>
-
-									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
-										style="overflow-y: scroll;height:500px;">
-
-
-										<div class="card"
-											style="background-color: #73c7e72e;border: 2px solid rgba(0, 0, 0, 0.21)">
-
-											<h5 class="card-header" style="background-color: #73c7e7;width: 101.5%;right: 6px;position: relative;">DETAILS</h5>
-											<div class="card-body">
-
-												<div class="row">
-													<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 "></div>
-													<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-														<label><span style="color:red;">*</span>Business Unit:</label>
-													</div>
-													<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-														<select class="form-control" id="bunit" name="bu_unit"
-															required></select>
-													</div>
-
-													<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-														<label><span style="color:red;">*</span>Sales Regions:</label>
-													</div>
-													<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-														<select class="form-control" id="salesregion"
-															name="sales_region" required></select>
-													</div>
-													<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-												</div>
-												<div class="row">
-													<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-													<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-														<label><span style="color:red;">*</span>Sales
-															Representatives:</label></div>
-													<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-														<select class="form-control" id="salesrepresent" name="sale_rep"
-															required></select>
-													</div>
-
-													<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-														<label><span style="color:red;">*</span>Customers:</label></div>
-													<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-														<select class="form-control" id="cus" name="customer"
-															required></select>
-													</div>
-
-													<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
-													</div>
-
-												</div>
-
-												<div class="row">
-													<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
-													</div>
-													<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-														<label>Comments:</label></div>
-													<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-														<textarea style="width: 89%;border-radius: 5px; font-size:13px;"
-															id="comment" name="bucomments"></textarea>
-													</div>
-												</div>
-
-
-
-											</div>
-										</div>
-
-
-										<div id="myCollapsible" class="">
-											<br>
-											<div class="card"
-												style="background-color: #73c7e72e;border: 2px solid rgba(0, 0, 0, 0.21)">
-												<h5 class="card-header" style="background-color: #73c7e7;width: 101.5%;right: 6px;position: relative;">JOB
-													DESCRIPTION</h5>
-												<div class="card-body">
-
-
-													<div class="row">
-														<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3"></div>
-
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<input type="file" id="choosefile"
-																onchange="uploadOnChange()" name="myFile" multiple
-																style="color: black;font-size: 13px;">
-														</div>
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-														<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" class="form-control" id="filename"
-																style="width: 100%;" disabled>
-														</div>
-
-													</div>
-													<div class="row">
-														<div class="col-sm-5">
-															<hr style="width: 110%;top: -3px;position: relative;">
-														</div>
-														<div class="col-sm-2"><label
-																style="left: 66px;position: relative;font-weight: bold">(OR
-																)</label></div>
-														<div class="col-sm-5">
-															<hr
-																style="width: 107%;top: -3px;position: relative;left: -39px;">
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Requirement
-																I'd:</label></div>
-														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="requirement" name="Requirementid"
-																class="form-control" required>
-														</div>
-
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Role/Domain:</label>
-														</div>
-														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="role" name="role"
-																class="form-control" required>
-														</div>
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-													</div>
-													<div class="row">
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Role Level:</label>
-														</div>
-														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-
-															<select id="rolelevel" class="form-control" name="role_level" required>
-																<!-- <option value="">Select</option> -->
-																<option value="1">Tech 1</option>
-																<option value="2">Tech 2</option>
-																<option value="3">Tech 3</option>
-															</select>
-														</div>
-
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Job Title:</label>
-														</div>
-														<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="jobtitle" class="form-control"
-																name="jobtitle" required>
-
-														</div>
-
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-													</div>
-
-													<div class="row">
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Close Date:</label>
-														</div>
-														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="date" id="edate" name="ex_date"
-																class="form-control" required>
-														</div>
-
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Date Of
-																Request:</label>
-														</div>
-														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-
-															<input type="date" id="reqdate" name="req_date"
-																class="form-control" required>
-														</div>
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-													</div>
-
-
-													<div class="row">
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Primary
-																Skill:</label></div>
-														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" class="form-control" name="primary_skill"
-																id="piskills" required>
-														</div>
-
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label>Secondary Skill:</label></div>
-														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="seskills" name="secondry_skill"
-																class="form-control" required>
-														</div>
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-													</div>
-
-													<div class="row">
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Job
-																Location:</label></div>
-														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="jloc" name="job_location"
-																class="form-control" required>
-														</div>
-
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Location
-																Flexiblity:</label></div>
-														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<select id="locflex" class="form-control" name="loc_flex" required>
-																<!-- <option value="">Select</option> -->
-																<option value="Y">Yes</option>
-																<option value="N">No</option>
-															</select>
-														</div>
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-													</div>
-
-													<div class="row">
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Status:</label>
-
-														</div>
-														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<select id="jstatus" class="form-control" name="jstatus" required>
-																<option value=""></option>
-															</select>
-
-														</div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Duration:</label>
-														</div>
-														<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="jduration" name="jduration"
-																class="form-control" required>
-														</div>
-
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-													</div>
-
-													<div class="row">
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Experience:</label>
-														</div>
-														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="experience" name="experience"
-																class="form-control" required>
-														</div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>No of
-																Positions:</label></div>
-														<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-															<input type="text" id="positions" name="positions"
-																class="form-control" required>
-														</div>
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-													</div>
-
-													<div class="row">
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label><span style="color:red;">*</span>Job
-																Description:</label></div>
-														<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-															<textarea id="jdesp" name="job_description"
-																style="width: 89%;border-radius: 5px;font-size:13px;"></textarea>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-														<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-															<label>Comments:</label></div>
-														<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-															<textarea id="comm" name="jd_comments"
-																style="width: 89%;border-radius: 5px;font-size:13px;"></textarea>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="submission" style="margin:3%;">
-										<div class="row">
-											<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9"></div>
-											<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3"
-												style="margin-bottom:2%;left: 89px;">
-												<button type="submit" class="btn btn-sm btn-info"
-													onclick="addjd()">Submit</button>
-												<button type="button" id="canceljob" class="btn btn-sm btn-info"
-													onclick="clearFormJob()">Cancel</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div id="operationsTab" class="tab-pane fade">
-							<div id="jobslisting">
-								<div class="container" style="background-color: white;height:600px;">
-									<div class="row" style="background-color: #73c7e7; height: 56px;">
-										<div class="col-sm-12" style="margin-top: 9px;">
-											<h5>JOBS</h5>
-										</div>
-									</div>
-									<br>
-									<div id="main" class="">
-										<div id="main-container" class="list-view contact"
-											style="box-shadow:none;border:none;">
-											<div class="col-sm-1"></div>
-											<div id="main-content" class="contact">
-												<div style="background-color: #73c7e72e;border: 1px solid #e3e3e3;height: 52px;">
-													<div class="row" style="color: black;font-size: 13px;top: 12px;position: relative;">
-													
-														<div class="col-sm-2" style="left:21px;margin:3px;"><b>Account</b></div>
-														
-														<div class="col-sm-2" style="right:58px;">
-															<select class="form-control" id="jobaccount" onchange='filterText()'></select>
-														</div>
-														<div class="col-sm-2" ></div>
-														<div class="col-sm-2"></div>
-													<div class="col-sm-2"  style="left:25%">
-														<a href="#" onClick="$('#jobtable').tableExport({type:'excel',escape:'false'});">
-															<img src="/assets/img/export-to-excel-image.png" style="height: 28px;width:24px;">
-														</a>
-													</div>
-												</div>
-												</div>
-
-												<div id="main-content" class="contact">
-													<div id="tbMarksContainer">
-														<div class="entity-list" id="entity-list">
-															<div class="table table-responsive" style="overflow: auto;height:415px;width:100%;">
-
-																<table id="jobtable"
-																	class="display dataTable table-bordered"
-																	style="width:104%;color: black;">
-																	<thead
-																		style="font-weight: bold;background-color: rgb(51, 122, 183);position: relative;top: 0px;color: rgb(255, 255, 255); white-space: nowrap;">
-																		<tr style="  font-weight:bold ; ">
-																			<th scope="col">Recuriment Id </th>
-																			<th scope="col">No.Of Positions </th>
-																			<th scope="col">Experince </th>
-																			<th scope="col">Role </th>
-																			<!-- <th scope="col">Primary Skills</th> -->
-																			<th scope="col">Status</th>
-																			<th scope="col">Account</th>
-																			<th data-orderable="false" scope="col">
-																				Action </th>
-																		</tr>
-																	</thead>
-																	<tbody id="joblistingbody" style="color:black;">
-																	</tbody>
-																</table>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-
-
-								</div>
-
+		<!-- Sidebar -->
+		<div class="sidebar">
+			<div class="sidebar-background"></div>
+			<div class="sidebar-wrapper scrollbar-inner">
+				<div class="sidebar-content">
+					<ul class="nav">
+						<li class="nav-item active">
+							<a href="index.html">
+								<i class="fas fa-home"></i>
+								<p>Dashboard</p>
+							</a>
+						</li>
+						<li class="nav-section">
+							<span class="sidebar-mini-icon">
+								<i class="fa fa-ellipsis-h"></i>
+							</span>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#Requirements">
+								<i class="fas fa-layer-group"></i>
+								<p>Recuirements</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="Requirements">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="#" data-toggle="tab" data-target="#addrequirementTab">
+											<span class="sub-item">Add Requirement</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" data-toggle="tab" onclick="joblistingdetails()" data-target="#viewrequirementTab">
+											<span class="sub-item">view Requirement</span>
+										</a>
+									</li>
+								</ul>
 							</div>
-						</div>
-
-
-						<div id="profilesTab" class="tab-pane fade">
-							<div id="profileslisting" class="">
-
-								<div class="container" style="background-color:white;height:600px">
-
-									<div class="row" style="background-color: #73c7e7; height: 56px;">
-
-										<div class="col-sm-11" style="margin-top: 9px;">
-											<h5>Profiles</h5>
-										</div>
-
-										<div class="col-sm-1" style="margin-top: 9px;"><button type="button"
-												data-toggle="modal" data-target="#profilesmodal"
-												class="btn">New</button>
-										</div>
-									</div>
-									<br>
-									<div style="background-color:  #73c7e726;border: 1px solid #e3e3e3;height: 52px;">
-										<div class="row"
-											style="color: black;font-size: 13px;top: 12px;position: relative;">
-
-											<div class="col-sm-2" style="left:14px;margin:3px;">
-												<b>Requirement Id</b>
-											</div>
-
-											<div class="col-sm-2"  style="right:30px">
-												<select class="form-control" name="reqid_drop" id="reqiddrop" onclick="jobtitilebyreqid()"></select>
-											</div>
-											<div class="col-sm-2" style="margin:2px;">
-												<b>Job Title</b>
-											</div>
-											<div class="col-sm-2" style="right:8%;">
-												<select class="form-control" id="profilejlocation" style="width:100%;"></select>
-											</div>
-
-											<div class="col-sm-2" style="left:25%;float:left;">
-												<a href="#" onClick="$('#profiletable').tableExport({type:'excel',escape:'false'});">
-												<img src="/assets/img/export-to-excel-image.png" style="height: 28px;width:24px;">
-												</a>
-											</div>
-
-											
-										</div>
-									</div>
-									<br>
-
-									<div id="tbMarksContainer">
-
-										<div class="entity-list" id="entity-list">
-
-											<div class="table table-responsive" style="overflow: auto;height:400px">
-
-												<table class="display dataTable table-bordered" style="width:105%;color: black;" id="profiletable">
-													<thead style="font-weight: bold;background-color: rgb(51, 122, 183);
-														position: relative;top: 0px;color: rgb(255, 255, 255); white-space: nowrap;">
-
-														<tr style="  font-weight:bold ; ">
-															<th scope="col">Recuriment Id <i class="up"></i><i
-																	class="down"></i></th>
-																	<th scope="col">Job Title</th>
-															<th scope="col">Candidate Name</th>
-															<th scope="col">Skill</th>
-															<th scope="col">Experience</th>
-															<th scope="col">Status</th>
-															 <th scope="col">Vendor Id</th> 
-															<th data-orderable="false" scope="col">Action</th>
-														</tr>
-													</thead>
-													<tbody id="profileslistingbody" style="color:black;">
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-
-
-								</div>
-
-
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#Profiles">
+								<i class="fas fa-pen-square"></i>
+								<p>Profiles</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="Profiles">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="#" data-toggle="tab" data-target="#addprofileTab">
+											<span class="sub-item">Add Profiles</span>
+										</a>
+									</li>
+									<li>
+										<a href="">
+											<span class="sub-item">view Profiles</span>
+										</a>
+									</li>
+								</ul>
 							</div>
-						</div>
-						<div id="vendorsTab" class="tab-pane fade">
-							<div class="container" style="background-color: white;height: 600px;">
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#Interviews">
+								<i class="fas fa-desktop"></i>
+								<p>Interviews</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="Interviews">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="">
+											<span class="sub-item">Add Interviews</span>
+										</a>
+									</li>
+									<li>
+										<a href="">
+											<span class="sub-item">view Interviews</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- End Sidebar -->
 
-								<div class="row" style="background-color: #65bddfc7; height: 56px;">
+		<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+					<div class="page-header">
+						<h4 class="page-title">Add Requirement</h4>
+						<ul class="breadcrumbs">
+							<li class="nav-home">
+								<a href="#">
+									<i class="flaticon-home"></i>
+								</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="#">Requirement</a>
+							</li>
+						</ul>
+					</div>
 
-									<div class="col-sm-11" style="margin-top: 9px;">
-										<h5>Vendors</h5>
-									</div>
-									<div class="col-sm-1" style="margin-top: 2px;">
-										<button type="button" data-toggle="modal" data-target="#vendormodal" class="btn"
-											style="margin-top: 9px;">New</button></div>
+					<!-- page side content add requirement form -->
 
-								</div>
-
+					<div class="tab-content">
+						<div id="addrequirementTab" class="tab-pane fade">
+							<div class="container-fluid"
+								style=" border: 1px ;padding: 10px;box-shadow: 5px 10px 18px #888888">
 								<br>
-								<div id="vendorslisting" class="">
-
-									<div id="main-container" class="list-view contact"
-										style="box-shadow:none;border:none;">
-										<div class="col-sm-1"></div>
-
-										<div id="main-content" class="contact">
-
-											<div
-												style="background-color:  #73c7e726;border: 1px solid #e3e3e3;height: 52px;">
-												<div class="row" style="color: black;font-size: 13px;top: 12px;position: relative;">
-
-													<div class="col-sm-2" style="left:14px;margin:3px;">
-														<b>Vendor Name</b>
-													</div>
-													<div class="col-sm-2" style="right:3%">
-														<select class="form-control" id="vratingdrop" onchange="vendorfilterText()"></select>
-													</div>
-													<div class="col-sm-2"></div>
-													<div class="col-sm-2"></div>
-													<div class="col-sm-2" style="left:25%;">
-														<a href="#" onClick="$('#vendortable').tableExport({type:'excel',escape:'false'});">
-															<img src="/assets/img/export-to-excel-image.png" style="height: 28px;width:24px;">
-														</a>
-													</div>
-
-												</div>
-											</div>
-											<br>
-
-										</div>
-
-
-										<div id="main-content" class="">
-
-											<div id="tbMarksContainer">
-
-												<div class="entity-list" id="entity-list">
-
-													<div class="table table-responsive"
-														style="overflow: auto;height:400px;">
-
-														<table id="vendortable" class="display dataTable table-bordered"
-															style="width:104%;color: black;">
-															<thead
-																style="font-weight: bold;background-color: rgb(51, 122, 183);position: relative;top: 0px;color: rgb(255, 255, 255); white-space: nowrap;">
-																<tr style="font-weight:bold;">
-																	<th scope="col">Recruiter Id</th>
-																	<th scope="col">Vendor Id</th>
-																	<th scope="col">Vendor Name</th>
-																	<th scope="col">Recruiter Name</th>
-																	<!-- <th scope="col">Rating</th>  -->
-																	<th scope="col">Vendor Email</th>
-																	<th data-orderable="false" scope="col">Action</th>
-																</tr>
-															</thead>
-															<tbody id="vendorlistingbody" style="color:black">
-															</tbody>
-														</table>
-													</div>
-												</div>
-											</div>
-										</div>
-
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 "></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Business Unit <span style="color:red;">*</span></label>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<select class="form-control" id="bunit" name="bu_unit" required></select>
+									</div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Sales Region <span style="color:red;">*</span></label>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<select class="form-control" id="salesregion" name="sales_region" required></select>
+									</div>
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 "></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Sales Representative <span style="color:red;">*</span></label>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<select class="form-control" id="salesrepresent" name="sale_rep" required></select>
 									</div>
 
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 								</div>
-
+								<div class="row">
+									<div class="col-sm-1"></div>
+									<div class="col-sm-10">
+										<hr>
+									</div>
+									<div class="col-sm-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4"></div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="file" id="choosefile" onchange="uploadOnChange()" name="myFile" multiplestyle="color: black;font-size: 13px;">
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="text" class="form-control" id="filename" style="width: 100%;" disabled>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-1"></div>
+									<div class="col-sm-4">
+										<hr>
+									</div>
+									<div class="col-sm-1"><label
+											style="font-weight:bold;left:16px;position:relative;">(OR)</label></div>
+									<div class="col-sm-5">
+										<hr>
+									</div>
+									<div class="col-sm-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Requirement ID <span style="color:red;">*</span></label></div>
+									<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="text" id="requirement" name="Requirementid" class="form-control" required>
+									</div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>No of Positions <span style="color:red;">*</span></label></div>
+									<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="tel" id="positions" name="positions" minlength="1" maxlength="3" class="form-control" required>
+									</div>
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Tech Level <span style="color:red;">*</span></label>
+									</div>
+									<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<select id="rolelevel" class="form-control" name="role_level" required>
+											<option value="1">Tech 1</option>
+											<option value="2">Tech 2</option>
+											<option value="3">Tech 3</option>
+										</select>
+									</div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Job Title <span style="color:red;">*</span></label>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="text" id="jobtitle" class="form-control" name="jobtitle" required>
+									</div>
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label style="width: 144px;">Requirement Opens on <span style="color:red;">*</span></label>
+									</div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="date" id="reqdate" name="req_date" min="1970-01-01" max="2022-01-01" class="form-control" required>
+									</div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label style="width: 145px;">Requirement Closes on <span style="color:red;">*</span></label>
+									</div>
+									<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="date" id="edate" name="ex_date" min="1970-01-01" max="2025-01-01" class="form-control" required>
+									</div>
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Primary Skill <span style="color:red;">*</span></label></div>
+									<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="text" class="form-control" name="primary_skill" id="piskills" required>
+									</div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Secondary Skill </label></div>
+									<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="text" id="seskills" name="secondry_skill" class="form-control" required>
+									</div>
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Job Location <span style="color:red;">*</span></label>
+									</div>
+									<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<select id="jloc" name="job_location" class="form-control" required></select>
+									</div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Location Flexiblity <span style="color:red;">*</span></label>
+									</div>
+									<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="radio" value="Y" id="locflexy" name="loc_flex"><label>Yes</label>
+										<input type="radio" value="N" id="locflexn" name="loc_flex"><label>No</label>
+									</div>
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Status <span style="color:red;">*</span></label>
+									</div>
+									<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<select id="jstatus" class="form-control" name="j_status" required></select>
+									</div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label style="width: 153px;">Duration of the Assignment <span style="color:red;">*</span></label>
+									</div>
+									<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="text" id="jduration" name="jduration" class="form-control" required>
+									</div>
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label style="width: 140px;">Experience(In Months) <span style="color:red;">*</span></label>
+									</div>
+									<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="tel" id="experience" name="experience" MinLength="1" MaxLength="3" class="form-control" required>
+									</div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Role/Domain <span style="color:red;">*</span></label>
+									</div>
+									<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<input type="text" id="role" name="role" class="form-control" required>
+									</div>
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Job Description <span style="color:red;">*</span></label>
+									</div>
+									<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+										<textarea id="jdesp" name="job_description" style="width: 89%;border-radius: 5px;font-size:13px;"></textarea>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Comments </label></div>
+									<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+										<textarea id="comm" name="jd_comments" style="width: 89%;border-radius: 5px;font-size:13px;"></textarea>
+									</div>
+								</div>
+								<div class="submission" style="margin:3%;">
+									<div class="row">
+										<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9"></div>
+										<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+											<button type="submit" class="btn btn-sm btn-info" onclick="addjd()">Submit</button>
+											<button type="button" id="canceljob" class="btn btn-sm btn-info" onclick="clearFormJob()">Cancel</button>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
+		<!-- /page content add requirement form-->
+
+<!-- page side content view requirement form -->
+
+						<div id="viewrequirementTab" class="tab-pane fade">
+							<div class="container-fluid" style=" border: 1px ;padding: 10px;box-shadow: 5px 10px 18px #888888">
+								<br>
+								<div class="table table-responsive ">
+									<table id="jobtable" class="display table table-hover" >
+										<thead style="font-weight: bold;background-color:rgb(111, 122, 154);position: relative;top: 0px;color: rgb(255, 255, 255);white-space: nowrap;">
+											<tr style="font-weight:bold;white-space: nowrap;">
+												<th>Requirement Id</th>
+												<th>Role</th>
+												<th>No.Of Positions</th>
+												<th>Experince</th>
+												<th>Job Title</th>
+												<th>Duration </th>
+												<th>Primary Skills</th>
+												<th>Secondary Skills</th>
+												<th>Status</th>
+												<th>Requirement Open Date</th>
+												<th>Requirement Close Date</th>
+												<th>Account</th>
+												<th>Business Unit</th>
+												<th>Sales Region</th>
+												<th>Sales Representative</th>
+												<th>Job Location</th>
+												<th>Location Flexibility</th>
+												<th>Job Description</th>
+												<th>Created By</th>
+												<th>Created Date</th>
+												<th>Updated By</th>
+												<th>Updated Date</th>
+											</tr>
+										</thead>
+										<tbody id="joblistingbody" style="color:black;" class="myTableBody">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+	<!-- /page side content add profile form -->
+
+	<div id="addprofileTab" class="tab-pane fade">
+		<div class="container-fluid" style=" border: 1px ;padding: 10px;box-shadow: 5px 10px 18px #888888">
+			<br>
+			<form action="post" onsubmit="return false">
+				<div class="row">
+					<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Basic Information:</h4>
+				</div>
+				<hr style="width: 100%;top: -9px;position: relative;">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label style="width: 125px;">Job Requirement ID <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<select  class="form-control" id="jobrecid" name="pjob_recid" onchange="editjobtitilebyreqid()"></select>
+					
+				</div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">Job Title <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" id="profilejobtitle" name="pjob_title" class="form-control" required></select>
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">First Name <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+
+					<input type="text" id="firstname" name="pfirst_name" class="form-control" required>
+				</div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">Last Name <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" id="lastname" name="plast_name" class="form-control" required>
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label>Mobile <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="tel" id="mobile" name="p_mobile" class="form-control" MaxLength="10" pattern="[0-9]{10}" required>
+				</div>
+				<div class="col-sm-2">
+					<label>Email <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="email" id="email" name="p_email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">Date of Birth <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="date" id="dob" name="p_dob" class="form-control" min="1970-01-01" max="2002-01-01" required>
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="row">
+				<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Address </h4>
+			</div>
+			<hr style="width: 100%;top: -9px;position: relative;">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label>Country <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" id="country" name="p_country" onclick="profiletabstatedropdown()" class="form-control" required>
+					</select>
+				</div>
+				<div class="col-sm-2">
+					<label>State <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" id="state" name="p_state" class="form-control" required>
+					</select>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label>City <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" id="city" name="p_city" class="form-control" required>
+				</div>
+			</div>
+			<div class="row">
+				<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Profession </h4>
+			</div>
+			<hr style="width: 100%;top: -9px;position: relative;">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label>Highest Qualification <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" id="highestquali" name="p_highestquali" required></select>
+				</div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">Current Job Title <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" id="currentjobtitle" name="pcurrent_jobtitle" class="form-control" required>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label>Current CTC <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" id="currentsalary" name="pcurrent_salary" class="form-control" required>
+				</div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">Expected CTC <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" id="expectedsalary" name="pexpected_salary" class="form-control" required>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label>Primary Skill <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" id="pskillset" name="pskill_set" class="form-control" required>
+				</div>
+				<div class="col-sm-2">
+					<label>Secondary Skill </label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" id="sskillset" name="sskill_set" class="form-control">
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">Skype ID <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" id="skypeid" name="pskype_id" class="form-control" required>
+				</div>
+				<div class="col-sm-2">
+					<label>Notice Period <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="tel" id="noticeperiod" name="pnotice_period" minlength="1" maxlength="2" class="form-control" required>
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">Current Location <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" id="currentlocation" name="pcurrent_location" required></select>
+				</div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">Desired Location <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" id="desiredlocation" name="pdesired_location" required></select>
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label>Experience <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="text" id="profileexperience" name="p_experience" class="form-control" required>
+				</div>
+				<div class="col-sm-2">
+					<label>Resigned <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="radio" value="Y" id="resignedy" name="resigned"><label>Yes</label>
+					<input type="radio" value="N" id="resignedn" name="resigned"><label>No</label>
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="row">
+				<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Others </h4>
+			</div>
+			<hr style="width: 100%;top: -9px;position: relative;">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label>Current Status <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<select class="form-control" id="status" name="p_status" class="form-control" required></select>
+				</div>
+				<div class="col-sm-2">
+					<label>Vendor <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<select id="profilevendorid" name="p_vendorid" class="form-control" required></select>
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="row">
+				<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Attachment </h4>
+			</div>
+			<hr style="width: 100%;top: -9px;position: relative;">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<label style="width: 113px;">Resume <span style="color:red">*</span></label>
+				</div>
+				<div class="col-sm-3">
+					<input type="file" id="profileresume" onchange="uploadOnChange()" name="myFile" multiple style="color: black;font-size: 13px;">
+				</div>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="pfilename" name="presume_name" style="width: 100%;" required disabled>
+				</div>
+				<div class="col-sm-1"> </div>
+			</div>
+			<div class="submission" style="margin:3%;">
+				<div class="row">
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9"></div>
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+						<button type="Submit" class="btn btn-sm btn-info" onclick="addprofile()">Save</button>
+                        <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" onclick="clearFormProfile();">Cancel</button>
 					</div>
 				</div>
 			</div>
-		</div>
+		</form>
+
+		
 
 
-		<!-- Job Edit Modal -->
+	</div>
 
-		<div class="modal fade" id="jobModal" role="dialog" style="margin-top: 3%;">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header" style="background-color: #73c7e7">
-						<h4 class="modal-title">Job Description</h4>
-						<button type="button" class="close" data-dismiss="modal"
-							onclick="cancelenable()">&times;</button>
+				 </div>
 
-					</div>
-					<div class="modal-body" style="overflow:auto;height:450px;">
-						<form>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Requirement ID:</label>
-								</div>
-								<div class="col-sm-3">
-									<p id="reqiddisplay" name="reqid_display" style="color: black;font-size: 13px;"></p>
+			<!-- /page side content view requirement form -->
+	  
+<!-- Job Edit Modal -->
 
-								</div>
-								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-									<label><span style="color:red;">*</span>Job Title</label></div>
-								<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-									<input type="text" id="jobtitleedit" name="jobtitleedit" class="form-control">
-								</div>
+	  <div class="modal fade" id="jobModal" role="dialog" style="margin-top: 3%;">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #73c7e7">
+					<h4 class="modal-title">Job Description</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
 
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-									<label><span style="color:red;">*</span>Role Level:</label></div>
-								<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-									<select id="roleleveledit" class="form-control" name="role_leveledit">
-										<option value="">Tech 1</option>
-										<option value="">Tech 2</option>
-										<option value="">Tech 3</option>
-									</select>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;">Job Location:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="jlidedit" name="jlid_edit" class="form-control">
-								</div>
-								<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Primary Skill:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="psedit" name="ps_edit" class="form-control">
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;">Secondary Skill:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="ssedit" name="ss_edit" class="form-control">
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>No of Positions: </label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="nposedit" name="npos_edit" class="form-control">
-								</div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;">Role/Domain:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="roleedit" name="role_edit" class="form-control">
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-									<label><span style="color:red;">*</span>Duration:
-										:</label></div>
-								<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-									<input type="text" id="jdurationedit" name="jdurationedit" class="form-control">
-								</div>
-								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-									<label><span style="color:red;">*</span>Status:</label></div>
-								<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-									<select id="jstatusedit" class="form-control" name="jstatusedit">
-										<!-- <option value=""></option> -->
-										<option value="1">Open</option>
-										<option value="2">Close</option>
-									</select>
-								</div>
-								<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-							</div>
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Date of request:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="datereqedit" name="datereq_edit" class="form-control">
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;">Close Date:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="expdateedit" name="expdate_edit" class="form-control">
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Location Flexibility:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="lfedit" name="lf_edit" class="form-control">
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Experience:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="expedit" name="exp_edit" class="form-control">
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label>Business Unit:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="buedit" name="bu_edit" class="form-control">
-									</select>
-								</div>
-								<div class="col-sm-2">
-									<label>Sales Regions:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="sregionedit" name="sregion_edit" class="form-control">
-									</select>
-								</div>
-								<div class="col-sm-1"></div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label>Sales Representative:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="srepedit" name="srep_edit" class="form-control">
-									</select>
-								</div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;">Customers:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="custedit" name="cust_edit"></select>
-								</div>
-								<div class="col-sm-1"></div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Created by:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="cbyedit" name="cby_edit" class="form-control">
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;">Updated by:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="ubyedit" name="uby_edit" class="form-control">
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Created date:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="cbydateedit" name="cbydate_edit" class="form-control">
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;">Updated date:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="ubydateedit" name="ubydate_edit" class="form-control">
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
-								</div>
-								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-									<label>Job description:</label></div>
-								<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-									<p id="jdiddisplayhidden" name="jdiddisplay_hidden" style="display:none;"></p>
-									<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="jdedit" name="jd_edit"></textarea>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
-								</div>
-								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-									<label>JD Comments:</label></div>
-								<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-									<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="JD_comment"
-										name="jdcomments"></textarea>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
-								</div>
-								<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-									<label>BU Comments:</label></div>
-								<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-									<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="BU_comment"
-										name="bucomments"></textarea>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<!-- <button type="button" class="btn btn-sm btn-info" id="edithide"
-							onclick="enablejoblist()">Edit</button> -->
-						<button type="submit" class="btn btn-sm btn-info" id="updatehide" data-dismiss="modal"
-							onclick="updatejd()">Update</button>
-						<button type="button" class="btn btn-sm btn-info" data-dismiss="modal" onclick="cancelenable()">
-							Cancel</button>
-					</div>
 				</div>
-			</div>
-		</div>
-
-		<!-- profile Modal -->
-
-		<div class="modal fade" id="profilesmodal" role="dialog" style="margin-top: 3%;">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header" style="background-color: #73c7e7">
-						<h5 class="modal-title">New Profile</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							onclick="clearFormProfile();">&times;</button>
-
-					</div>
-					<div class="modal-body" style="overflow:auto;height:450px;">
-						<form action="post" onsubmit="return false">
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Basic Information:</h4>
+				<div class="modal-body" style="overflow:auto;height:450px;">
+					<form>
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Requirement ID:<span style="color:red">*</span></label>
 							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Job Requirement
-										ID:</label>
-								</div>
-								<div class="col-sm-3">
-									<select onchange="editjobtitilebyreqid()" class="js-example-basic-single form-control" id="jobrecid" name="pjob_recid" >
-										
-									  </select>
-									<!-- <select class="form-control" id="jobrecid" name="pjob_recid"
-										onclick="editjobtitilebyreqid()" class="form-control" required>
-									</select> -->
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Job Title:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="profilejobtitle" name="pjob_title"
-										class="form-control" required>
-									</select>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>First Name:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="firstname" name="pfirst_name" class="form-control" required>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Last Name:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="lastname" name="plast_name" class="form-control" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Mobile:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="tel" id="mobile" name="p_mobile" class="form-control" pattern="[0-9]{10}" required>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Email:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="email" id="email" name="p_email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-								</div>
-
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Date of Birth:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="date" id="dob" name="p_dob" class="form-control" required>
-								</div>
-
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Address:</h4>
-							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Country:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="country" name="p_country"
-										onclick="profiletabstatedropdown()" class="form-control" required>
-									</select>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>State:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="state" name="p_state" class="form-control" required>
-									</select>
-								</div>
-								<div class="col-sm-1"></div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>City:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="city" name="p_city" class="form-control" required>
-
-								</div>
+							<div class="col-sm-3">
+								<p id="reqiddisplay" name="reqid_display" style="color: black;font-size: 13px;"></p>
 
 							</div>
-
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Profession:</h4>
-							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Highest Qualification:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="highestquali" name="p_highestquali"
-										required></select>
-
-								</div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Current Job
-										Title:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="currentjobtitle" name="pcurrent_jobtitle"
-										class="form-control" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Current CTC:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="currentsalary" name="pcurrent_salary" class="form-control"
-										required>
-								</div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Expected CTC:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="expectedsalary" name="pexpected_salary" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-1"> </div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Job Title:<span style="color:red;">*</span></label></div>
+							<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+								<input type="text" id="jobtitleedit" name="jobtitle_edit" class="form-control">
 							</div>
 
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Primary Skill:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="pskillset" name="pskill_set" class="form-control" required>
-								</div>
-
-								<div class="col-sm-2">
-									<label>Secondary Skill:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="sskillset" name="sskill_set" class="form-control">
-								</div>
-								<div class="col-sm-1"> </div>
+							<div class="col-sm-1"> </div>
+						</div>
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Tech Level:<span style="color:red;">*</span></label></div>
+							<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+								<select id="techleveledit" name="tech_leveledit" class="form-control">
+									<option value="">Tech 1</option>
+									<option value="">Tech 2</option>
+									<option value="">Tech 3</option>
+								</select>
 							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Skype ID:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="skypeid" name="pskype_id" class="form-control" required>
-								</div>
-
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Notice Period:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="noticeperiod" name="pnotice_period" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-1"> </div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Job Location:</label>
 							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Current
-										Location:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="currentlocation" name="pcurrent_location"
-										required></select>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Desired
-										Location:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="desiredlocation" name="pdesired_location"
-										required></select>
-								</div>
-								<div class="col-sm-1"> </div>
+							<div class="col-sm-3">
+								<select id="jlidedit" name="jlid_edit" class="form-control"></select>
+							</div>
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Primary Skill:<span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="psedit" name="ps_edit" class="form-control">
+							</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Secondary Skill:</label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="ssedit" name="ss_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>No of Positions:<span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+
+								<input type="text" id="nposedit" name="npos_edit" class="form-control">
 							</div>
 
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Experience:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="profileexperience" name="p_experience" class="form-control"
-										required>
-								</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Role/Domain:</label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="roleedit" name="role_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
 
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Resigned:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="radio" value="Y" id="resignedy" name="resigned"><label>Yes</label>
-									<input type="radio" value="N" id="resignedn" name="resigned"><label>No</label>
-								</div>
-								<div class="col-sm-1"> </div>
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Duration of the Assignment:<span style="color:red;">*</span></label>
+							</div>
+							<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+								<input type="text" id="jdurationedit" name="jduration_edit" class="form-control">
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Status:<span style="color:red;">*</span></label>
+							</div>
+							<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+								<select id="jstatusedit" name="jstatus_edit" class="form-control">
+								</select>
+							</div>
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Requirement Opens On:<span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="datereqedit" name="datereq_edit" class="form-control">
+							</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Requirement Closes On:</label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="closedateedit" name="closedate_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label style="width:115px">Location Flexibility:<span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="radio" value="Y" id="lfedity" name="lf_edit"><label>Yes</label>
+								<input type="radio" value="N" id="lfeditn" name="lf_edit"><label>No</label>
+							</div>
+							<div class="col-sm-2">
+								<label>Experience:<span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="expedit" name="exp_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Business Unit:</label>
+							</div>
+							<div class="col-sm-3">
+								<select class="form-control" id="buedit" name="bu_edit" class="form-control">
+								</select>
+							</div>
+							<div class="col-sm-2">
+								<label>Sales Region:</label>
+							</div>
+							<div class="col-sm-3">
+								<select class="form-control" id="sregionedit" name="sregion_edit"
+									class="form-control">
+								</select>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label style="width:128px">Sales Representative:</label>
+							</div>
+							<div class="col-sm-3">
+								<select class="form-control" id="srepedit" name="srep_edit" class="form-control">
+								</select>
 							</div>
 
-							<!-- <div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Evaluation
-										Date:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="date" class="form-control" id="evaldate" name="eval_date" required>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Panel:</label>
-
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control" id="ppanel" name="p_panel" required>
-
-								</div>
-								<div class="col-sm-1"> </div>
-							</div> -->
-
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Others:</h4>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Customer:</label>
 							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Current Status:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="status" name="p_status" class="form-control"
-										required>
-									</select>
-
-								</div>
-
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Vendor:</label>
-								</div>
-								<div class="col-sm-3">
-									<select id="profilevendorid" name="p_vendorid" class="form-control"
-										required></select>
-								</div>
-								<div class="col-sm-1"> </div>
-
+							<div class="col-sm-3">
+								<select class="form-control" id="custedit" name="cust_edit"></select>
 							</div>
+							<div class="col-sm-1"></div>
+						</div>
 
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Attachment:</h4>
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Created by:<span style="color:red">*</span></label>
 							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Resume:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="file" id="profileresume" onchange="uploadOnChange()" name="myFile"
-										multiple style="color: black;font-size: 13px;">
-
-								</div>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" id="pfilename" name="presume_name"
-										style="width: 100%;" required disabled>
-
-								</div>
-
-								<div class="col-sm-1"> </div>
-
+							<div class="col-sm-3">
+								<input type="text" id="cbyedit" name="cby_edit" class="form-control">
 							</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Updated by:</label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="ubyedit" name="uby_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
 
-					</div>
-					<div class="modal-footer">
-						<button type="Submit" class="btn btn-sm btn-info"
-							onclick="addprofile()">Save</button>
-						<button type="button" class="btn btn-sm btn-info" data-dismiss="modal"
-							onclick="clearFormProfile();">Cancel</button>
-					</div>
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Created date:<span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="cbydateedit" name="cbydate_edit" class="form-control">
+							</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Updated date:</label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="ubydateedit" name="ubydate_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Job description:</label>
+							</div>
+							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+								<p id="jdiddisplayhidden" name="jdiddisplay_hidden" style="display:none;"></p>
+								<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="jdedit"
+									name="jd_edit"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>JD Comments:</label>
+							</div>
+							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+								<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="jdcomment"
+									name="jd_comments"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>BU Comments:</label>
+							</div>
+							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+								<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="bucomment"
+									name="bu_comments"></textarea>
+							</div>
+						</div>
 					</form>
 				</div>
-			</div>
-		</div>
-
-
-		<!-- Profile Edit Modal-->
-
-		<div class="modal fade" id="profileEditModal" role="dialog" style="margin-top: 3%;">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header" style="background-color: #73c7e7">
-						<h5 class="modal-title">Profile Description</h5>
-						<button type="button" class="close" onclick="disableprofileedit()"
-							data-dismiss="modal">&times;</button>
-
-					</div>
-
-					<div class="modal-body" style="overflow:auto;height:450px;">
-						<form action="" method="">
-							<div class="row">
-								<div class="col-sm-9">
-									<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Profile Status:</h4>
-								</div>
-								<div class="col-sm-3">
-									<button type="button" id="lttsInterviewBtn" data-dismiss="modal"
-										style="display: none;">Schedule Ltts Interview</button>
-									<button type="button" id="customerInterviewBtn" data-dismiss="modal" style="display: none;">Schedule
-										Customer Interview</button>
-								</div>
-							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-
-
-							<div class="row">
-								<div class="container">
-									<ul id="progressbar">
-										<li id="lttsScreening" class="active">Ltts Screening</li>
-										<li id="lttsInterview">Ltts Interview</li>
-										<li id="customerScreening">Customer Screening</li>
-										<li id="customerInterview">Customer Interview</li>
-										<li id="onboarded">On-boarded</li>
-									</ul>
-								</div>
-							</div><br>
-
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Basic Information:</h4>
-							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Job Requirement
-										ID:</label>
-								</div>
-								<div class="col-sm-3">
-									<p id="peditjobrecid" name="peditjob_recid" style="color: black;font-size: 13px;">
-									</p>
-									<p id="editprofilehiddenId" name="editprofile_hiddenId" style="display:none;"></p>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Job Title:</label>
-								</div>
-								<div class="col-sm-3">
-									<p id="peditjobtitle" name="peditjob_title" style="color:black"></p>
-								</div>
-
-
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>First Name:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="peditfirstname" name="peditfirst_name" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Last Name:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="peditlastname" name="peditlast_name" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Mobile:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="tel" id="peditmobile" name="pedit_mobile" class="form-control" pattern="[0-9]{10}"	required>
-								</div>
-
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Email:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="email" id="peditemail" name="pedit_email" class="form-control"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;">Date of Birth:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="peditdob" name="pedit_dob" class="form-control">
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Address:</h4>
-							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label>Country:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="peditcountry" name="pedit_country"
-										onclick="editprofilestatedropdown()" class="form-control" required>
-									</select>
-								</div>
-								<div class="col-sm-2">
-									<label>State:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="peditstate" name="pedit_state" class="form-control">
-									</select>
-								</div>
-
-								<div class="col-sm-1"></div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label>City:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="peditcity" name="pedit_city" class="form-control">
-
-								</div>
-
-								<div class="col-sm-2"></div>
-								<div class="col-sm-3"></div>
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Profession:</h4>
-							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Highest Qualification:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="pedithighestquali" name="pedit_highestquali"
-										required></select>
-
-								</div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Current Job
-										Title:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="peditcurrentjobtitle" name="peditcurrent_jobtitle"
-										class="form-control" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Current CTC:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="peditcurrentsalary" name="peditcurrent_salary"
-										class="form-control" required>
-								</div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Expected CTC:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="peditexpectedsalary" name="peditexpected_salary"
-										class="form-control" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Primary Skill:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="peditskillset" name="peditskill_set" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Secondary Skill:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="seditskillset" name="seditskill_set" class="form-control"
-										required>
-								</div>
-
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Notice Period:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="peditnoticeperiod" name="peditnotice_period"
-										class="form-control" required>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Skype ID:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="peditskypeid" name="peditskype_id" class="form-control"
-										required>
-								</div>
-
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Current
-										Location:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="peditcurrentlocation" name="peditcurrent_location"
-										required></select>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Desired Location:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="peditdesiredlocation" name="peditdesired_location"
-										required></select>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Experience:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="peditexperience" name="pedit_experience" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Resigned:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="radio" value="Y" id="editresignedy"
-										name="editresigned"><label>Yes</label>
-									<input type="radio" value="N" id="editresignedn"
-										name="editresigned"><label>No</label>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<!-- <div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Evaluation
-										Date:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control" id="peditevaldate" name="pedit_evaldate"
-										required>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Panel:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control" id="peditpanel" name="pedit_panel" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div> -->
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Others:</h4>
-							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Current Status:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="peditstatus" name="pedit_status"
-										class="form-control" required>
-									</select>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Vendor Name:</label>
-								</div>
-								<div class="col-sm-3">
-									<select id="peditvendorid" name="pedit_vendorid" class="form-control"
-										required></select>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Attachment:</h4>
-							</div>
-							<hr style="width: 100%;top: -9px;position: relative;">
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Resume:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="file" id="resume" onchange="uploadOnChange()" name="myFile" multiple
-										style="color: black;font-size: 13px;">
-								</div>
-								<div class="col-sm-5">
-									<input type="text" class="form-control" id="peditfilename" name="peditresume_name"
-										style="width: 100%;" required>
-								</div>
-								<div class="col-sm-1"> </div>
-
-							</div>
-					</div>
-					<div class="modal-footer">
-						<!-- <button type="button" class="btn btn-sm btn-info" id="profileeditbtn"
-							onclick="enableprofileedit()">Edit</button> -->
-						<button type="submit" id="updateeditprofile" class="btn btn-sm btn-info" data-dismiss="modal"
-							onclick="updateprofile()">Update</button>
-						<button type="button" class="btn btn-sm btn-info" onclick="disableprofileedit()"
-							data-dismiss="modal">Cancel</button>
-					</div>
-					</form>
-
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-sm btn-info" id="updatehide" data-dismiss="modal"
+						onclick="updatejd()">Update</button>
+					<button type="button" class="btn btn-sm btn-info" data-dismiss="modal">Cancel</button>
 				</div>
-			</div>
-		</div>
-
-
-		<!-- Vendor Modal -->
-
-		<div class="modal fade" id="vendormodal" role="dialog" style="margin-top: 14%;">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header" style="background-color: #73c7e7">
-						<h5 class="modal-title">New Vendor</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							onclick="clearFormVendor()">&times;</button>
-					</div>
-					<div class="modal-body" style="height:329px;">
-						<form action="post" onsubmit="return false">
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Vendor I'D:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="vendorid" name="vendor_id" class="form-control" required>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Vendor Name:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="vendorname" name="vendor_name" class="form-control" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Vendor Primary Location:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="vendorpriloc" name="vendor_priloc"
-										class="form-control" required>
-									</select>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Vendor Specifications:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="vendorspec" name="vendor_spec" class="form-control" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Vendor Email:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="email" id="vendoremail" name="vendor_email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Recruiter Id:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="recruiterid" name="recruiter_id" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Recruiter Name:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="recruitername" name="recruiter_name" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Recruiter Contact Number:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="tel" id="recruitercontno" name="recruiter_contno" class="form-control" pattern="[0-9]{10}" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<!-- <div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label>Vendor Rating:</label>
-								</div>
-								<div class="col-sm-3">
-									<select id="vendorrating" name="vendor_rating" class="form-control"
-										required></select>
-								</div>
-							</div> -->
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label>Comments:</label>
-								</div>
-								<div class="col-sm-9">
-									<textarea id="vendorcomments" name="vendor_comments"
-										style="width: 89%;border-radius: 5px;font-size:13px;"></textarea>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="Submit" class="btn btn-sm btn-info"
-									onclick="addvendor()">Save</button>
-								<button type="button" class="btn btn-sm btn-info" onclick="clearFormVendor();"
-									data-dismiss="modal">Cancel</button>
-							</div>
-						</form>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!-- Vendor Edit Modal -->
-
-		<div class="modal fade" id="vendoreditmodal" role="dialog" style="margin-top: 10%;">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header" style="background-color: #73c7e7">
-						<h5 class="modal-title">Vendor Description</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							onclick="cancelenablevendor()">&times;</button>
-					</div>
-					<div class="modal-body" style="overflow:auto;height:347px;">
-						<form action="" method="">
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Vendor I'D:</label>
-								</div>
-								<div class="col-sm-3">
-									<P id="vendoridhidden" name="vendorid_hidden" style="color:black; display:none"></P>
-									<input type="text" id="editvendorid" name="editvendor_id" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Vendor Name:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<input type="text" id="editvendorname" name="editvendor_name" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Vendor Primary Location:</label>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-control" id="editvendorpriloc" name="editvendor_priloc"
-										class="form-control" required>
-									</select>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Vendor Specifications:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="editvendorspec" name="editvendor_spec" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Vendor Email:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="email" id="editvendoremail" name="editvendor_email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Recruiter Id:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="editrecruiterid" name="editrecruiter_id" class="form-control"
-										required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Recruiter Name:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" id="editrecruitername" name="editrecruiter_name"
-										class="form-control" required>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Recruiter Contact Number:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="tel" id="editrecruitercontno" name="editrecruiter_contno" class="form-control" pattern="[0-9]{10}" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<!-- <div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Vendor Rating:</label>
-								</div>
-								<div class="col-sm-3">
-									<select id="editvendorrating" name="editvendor_rating"
-										class="form-control" required disabled></select>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div> -->
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label>Comments:</label>
-								</div>
-								<div class="col-sm-9">
-									<textarea id="editvendorcomments" name="editvendor_comments"
-										style="width: 89%;border-radius: 5px;font-size:13px;" ></textarea>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<!-- <button type="button" class="btn btn-sm btn-info" id="editvendor"
-									onclick="enablevendorlist()" data-toggle="modal">Edit</button> -->
-								<button type="Submit" class="btn btn-sm btn-info" id="updatevendor"
-									onclick="updatevendorbyid()"
-									data-dismiss="modal">update</button>
-								<button type="button" class="btn btn-sm btn-info" onclick="cancelenablevendor()"
-									data-dismiss="modal">Cancel</button>
-
-							</div>
-						</form>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		<!--Customer Interview Modal -->
-		<div class="modal fade" id="custinterviewModal" role="dialog" style="margin-top: 20%;">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header" style="background-color: #73c7e7">
-						<h5 class="modal-title">Interview Details</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							>&times;</button>
-					</div>
-					<div class="modal-body" style="height:200px;">
-						<form action="post" onsubmit="return false">
-
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Customer:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<select id="intcustomer" name="int_customer" class="form-control" required></select>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Location:</label>
-								</div>
-								<div class="col-sm-3">
-
-									<select id="custintlocation" name="custint_location" class="form-control" required></select>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Interviewer Name:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control" id="custintname" name="custint_name"
-										class="form-control" required>
-								</div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Interview Type:</label>
-								</div>
-								<div class="col-sm-3">
-									<select id="custinttype" name="custint_type" class="form-control" required></select>
-								</div>
-								<div class="col-sm-1"></div>
-							</div>
-							<div class="row">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-2">
-									<label><span style="color:red">*</span>Interview Date:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="date" id="custintdate" name="custint_date" class="form-control" required>
-								</div>
-								<div class="col-sm-2">
-									<label style="width: 113px;"><span style="color:red">*</span>Interview Time:</label>
-								</div>
-								<div class="col-sm-3">
-									<input type="date" id="custinttime" name="custnt_time" class="form-control" required>
-								</div>
-								<div class="col-sm-1"> </div>
-							</div>
-							<div class="modal-footer">
-								<button type="Submit" class="btn btn-sm btn-info" onclick=""
-									data-dismiss="modal">Save</button>
-								<button type="button" class="btn btn-sm btn-info" onclick=""
-									data-dismiss="modal">Cancel</button>
-							</div>
-						</form>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-<!--Ltts Interview Modal -->
-
-<div class="modal fade" id="lttsinterviewModal" role="dialog" style="margin-top: 20%;">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header" style="background-color: #73c7e7">
-				<h5 class="modal-title">Interview Details</h5>
-				<button type="button" class="close" data-dismiss="modal"
-							>&times;</button>
-			</div>
-			<div class="modal-body" style="height:216px;">
-				<form action="post" onsubmit="return false">
-					
-					
-					<div class="row">
-						<div class="col-sm-1"></div>
-						<div class="col-sm-2">
-							<label><span style="color:red">*</span>Interviewer Name:</label>
-						</div>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" id="lttsintname" name="lttsint_name"
-								class="form-control" required>
-						</div>
-						<div class="col-sm-2">
-							<label><span style="color:red">*</span>Interview Date:</label>
-						</div>
-						<div class="col-sm-3">
-							<input type="date" id="lttsintdate" name="lttsint_date" class="form-control" required>
-						</div>
-						<div class="col-sm-1"></div>
-					</div>
-					<div class="row">
-						<div class="col-sm-1"></div>
-
-						<div class="col-sm-2">
-							<label style="width: 113px;"><span style="color:red">*</span>Interview Time:</label>
-						</div>
-						<div class="col-sm-3">
-							<input type="date" id="lttsinttime" name="lttsint_time" class="form-control"
-								required>
-						</div>
-						<div class="col-sm-2">
-							<label><span style="color:red">*</span>Interview Type:</label>
-						</div>
-						<div class="col-sm-3">
-							<select id="lttsinttype" name="lttsint_type" class="form-control"
-								required></select>
-						</div>
-						<div class="col-sm-1"> </div>
-					</div>
-					<div class="row">
-						<div class="col-sm-1"></div>
-						<div class="col-sm-2">
-							<label style="width: 113px;"><span style="color:red">*</span>Location:</label>
-						</div>
-						<div class="col-sm-3">
-
-							<select id="lttsintlocation" name="lttsint_location" class="form-control" required></select>
-						</div>
-						<div class="col-sm-1"> </div>
-					</div>
-					<div class="modal-footer">
-						<button type="Submit" class="btn btn-sm btn-info"
-							onclick="" data-dismiss="modal">Save</button>
-						<button type="button" class="btn btn-sm btn-info" onclick=""
-							data-dismiss="modal">Cancel</button>
-					</div>
-				</form>
-
 			</div>
 		</div>
 	</div>
-</div>
-		<script src="js/popper.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.easing.1.3.js"></script>
-		<script src="js/jquery.waypoints.min.js"></script>
-		<script src="js/jquery.stellar.min.js"></script>
-		<script src="js/owl.carousel.min.js"></script>
-		<script src="js/jquery.magnific-popup.min.js"></script>
-		<script src="js/aos.js"></script>
-		<script src="js/jquery.animateNumber.min.js"></script>
-		<script src="js/scrollax.min.js"></script>
-		<script src="js/main.js"></script>
 
+
+<!-- /Job Edit Modal -->
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
 </body>
 
 </html>
