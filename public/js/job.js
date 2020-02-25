@@ -25,7 +25,7 @@ function salesdropdown() {
         success: function (result) {
             for (var i = 0; i < result[0].length; i++) {
                 salesdropdown = salesdropdown +
-                   '<option value="' + result[0][i].salesregionsid + '">' + result[0][i].salesregions + '</option>';
+                    '<option value="' + result[0][i].salesregionsid + '">' + result[0][i].salesregions + '</option>';
             }
             $("#salesregion").html(salesdropdown);
             $("#sregionedit").html(salesdropdown);
@@ -93,18 +93,130 @@ function jobstatusdropdown() {
     });
 }
 
+function currentlocationdropdown() {
+    var currentlocation = "";
+    var url = "http://localhost:2000/curentlocation";
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (result) {
+
+            //            currentlocation = currentlocation+"<option>--Select--</option>";
+            //	currentlocation = currentlocation + "<option style='display:none;'></option>";
+
+            for (var i = 0; i < result[0].length; i++) {
+                currentlocation = currentlocation +
+                    '<option value="' + result[0][i].locationid + '">' + result[0][i].location + '</option>';
+            }
+            $("#currentlocation").html(currentlocation);
+            $("#desiredlocation").html(currentlocation);
+            $("#vendorpriloc").html(currentlocation);
+            $("#editvendorpriloc").html(currentlocation);
+            $("#peditcurrentlocation").html(currentlocation);
+            $("#peditdesiredlocation").html(currentlocation);
+            $("#jlocation").html(currentlocation);
+            $("#lttsintlocation").html(currentlocation);
+            $("#jloc").html(currentlocation);
+            $("#jlidedit").html(currentlocation);
+
+        }
+    });
+}
+
+function addjd() {
+    var Requirement = $('[name="Requirementid"]').val();
+    var Role = $('[name="role"]').val();
+    var rolelevel = $('[name="role_level"]').val();
+    var jobtitle = $('[name="jobtitle"]').val();
+    var Position = $('[name="positions"]').val();
+    var closedate = $('[name="ex_date"]').val();
+    var dateofreq = $('[name="req_date"]').val();
+    var jdduration = $('[name="jduration"]').val();
+    var Exp = $('[name="experience"]').val();
+    var PSkill = $('[name="primary_skill"]').val();
+    var SSkill = $('[name="secondry_skill"]').val();
+    var locationflex = $('input[name=loc_flex]:checked').val();
+    var customerid = $('[name="customer"]').val();
+    var jdstatus = $('[name="j_status"]').val();
+    var buid = $('[name="bu_unit"]').val();
+    var salesregionid = $('[name="sales_region"]').val();
+    var salesrepid = $('[name="sale_rep"]').val();
+    var joblocation = $('#jloc option:selected').text();
+    var joblocationid = $('[name="job_location"]').val();
+    var jDescription = $('[name="job_description"]').val();
+    var buComments = $('[name="bu_comments"]').val();
+    var jdComments = $('[name="jd_comments"]').val();
+    var createdby = 'Admin';
+    var isactive='Y';
+    
+    var data = {
+        "Requirement": Requirement,
+        "Role": Role,
+        "rolelevel": rolelevel,
+        "jobtitle": jobtitle,
+        "Position": Position,
+        "closedate": closedate,
+        "dateofreq": dateofreq,
+        "jdduration": jdduration,
+        "Exp": Exp,
+        "PSkill": PSkill,
+        "SSkill": SSkill,
+        "locationflex": locationflex,
+        "customerid": customerid,
+        "jdstatus": jdstatus,
+        "buid": buid,
+        "salesregionid": salesregionid,
+        "salesrepid": salesrepid,
+        "joblocationid": joblocationid,
+        "joblocation": joblocation,
+        "jDescription": jDescription,
+        "buComments": buComments,
+        "jdComments": jdComments,
+        "createdby": createdby,
+        "isactive":isactive
+    }
+
+    data = JSON.stringify(data);
+    var url = "http://localhost:2000/jdescription";
+    
+if(Requirement!="" && Role!="" && rolelevel!="" && jobtitle!="" && Position!="" && closedate!="" && dateofreq!="" &&
+     jdduration!="" && Exp!=""&& PSkill!=""&& SSkill!=""&& locationflex!=""&& customerid!=""&& jdstatus!=""&& 
+     buid!=""&& salesregionid!=""&& salesrepid!="" && joblocationid!="" && joblocation!=""&& jDescription!="")
+      {
+    $.ajax({
+        url: url,
+        type: "post",
+        async: false,
+        data: data,
+        contentType: "application/json",
+        dataType: "json",
+        success: function (result) {
+            $('#successmodal').modal('show');
+            
+        },
+        error: function () {
+        }
+        
+    });
+    clearFormJob();
+
+    }		
+    
+}
+
 function joblistingdetails() {
     var tableData = "";
-console.log("joblisting");
+
     var url = "http://localhost:2000/joblistingdetails";
     $.ajax({
         url: url,
         type: "GET",
         success: function (result) {
 
-            for (var i = 0; i < result[0].length; i++) {               
+            for (var i = 0; i < result[0].length; i++) {
+                
                 var jobdescriptionID = "\"" + result[0][i].jobdescriptionid + "\"";
-                tableData = tableData + "  <tr data-target='#jobModal' data-toggle='modal' data-backdrop='static' style='white-space: nowrap' data-keyboard='false'  onclick='jobdisplay(" + jobdescriptionID + ")'> " +
+                tableData = tableData + "  <tr class='content' data-target='#jobModal' data-toggle='modal' data-backdrop='static' data-keyboard='false' style='white-space:nowrap' onclick='jobdisplay(" + jobdescriptionID + ")'> " +
                     //"<td id='' hidden>" + result[0][i].contactid + "</td>" +
                     "<td >" + result[0][i].requirmentid + "</td>" +
                     "<td >" + result[0][i].role + "</td>" +
@@ -133,11 +245,10 @@ console.log("joblisting");
             }
             $("#jobtable tbody").html(tableData);
             // $("#joblistingbody").html(tableData);
-            $("#jobtable").DataTable({
-                "sScrollX": "80%",
-            });
+            $("#jobtable").DataTable();
+
         }
-    })
+    });
 }
 
 function jobdisplay(i) {
@@ -150,9 +261,10 @@ function jobdisplay(i) {
         success: function (result) {
 
             if (result[0][0].bucomments == undefined) {
-                console.log(result[0][0].bucomments);
+            //	console.log(result[0][0].bucomments);
                 result[0][0].bucomments == ""
             }
+
 
             if (result[0][0].locationflexibility == 'Y') {
                 $("#lfedity").prop('checked', true);
@@ -184,8 +296,8 @@ function jobdisplay(i) {
             $("#ubyedit").val(result[0][0].updateby);
             $("#cbydateedit").val(result[0][0].createddate.slice(0, 10));
             $("#ubydateedit").val(result[0][0].updatedtime.slice(0, 10));
-        //  $("#lfedit").val(result[0][0].locationflexibility);
-            $("#jdedit").val(result[0][0].jobdescription);                  
+        //	$("#lfedit").val(result[0][0].locationflexibility);
+            $("#jdedit").val(result[0][0].jobdescription);					
             $("#jdcomment").val(result[0][0].jdcomments);
             $("#bucomment").val(result[0][0].bucomments);
 
@@ -228,12 +340,16 @@ function enablejoblist() {
 
 }
 
-function updatejd() {
 
+function updatejd() {
     // $("#edithide").show();
     $("#updatehide").show();
     var jobdescriptionId = $('[name="jdiddisplay_hidden"]').text();
+    var bussinessunit = $('[name="bu_edit"]').val();
+    var salesregion = $('[name="sregion_edit"]').val();
+    var salerep = $('[name="srep_edit"]').val();
     var reqid = $('[name="reqid_display"]').text();
+    var jdtitle=$('[name="jobtitle_edit"]').val();
     var joblocationid = $('[name="jlid_edit"]').val();
     var joblocation = $("#jlidedit option:selected").text();
     var experience = $('[name="exp_edit"]').val();
@@ -243,23 +359,24 @@ function updatejd() {
     var noofpos = $('[name="npos_edit"]').val();
     var duration = $('[name="jduration_edit"]').val();
     var role = $('[name="role_edit"]').val();
+    var rolelevel = $('[name="tech_leveledit"]').val();
     var customer = $('[name="cust_edit"]').val();
-    var bussinessunit = $('[name="bu_edit"]').val();
-    var salesregion = $('[name="sregion_edit"]').val();
-    var salerep = $('[name="srep_edit"]').val();
     var status = $('[name="jstatus_edit"]').val();
     var primaryskill = $('[name="ps_edit"]').val();
     var secondaryskill = $('[name="ss_edit"]').val();
     var jobdescription = $('[name="jd_edit"]').val();
-    var updateby = $('[name="uby_edit"]').val();
+    var createdby= 'Admin';
+    var updateby = 'Admin';
     var updatedate = $('[name="ubydate_edit"]').val();
     var jdcomments = $('[name="jd_comments"]').val();
     var bucomments = $('[name="bu_comments"]').val();
+    var isactive='Y'
 
     var data = {
 
         "jobdescriptionId": jobdescriptionId,
         "reqid": reqid,
+        "jdtitle":jdtitle,
         "joblocationid": joblocationid,
         "joblocation": joblocation,
         "experince": experience,
@@ -268,6 +385,7 @@ function updatejd() {
         "locaflex": locaflex,
         "noofpos": noofpos,
         "role": role,
+        "rolelevel": rolelevel,
         "duration": duration,
         "customer": customer,
         "bussinessunit": bussinessunit,
@@ -280,8 +398,9 @@ function updatejd() {
         "updateby": updateby,
         "updatedate": updatedate,
         "jdcomments": jdcomments,
-        "bucomments": bucomments
-
+        "bucomments": bucomments,
+        "createdby":createdby,
+        "isactive":isactive
     }
 
     data = JSON.stringify(data);
@@ -294,7 +413,6 @@ function updatejd() {
         contentType: "application/json",
         dataType: "json",
         success: function (result) {
-
         },
         error: function () {
         }
@@ -302,5 +420,33 @@ function updatejd() {
 
     joblistingdetails();
 
-}
+}	
 
+function clearFormJob() {
+
+    $("#bunit").val('');
+    $("#salesregion").val('');
+    $("#salesrepresent").val('');
+    $("#cus").val('');
+    $("#comment").val('');
+    $("#filename").val('');
+    $("#requirement").val('');
+    $("#role").val('');
+    $("#edate").val('');
+    $("#positions").val('');
+    $("#experience").val('');
+    $("#jobtitle").val('');
+    $("#reqdate").val('');
+    $("#jduration").val('');
+    $("#locflexy").val('');
+    $("#locflexn").val('');
+    $("#jstatus").val('');
+    $("#jobstatus").val('');
+    $("#piskills").val('');
+    $("#seskills").val('');
+    $("#jloc").val('');
+    $("#locflex").val('');
+    $("#jdesp").val('');
+    $("#comm").val('');
+
+}

@@ -35,8 +35,15 @@
 	<!-- Fonts and icons -->
 	<script src="js/plugin/webfont/webfont.min.js"></script>
 
+	<!-- Profiles reqid search -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script> 
+	
 	<!-- Job Js -->
 	<script src="js/job.js"></script>
+
+	<!-- Profile Js -->
+	<script src="js/profile.js"></script>
 
 	<script>
 		WebFont.load({
@@ -85,19 +92,137 @@
         border-color: #ebedf2 !important;
         padding: .75rem !important;
     }
+	
 	.dataTables_scrollBody thead tr[role="row"]{
     visibility: collapse !important;
-}
-.page-item.active .page-link {
+	}
+	
+	.page-item.active .page-link {
     z-index: 1;
     color: #fff;
     background-color: rgb(111, 122, 154);
     border-color: rgb(111, 122, 154);
 }
 
+select2-container--default .select2-selection--single {
+		width: 162px;
+		border: 1px solid #ced4da;
+		border-radius: 5px;
+	}
+
+	.select2-container--default .select2-selection--single .select2-selection__arrow b {
+		border-color: #888 transparent transparent transparent;
+		color: black;
+		left: 69px;
+
+	}
+
+	.select2-container--default .select2-selection--single .select2-selection__rendered {
+		color: black;
+
+	}
+
+	.select2-container--open .select2-dropdown--below {
+		width: 159px !important;
+	}
+
+
+	#lttsInterviewBtn,
+	#customerInterviewBtn {
+
+		font-size: 11px;
+		background: #4473a3;
+		border: 1px solid #4473a3 !important;
+		color: #fff !important;
+		border-radius: 5px;
+		height: 39px;
+	}
+
+	#progressbar {
+
+		/*CSS counters to number the steps*/
+		counter-reset: step;
+		
+	}
+
+	#progressbar li {
+		list-style-type: none;
+		color: black;
+		font-size: 12px;
+		float: left;
+		position: relative;
+
+	}
+
+	#progressbar li:before {
+		content: "";
+		counter-increment: step;
+		width: 30px;
+		height: 30px;
+		border: 2px solid #bebebe;
+		line-height: 20px;
+		display: block;
+		font-size: 10px;
+		color: #bebebe;
+		background: white;
+		border-radius: 50%;
+		margin: 0 87px 10px auto;
+		text-align: center;
+
+	}
+
+	/*progressbar connectors*/
+	#progressbar li:after {
+		content: '';
+    width: 76%;
+    height: 3px;
+    background: #979797;
+    position: absolute;
+    left: -75%;
+    top: 15px;
+    z-index: 0;
+		/*put it behind the numbers*/
+
+
+	}
+
+	#progressbar li:first-child:after {
+		/*connector not needed before the first step*/
+		content: none;
+	}
+
+	#progressbar li.active:before,
+	#progressbar li.active:after {
+		background: green;
+		color: white;
+		border: 2px solid green;
+	}
+
+	#progressbar li.submitted:before {
+		background-color: #157efb;
+		border: 2px solid #157efb;
+
+	}
+
+	#progressbar li.is-reject:before {
+		background-color: red;
+		border: 2px solid red;
+
+	}
+	#progressbar li.selected:before {
+		background-color: #bebebe;
+		border: 2px solid #bebebe;
+
+	}
 	
 </style>
-
+<script>
+$(document).ready(function() {
+	   
+	 $('.js-example-basic-single').select2();
+	    
+	}); 
+</script>
 <script>
 
 
@@ -108,19 +233,31 @@
 		salesdropdown();
 		salesrepdropdown();
 		customerdropdown();
+		currentlocationdropdown();
+		
+		jobreqiddropdown()
+		profiletabcountrydropdown();
+		highestqualdropdown();
+		profilestatusdropdown();
+		profilevendordropdown();
+	
 		//         jobstatus();
-		//         jobreqiddropdown()
 		//         expdropdown();
-		//         salutationdropdown();
-		//         highestqualdropdown();
-		//         currentlocationdropdown();
-		//         profilestatusdropdown();
-		//         profiletabcountrydropdown();
+		//         salutationdropdown();         
 		//         getvendornamedropdown();
-		//         profilevendordropdown(); 
-
+		
 	})
+	$('.items a').on('click', function() {
+  var $this = $(this),
+      $bc = $('<div class="item"></div>');
 
+  $this.parents('li').each(function(n, li) {
+      var $a = $(li).children('a').clone();
+      $bc.prepend(' / ', $a);
+  });
+    $('.breadcrumb').html( $bc.prepend('<a href="#home">Home</a>') );
+    return false;
+}) 
 
 </script>
 
@@ -229,7 +366,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="">
+										<a href="#" data-toggle="tab" onclick="profileslistingdetails()" data-target="#viewprofileTab">
 											<span class="sub-item">view Profiles</span>
 										</a>
 									</li>
@@ -263,11 +400,11 @@
 		</div>
 		<!-- End Sidebar -->
 
-		<div class="main-panel">
+		 <div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Add Requirement</h4>
+						<h4 class="page-title">Requirement</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -281,8 +418,31 @@
 								<a href="#">Requirement</a>
 							</li>
 						</ul>
+					</div> 
+					<!-- <div class="breadcrumb">
+						<div class="item"><a href="#home">Home / </a></div>
 					</div>
-
+					
+					<div class="items">
+					   <ul>
+						<li><a href="#dashboard">Dashboard</a></li>
+					   </ul>
+					   <ul>
+						 <li><a href="#addrequirementTab">Add Requirement</a></li>
+						 <li><a href="#viewrequirementTab">View Requirement</a>
+							<ul>
+								<li><a href="level1">Level 1</a></li>
+								<li><a href="level2">Level 2</a>
+									<ul>
+										<li><a href="level3">Level 3</a></li>
+										<li><a href="level4">Level 4</a></li>
+									</ul>
+							  </li>
+							</ul>
+						 </li>
+						 <li><a href="#test1">Test 3</a></li>
+					  </ul>
+					</div> -->
 					<!-- page side content add requirement form -->
 
 					<div class="tab-content">
@@ -314,7 +474,13 @@
 									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
 										<select class="form-control" id="salesrepresent" name="sale_rep" required></select>
 									</div>
-
+									
+									<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+										<label>Customer <span style="color:red;">*</span></label></div>
+									<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+										<select class="form-control" id="cus" name="customer"
+											required></select>
+									</div>
 									<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
 								</div>
 								<div class="row">
@@ -488,7 +654,7 @@
 						</div>
 		<!-- /page content add requirement form-->
 
-<!-- page side content view requirement form -->
+<!-- page side content view requirement -->
 
 						<div id="viewrequirementTab" class="tab-pane fade">
 							<div class="container-fluid" style=" border: 1px ;padding: 10px;box-shadow: 5px 10px 18px #888888">
@@ -528,14 +694,295 @@
 							</div>
 						</div>
 
-	<!-- /page side content add profile form -->
+	<!-- /page side content view requirement -->
+
+<!-- Success Modal -->
+	
+<div class="container">
+		<div class="modal fade " role="dialog" id="successmodal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="background: #47c9a2;">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body text-center">
+						<img src="/assets/img/success.png" style="height: 105px;width:103px;">
+						<h4>SUCCESS</h4>
+						<p>Created Successfully.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Success Modal -->
+
+<!-- Job Edit Modal -->
+
+	<div class="modal fade" id="jobModal" role="dialog" style="margin-top: 3%;">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #73c7e7">
+					<h4 class="modal-title">Job Description</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<div class="modal-body" style="overflow:auto;height:450px;">
+					<form>
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Requirement ID <span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<p id="reqiddisplay" name="reqid_display" style="color: black;font-size: 13px;"></p>
+
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Job Title <span style="color:red;">*</span></label></div>
+							<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+								<input type="text" id="jobtitleedit" name="jobtitle_edit" class="form-control">
+							</div>
+
+							<div class="col-sm-1"> </div>
+						</div>
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Tech Level <span style="color:red;">*</span></label></div>
+							<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+								<select id="techleveledit" name="tech_leveledit" class="form-control">
+									<option value="1">Tech 1</option>
+									<option value="2">Tech 2</option>
+									<option value="3">Tech 3</option>
+								</select>
+							</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Job Location </label>
+							</div>
+							<div class="col-sm-3">
+								<select id="jlidedit" name="jlid_edit" class="form-control"></select>
+							</div>
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Primary Skill <span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="psedit" name="ps_edit" class="form-control">
+							</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Secondary Skill </label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="ssedit" name="ss_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>No of Positions <span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+
+								<input type="text" id="nposedit" name="npos_edit" class="form-control">
+							</div>
+
+							<div class="col-sm-2">
+								<label style="width: 113px;">Role/Domain </label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="roleedit" name="role_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Duration of the Assignment <span style="color:red;">*</span></label>
+							</div>
+							<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+								<input type="text" id="jdurationedit" name="jduration_edit" class="form-control">
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Status <span style="color:red;">*</span></label>
+							</div>
+							<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+								<select id="jstatusedit" name="jstatus_edit" class="form-control">
+								</select>
+							</div>
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
+
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Requirement Opens On <span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="datereqedit" name="datereq_edit" class="form-control">
+							</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Requirement Closes On </label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="closedateedit" name="closedate_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label style="width:115px">Location Flexibility <span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="radio" value="Y" id="lfedity" name="lf_edit"><label>Yes</label>
+								<input type="radio" value="N" id="lfeditn" name="lf_edit"><label>No</label>
+							</div>
+							<div class="col-sm-2">
+								<label>Experience <span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="expedit" name="exp_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Business Unit </label>
+							</div>
+							<div class="col-sm-3">
+								<select class="form-control" id="buedit" name="bu_edit" class="form-control">
+								</select>
+							</div>
+							<div class="col-sm-2">
+								<label>Sales Region </label>
+							</div>
+							<div class="col-sm-3">
+								<select class="form-control" id="sregionedit" name="sregion_edit"
+									class="form-control">
+								</select>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label style="width:128px">Sales Representative </label>
+							</div>
+							<div class="col-sm-3">
+								<select class="form-control" id="srepedit" name="srep_edit" class="form-control">
+								</select>
+							</div>
+
+							<div class="col-sm-2">
+								<label style="width: 113px;">Customer </label>
+							</div>
+							<div class="col-sm-3">
+								<select class="form-control" id="custedit" name="cust_edit"></select>
+							</div>
+							<div class="col-sm-1"></div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Created by <span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="cbyedit" name="cby_edit" class="form-control">
+							</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Updated by </label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="ubyedit" name="uby_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-2">
+								<label>Created date <span style="color:red">*</span></label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="cbydateedit" name="cbydate_edit" class="form-control">
+							</div>
+							<div class="col-sm-2">
+								<label style="width: 113px;">Updated date </label>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" id="ubydateedit" name="ubydate_edit" class="form-control">
+							</div>
+							<div class="col-sm-1"> </div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>Job description </label>
+							</div>
+							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+								<p id="jdiddisplayhidden" name="jdiddisplay_hidden" style="display:none;"></p>
+								<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="jdedit"
+									name="jd_edit"></textarea>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>JD Comments </label>
+							</div>
+							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+								<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="jdcomment"
+									name="jd_comments"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+							</div>
+							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+								<label>BU Comments </label>
+							</div>
+							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+								<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="bucomment"
+									name="bu_comments"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-sm btn-info" id="updatehide" data-dismiss="modal" onclick="updatejd()">Update</button>
+					<button type="button" class="btn btn-sm btn-info" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- /Job Edit Modal -->
+
+<!-- page side content add profile form -->
 
 	<div id="addprofileTab" class="tab-pane fade">
 		<div class="container-fluid" style=" border: 1px ;padding: 10px;box-shadow: 5px 10px 18px #888888">
 			<br>
 			<form action="post" onsubmit="return false">
 				<div class="row">
-					<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Basic Information:</h4>
+					<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Basic Information </h4>
 				</div>
 				<hr style="width: 100%;top: -9px;position: relative;">
 			<div class="row">
@@ -544,7 +991,7 @@
 					<label style="width: 125px;">Job Requirement ID <span style="color:red">*</span></label>
 				</div>
 				<div class="col-sm-3">
-					<select  class="form-control" id="jobrecid" name="pjob_recid" onchange="editjobtitilebyreqid()"></select>
+					<select  class="js-example-basic-single form-control" id="jobrecid" name="pjob_recid" onchange="editjobtitilebyreqid()"></select>
 					
 				</div>
 				<div class="col-sm-2">
@@ -776,278 +1223,414 @@
 					</div>
 				</div>
 			</div>
-		</form>
-
-		
-
-
+		</form>	
 	</div>
+</div>
+		<!-- /page side content view requirement form -->
 
-				 </div>
+<!-- page side content table display profile -->
+<div id="viewprofileTab" class="tab-pane fade">
+	<div class="container-fluid" style=" border: 1px ;padding: 10px;box-shadow: 5px 10px 18px #888888">
+		<br>
+		<div class="table table-responsive ">
+			<table id="profiletable" class="display table table-hover" >
+				<thead style="font-weight: bold;background-color:rgb(111, 122, 154);position: relative;top: 0px;color: rgb(255, 255, 255);white-space: nowrap;">
+					<tr style="font-weight:bold;white-space: nowrap;">
+						<th >Requirement Id</th>
+						<th >Job Title</th>
+						<th >Candidate Name</th>
+						<th >Primary Skill</th>
+						<th >Secondary Skill</th>
+						<th >Email</th>
+						<th >Mobile</th>
+						<th >Date Of Birth</th>
+						<th >City</th>
+						<th >Current Job Title</th>
+						<th >Experience</th>
+						<th >Current Salary</th>
+						<th >Expected Salary</th>
+						<th >Notice Period</th>
+						<th >Status</th>
+						<th >Vendor Id</th>
+						<th >Created By</th>
+						<th >Created Date</th>
+						<th >Updated By</th>
+						<th >Updated Date</th>
+					</tr>
+				</thead>
+				<tbody id="joblistingbody" style="color:black;" class="myTableBody">
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
 
-			<!-- /page side content view requirement form -->
-	  
-<!-- Job Edit Modal -->
+	<!-- /page side content table display profile -->
+		
+<!-- Profile Edit Modal-->
 
-	  <div class="modal fade" id="jobModal" role="dialog" style="margin-top: 3%;">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header" style="background-color: #73c7e7">
-					<h4 class="modal-title">Job Description</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<div class="modal fade" id="profileEditModal" role="dialog" style="margin-top: 3%;">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: #73c7e7">
+						<h5 class="modal-title">Profile Description</h5>
+						<button type="button" class="close"	data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body" style="overflow:auto;height:450px;">
+						<form action="" method="">
+							<div class="row">
+								<div class="col-sm-9">
+									<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Profile Status </h4>
+								</div>
+								<div class="col-sm-3">
+									<button type="button" id="lttsInterviewBtn" onclick="interviewtypedropdown()"
+										style="display: none;">Schedule Ltts Interview</button>
+									<button type="button" id="customerInterviewBtn" style="display: none;">Schedule
+										Customer Interview</button>
+								</div>
+							</div>
+							
 
-				</div>
-				<div class="modal-body" style="overflow:auto;height:450px;">
-					<form>
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-2">
-								<label>Requirement ID:<span style="color:red">*</span></label>
+							<div class="row">
+								<div class="container">
+									<ul id="progressbar">
+										<li id="ltts">Ltts</li>
+										<li id="customer">Customer</li>
+										<li id="onboarded">On-boarded</li>
+									</ul>
+								</div>
+							
+							<div class="collapse" id="lttsLevel">
+								<div class="mt-3">
+									<div class="container">
+										<ul id="progressbar">
+											<li id="LttsScreening" class="">Screening</li>
+											<li id="LttsInterview" class="">Interview</li>
+																						
+										</ul>
+									</div>
+								</div>
+							  </div>
+							  <div class="collapse" id="customerLevel">
+								<div class="mt-3">
+									<div class="container">
+										<ul id="progressbar">
+											<li id="customerScreening" >Screening</li>
+											<li id="customerInterview">Interview</li>
+																						
+										</ul>
+									</div>
+								</div>
+							  </div>
+							  <div class="collapse" id="onboardLevel">
+								<div class="mt-3">
+									<div class="container">
+										<ul id="progressbar">
+											<li>Screening</li>
+											<li>Interview</li>
+																						
+										</ul>
+									</div>
+								</div>
+							  </div>
 							</div>
-							<div class="col-sm-3">
-								<p id="reqiddisplay" name="reqid_display" style="color: black;font-size: 13px;"></p>
+							<br>
+							<hr style="width: 100%;top: -9px;position: relative;">
+							<div class="row">
+								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Basic Information </h4>
+							</div>
+							<hr style="width: 100%;top: -9px;position: relative;">
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label style="width: 113px;">Job Requirement ID <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<p id="peditjobrecid" name="peditjob_recid" style="color: black;font-size: 13px;">
+									</p>
+									<p id="editprofilehiddenId" name="editprofile_hiddenId" style="display:none;"></p>
+								</div>
+								<div class="col-sm-2">
+									<label style="width: 113px;">Job Title <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<p id="peditjobtitle" name="peditjob_title" style="color:black"></p>
+								</div>
 
-							</div>
-							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-								<label>Job Title:<span style="color:red;">*</span></label></div>
-							<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-								<input type="text" id="jobtitleedit" name="jobtitle_edit" class="form-control">
-							</div>
 
-							<div class="col-sm-1"> </div>
-						</div>
-						<div class="row">
-							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-								<label>Tech Level:<span style="color:red;">*</span></label></div>
-							<div class=" col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-								<select id="techleveledit" name="tech_leveledit" class="form-control">
-									<option value="">Tech 1</option>
-									<option value="">Tech 2</option>
-									<option value="">Tech 3</option>
-								</select>
+								<div class="col-sm-1"> </div>
 							</div>
-							<div class="col-sm-2">
-								<label style="width: 113px;">Job Location:</label>
-							</div>
-							<div class="col-sm-3">
-								<select id="jlidedit" name="jlid_edit" class="form-control"></select>
-							</div>
-							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-						</div>
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label style="width: 113px;">First Name <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
 
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-2">
-								<label>Primary Skill:<span style="color:red">*</span></label>
-							</div>
-							<div class="col-sm-3">
-								<input type="text" id="psedit" name="ps_edit" class="form-control">
-							</div>
-							<div class="col-sm-2">
-								<label style="width: 113px;">Secondary Skill:</label>
-							</div>
-							<div class="col-sm-3">
-								<input type="text" id="ssedit" name="ss_edit" class="form-control">
-							</div>
-							<div class="col-sm-1"> </div>
-						</div>
+									<input type="text" id="peditfirstname" name="peditfirst_name" class="form-control"
+										required>
+								</div>
+								<div class="col-sm-2">
+									<label style="width: 113px;">Last Name <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
 
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-2">
-								<label>No of Positions:<span style="color:red">*</span></label>
+									<input type="text" id="peditlastname" name="peditlast_name" class="form-control"
+										required>
+								</div>
+								<div class="col-sm-1"> </div>
 							</div>
-							<div class="col-sm-3">
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label>Mobile <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="tel" id="peditmobile" name="pedit_mobile" class="form-control" MaxLength="10" pattern="[0-9]{10}" required>
+								</div>
 
-								<input type="text" id="nposedit" name="npos_edit" class="form-control">
+								<div class="col-sm-2">
+									<label>Email <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="email" id="peditemail" name="pedit_email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+								</div>
+								<div class="col-sm-1"> </div>
 							</div>
+							<div class="row">
+								<div class="col-sm-1"></div>
 
-							<div class="col-sm-2">
-								<label style="width: 113px;">Role/Domain:</label>
-							</div>
-							<div class="col-sm-3">
-								<input type="text" id="roleedit" name="role_edit" class="form-control">
-							</div>
-							<div class="col-sm-1"> </div>
-						</div>
-
-						<div class="row">
-							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-								<label>Duration of the Assignment:<span style="color:red;">*</span></label>
-							</div>
-							<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-								<input type="text" id="jdurationedit" name="jduration_edit" class="form-control">
-							</div>
-							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-								<label>Status:<span style="color:red;">*</span></label>
-							</div>
-							<div class="  col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-								<select id="jstatusedit" name="jstatus_edit" class="form-control">
-								</select>
-							</div>
-							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1"></div>
-
-						</div>
-
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-2">
-								<label>Requirement Opens On:<span style="color:red">*</span></label>
-							</div>
-							<div class="col-sm-3">
-								<input type="text" id="datereqedit" name="datereq_edit" class="form-control">
-							</div>
-							<div class="col-sm-2">
-								<label style="width: 113px;">Requirement Closes On:</label>
-							</div>
-							<div class="col-sm-3">
-								<input type="text" id="closedateedit" name="closedate_edit" class="form-control">
-							</div>
-							<div class="col-sm-1"> </div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-2">
-								<label style="width:115px">Location Flexibility:<span style="color:red">*</span></label>
-							</div>
-							<div class="col-sm-3">
-								<input type="radio" value="Y" id="lfedity" name="lf_edit"><label>Yes</label>
-								<input type="radio" value="N" id="lfeditn" name="lf_edit"><label>No</label>
-							</div>
-							<div class="col-sm-2">
-								<label>Experience:<span style="color:red">*</span></label>
-							</div>
-							<div class="col-sm-3">
-								<input type="text" id="expedit" name="exp_edit" class="form-control">
-							</div>
-							<div class="col-sm-1"> </div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-2">
-								<label>Business Unit:</label>
-							</div>
-							<div class="col-sm-3">
-								<select class="form-control" id="buedit" name="bu_edit" class="form-control">
-								</select>
-							</div>
-							<div class="col-sm-2">
-								<label>Sales Region:</label>
-							</div>
-							<div class="col-sm-3">
-								<select class="form-control" id="sregionedit" name="sregion_edit"
-									class="form-control">
-								</select>
-							</div>
-							<div class="col-sm-1"></div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-2">
-								<label style="width:128px">Sales Representative:</label>
-							</div>
-							<div class="col-sm-3">
-								<select class="form-control" id="srepedit" name="srep_edit" class="form-control">
-								</select>
+								<div class="col-sm-2">
+									<label style="width: 113px;">Date of Birth </label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="peditdob" name="pedit_dob" class="form-control">
+								</div>
+								<div class="col-sm-1"> </div>
 							</div>
 
-							<div class="col-sm-2">
-								<label style="width: 113px;">Customer:</label>
+							<div class="row">
+								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Address </h4>
 							</div>
-							<div class="col-sm-3">
-								<select class="form-control" id="custedit" name="cust_edit"></select>
-							</div>
-							<div class="col-sm-1"></div>
-						</div>
+							<hr style="width: 100%;top: -9px;position: relative;">
 
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-2">
-								<label>Created by:<span style="color:red">*</span></label>
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label>Country </label>
+								</div>
+								<div class="col-sm-3">
+									<select class="form-control" id="peditcountry" name="pedit_country" onclick="editprofilestatedropdown()" class="form-control" required>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label>State </label>
+								</div>
+								<div class="col-sm-3">
+									<select class="form-control" id="peditstate" name="pedit_state" class="form-control">
+									</select>
+								</div>
+								<div class="col-sm-1"></div>
 							</div>
-							<div class="col-sm-3">
-								<input type="text" id="cbyedit" name="cby_edit" class="form-control">
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label>City </label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="peditcity" name="pedit_city" class="form-control">
+								</div>
+								<div class="col-sm-2"></div>
+								<div class="col-sm-3"></div>
+								<div class="col-sm-1"> </div>
 							</div>
-							<div class="col-sm-2">
-								<label style="width: 113px;">Updated by:</label>
-							</div>
-							<div class="col-sm-3">
-								<input type="text" id="ubyedit" name="uby_edit" class="form-control">
-							</div>
-							<div class="col-sm-1"> </div>
-						</div>
 
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-2">
-								<label>Created date:<span style="color:red">*</span></label>
+							<div class="row">
+								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Profession </h4>
 							</div>
-							<div class="col-sm-3">
-								<input type="text" id="cbydateedit" name="cbydate_edit" class="form-control">
-							</div>
-							<div class="col-sm-2">
-								<label style="width: 113px;">Updated date:</label>
-							</div>
-							<div class="col-sm-3">
-								<input type="text" id="ubydateedit" name="ubydate_edit" class="form-control">
-							</div>
-							<div class="col-sm-1"> </div>
-						</div>
+							<hr style="width: 100%;top: -9px;position: relative;">
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label style="width: 128px;">Highest Qualification <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<select class="form-control" id="pedithighestquali" name="pedit_highestquali"
+										required></select>
 
-						<div class="row">
-							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
-							</div>
-							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-								<label>Job description:</label>
-							</div>
-							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-								<p id="jdiddisplayhidden" name="jdiddisplay_hidden" style="display:none;"></p>
-								<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="jdedit"
-									name="jd_edit"></textarea>
-							</div>
-						</div>
+								</div>
 
-						<div class="row">
-							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+								<div class="col-sm-2">
+									<label style="width: 113px;">Current Job Title <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="peditcurrentjobtitle" name="peditcurrent_jobtitle"
+										class="form-control" required>
+								</div>
+								<div class="col-sm-1"> </div>
 							</div>
-							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-								<label>JD Comments:</label>
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label>Current CTC <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="peditcurrentsalary" name="peditcurrent_salary" class="form-control" required>
+								</div>
+
+								<div class="col-sm-2">
+									<label style="width: 113px;">Expected CTC <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="peditexpectedsalary" name="peditexpected_salary"
+										class="form-control" required>
+								</div>
+								<div class="col-sm-1"> </div>
 							</div>
-							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-								<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="jdcomment"
-									name="jd_comments"></textarea>
+
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label> Primary Skill <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="peditskillset" name="peditskill_set" class="form-control" required>
+								</div>
+								<div class="col-sm-2">
+									<label>Secondary Skill </label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="seditskillset" name="seditskill_set" class="form-control" required>
+								</div>
+
+								<div class="col-sm-1"> </div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label>Notice Period <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="tel" id="peditnoticeperiod" name="peditnotice_period" minlength="1" maxlength="2" class="form-control" required>
+								</div>
+								<div class="col-sm-2">
+									<label style="width: 113px;">Skype ID <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="peditskypeid" name="peditskype_id" class="form-control" required>
+								</div>
+
+								<div class="col-sm-1"> </div>
 							</div>
-							<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
-								<label>BU Comments:</label>
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label style="width: 113px;">Current Location <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<select class="form-control" id="peditcurrentlocation" name="peditcurrent_location"
+										required></select>
+								</div>
+								<div class="col-sm-2">
+									<label>Desired Location <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<select class="form-control" id="peditdesiredlocation" name="peditdesired_location"
+										required></select>
+								</div>
+								<div class="col-sm-1"> </div>
 							</div>
-							<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
-								<textarea style="width: 89%;border-radius: 5px; font-size:13px;" id="bucomment"
-									name="bu_comments"></textarea>
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label style="width: 113px;">Experience <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" id="peditexperience" name="pedit_experience" class="form-control"
+										required>
+								</div>
+								<div class="col-sm-2">
+									<label>Resigned <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="radio" value="Y" id="editresignedy" name="editresigned"><label>Yes</label>
+									<input type="radio" value="N" id="editresignedn" name="editresigned"><label>No</label>
+								</div>
+								<div class="col-sm-1"> </div>
 							</div>
-						</div>
+							<!-- <div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label style="width: 113px;"><span style="color:red">*</span>Evaluation
+										Date:</label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" class="form-control" id="peditevaldate" name="pedit_evaldate"
+										required>
+								</div>
+								<div class="col-sm-2">
+									<label style="width: 113px;"><span style="color:red">*</span>Panel:</label>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" class="form-control" id="peditpanel" name="pedit_panel" required>
+								</div>
+								<div class="col-sm-1"> </div>
+							</div> -->
+							<div class="row">
+								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Others </h4>
+							</div>
+							<hr style="width: 100%;top: -9px;position: relative;">
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label>Current Status <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<select class="form-control" id="peditstatus" name="pedit_status" class="form-control" required>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label>Vendor Name <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<select id="peditvendorid" name="pedit_vendorid" class="form-control" required></select>
+								</div>
+								<div class="col-sm-1"> </div>
+							</div>
+							<div class="row">
+								<h4 style="margin-left:2%;font-size: 15px;font-weight: bold;">Attachment </h4>
+							</div>
+							<hr style="width: 100%;top: -9px;position: relative;">
+							<div class="row">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<label style="width: 113px;">Resume <span style="color:red">*</span></label>
+								</div>
+								<div class="col-sm-3">
+									<input type="file" id="resume" onchange="uploadOnChange()" name="myFile" multiple
+										style="color: black;font-size: 13px;">
+								</div>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="peditfilename" name="peditresume_name"
+										style="width: 100%;" required>
+								</div>
+								<div class="col-sm-1"> </div>
+
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" id="updateeditprofile" class="btn btn-sm btn-info" data-dismiss="modal"
+							onclick="updateprofile()">Update</button>
+						<button type="button" class="btn btn-sm btn-info" data-dismiss="modal">Cancel</button>
+					</div>
 					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-sm btn-info" id="updatehide" data-dismiss="modal"
-						onclick="updatejd()">Update</button>
-					<button type="button" class="btn btn-sm btn-info" data-dismiss="modal">Cancel</button>
+
 				</div>
 			</div>
 		</div>
-	</div>
 
 
-<!-- /Job Edit Modal -->
-				
+<!-- /Profile Edit Modal -->					
 				</div>
 			</div>
 		</div>

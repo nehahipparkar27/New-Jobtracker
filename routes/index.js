@@ -202,51 +202,8 @@ module.exports = {
         });
     },
 
-    updatejoblisting: (req, res) => {
-
-        let jobdescriptionid = req.body.jobdescriptionId;
-
-        let reqID = req.body.reqid;
-        let joblocation = req.body.joblocation;
-        let experience = req.body.experince;
-        let expecteddate = req.body.expecteddate;
-        let locationfelx = req.body.locaflex;
-        let jobdescription = req.body.jobdescription;
-        let bussinessunit = req.body.bussinessunit;
-        let salesregion = req.body.salesregion;
-        let salesrep = req.body.salerep;
-        let status = req.body.status;
-        let primaryskill = req.body.primaryskill;
-        let secondaryskill = req.body.secondaryskill;
-        //  let createdby = req.body.cby_edit;
-        let updateby = req.body.updateby;
-        let noofpositions = req.body.noofpos;
-        let role = req.body.role;
-        // let createddate = req.body.cbydate_edit;
-        let updatedtime = req.body.updatedate;
-        let dateofreq = req.body.dateofreq;
-        let customers = req.body.customer;
-        let jdcomments = req.body.jdcomments;
-        let bucomments = req.body.bucomments;
-
-
-        let query = "CALL procUpdatejobdescription('" + jobdescriptionid + "','" + reqID + "','" + role + "','" + noofpositions + "','" + dateofreq + "','" + experience +
-            "','" + primaryskill + "','" + secondaryskill + "','" + expecteddate + "','" + locationfelx + "','" + customers + "','" + status + "','" + bussinessunit + "','" + salesregion +
-            "','" + salesrep + "','" + joblocation + "','" + jobdescription + "','" + jdcomments + "','" + bucomments + "','" + updateby + "','" + updatedtime + "')";
-
-
-        db.query(query, (err, result) => {
-            if (err) {
-                ;
-                return res.status(500).send(err);
-
-            }
-            res.status(200).json(result);
-
-        });
-    },
-
     addjd: (req, res) => {
+        
         let Requirement = req.body.Requirement;
         let Role = req.body.Role;
         let rolelevel = req.body.rolelevel;
@@ -264,30 +221,81 @@ module.exports = {
         let buid = req.body.buid;
         let salesregionid = req.body.salesregionid;
         let salesrepid = req.body.salesrepid;
+        let joblocationid = req.body.joblocationid;
         let joblocation = req.body.joblocation;
         let jDescription = req.body.jDescription;
         let buComments = req.body.buComments;
         let jdComments = req.body.jdComments;
         let createdby =  req.body.createdby;
-        let updateby =  req.body.updateby;
+        let isactive =req.body.isactive;
+       
         
-        
-    
         let query = "call procinsertjobdescription('" + buid + "','" + salesregionid + "','" + salesrepid + "','" + customerid + "','" +
         Requirement + "', '" + Role + "','" + rolelevel + "','" + jobtitle + "','" + closedate + "','" + dateofreq + "','" + PSkill +
-        "',  '" + SSkill + "','" + joblocation + "','" + locationflex + "', '" + jdstatus + "','" + jdduration + "','" + experince + "','" +
-         Position + "', '" + jDescription + "','" + buComments + "','" + jdComments + "', '" + createdby + "',now(),'" + updateby + "',now())";
-    
+        "',  '" + SSkill + "','" + joblocationid + "','" + joblocation + "','" + locationflex + "', '" + jdstatus + "','" + jdduration + "','" + experince + "','" +
+         Position + "', '" + jDescription + "','" + buComments + "','" + jdComments + "', '" + createdby + "',now(),'" + isactive + "')";
+  console.log(query);  
   
         db.query(query, (err, result) => {
             if (err) {
-             
+             console.log(err);
                 return res.status(500).send(err);
             }
             res.status(200).json(result);
+console.log(result);
+        });
+    },
+
+    updatejoblisting: (req, res) => {
+console.log("in update listing");
+        let jobdescriptionid = req.body.jobdescriptionId;
+        let reqID = req.body.reqid;
+        let jdtitle=req.body.jdtitle;
+        let role = req.body.role;
+        let rolelevel=req.body.rolelevel;
+        let noofpositions = req.body.noofpos;
+        let duration = req.body.duration;
+        let dateofreq = req.body.dateofreq;  
+        console.log(dateofreq);    
+        let experience = req.body.experince;
+        let primaryskill = req.body.primaryskill;
+        let secondaryskill = req.body.secondaryskill;
+        let closedate = req.body.closedate;
+        let locationfelx = req.body.locaflex;
+        let customers = req.body.customer;
+        let status = req.body.status;
+        let bussinessunit = req.body.bussinessunit;
+        let salesregion = req.body.salesregion;
+        let salesrep = req.body.salerep;
+        let joblocationid = req.body.joblocationid;
+        let joblocation = req.body.joblocation;
+        let jobdescription = req.body.jobdescription;       
+         let createdby = req.body.createdby;
+        let updateby = req.body.updateby;
+        // let createddate = req.body.cbydate_edit;
+        let updatedtime = req.body.updatedate;
+        let jdcomments = req.body.jdcomments;
+        let bucomments = req.body.bucomments;
+        let isactive=req.body.isactive;
+        console.log(dateofreq);
+        let query = "CALL procUpdatejobdescription('" + jobdescriptionid + "','" + bussinessunit + "','" + salesregion +
+        "','" + salesrep + "','" + customers + "','" + status + "','" + reqID + "','" + role + "','" + rolelevel + "','" + jdtitle + "','" + closedate + "','" + dateofreq + "','" + primaryskill + "','" + secondaryskill + 
+        "','" + joblocationid + "','" + joblocation + "','" + locationfelx + "','" + duration + "','" + experience +
+            "','" + noofpositions + "','" + jobdescription + "','" + bucomments + "','" + jdcomments + "','" + createdby + "',now(),'" + updateby + "',now(),'" + isactive + "')";
+
+           
+        db.query(query, (err, result) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send(err);
+                
+            }
+            res.status(200).json(result);
+            console.log(result);
 
         });
     },
+
 
 
     addprofile: (req, res) => {
@@ -497,7 +505,7 @@ module.exports = {
         let peditresumename = req.body.peditresumename;
         let peditvendorid = req.body.peditvendorid;
         let peditupdatedby = req.body.peditupdatedby;
-        let Psecondskill = req.body.Psecondskill;
+        let Psecondskill = req.body.seditskillset;
         let peditresignation = req.body.peditresignation;
         let peditvendorname = req.body.peditvendorname;
 
